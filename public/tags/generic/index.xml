@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Generic on SystemOut</title>
+    <link>http://localhost:1313/tags/generic/</link>
+    <description>Recent content in Generic on SystemOut</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
+    <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
+    <lastBuildDate>Thu, 19 Dec 2013 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/generic/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>&#39;C# Generic Xml Parser Example&#39;</title>
+      <link>http://localhost:1313/2013/12/19/csharp-generic-xml-parser-example/</link>
+      <pubDate>Thu, 19 Dec 2013 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2013/12/19/csharp-generic-xml-parser-example/</guid>
+      <description>&lt;p&gt;In this post I will show how to implement and use a generic xml parser library.&lt;/p&gt;
+
+&lt;p&gt;For the complete solution and source code, &lt;a href=&#34;http://sdrv.ms/18BwjwK&#34; title=&#34;XmlParser.zip&#34; target=&#34;_blank&#34;&gt;click here!&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;I wanted to add a tool to my source toolbox, a library to use when handling xml data representations because I was tired of writing/googling the same implementations each time I had the need for some xml parsing.&lt;/p&gt;
+
+&lt;p&gt;Therefore I wrote a tiny simple XmlParser which can be invoked like so:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: csharp; title: ; notranslate&#34; title=&#34;&#34;&gt;// Create some persons and get their XML represantation
+            var me = new Person
+            {
+                Name = &#34;Nicklas Møller Jepsen&#34;,
+                YearBorn = 1985,
+                Address = new Address
+                {
+                    StreetName = &#34;Mainstreet&#34;,
+                    StreetNumber = 10,
+                    City = &#34;Copenhagen&#34;,
+                    PostalCode = &#34;2100&#34;,
+                }
+            };
+
+            var myGirlfriend = new Person
+            {
+                Name = &#34;Scarlett Johansson&#34;,
+                YearBorn = 1984,
+                Address = me.Address // Of course!
+            };
+
+            // Now get the xml from the objects!
+            var meXml = XmlParser.ToXml(me);
+            var girlfriendXml = XmlParser.ToXml(myGirlfriend);
+&lt;/pre&gt;
+
+&lt;p&gt;&amp;#8230;and to get the object representation from the xml string simply do the following:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: csharp; title: ; notranslate&#34; title=&#34;&#34;&gt;// Now parse the xml into a new object
+            var newMe = XmlParser.ToObject&amp;lt;Person&amp;gt;(meXml);
+&lt;/pre&gt;
+
+&lt;p&gt;Quite simple!&lt;br /&gt;
+The source code for the parser is not more than a few lines of code and wrapped in some exception handling so I only need to worry about ONE exception, namely the XmlParserException.&lt;/p&gt;
+
+&lt;pre class=&#34;brush: csharp; title: ; notranslate&#34; title=&#34;&#34;&gt;public static string ToXml&amp;lt;T&amp;gt;(T objectToParse) where T : class, new()
+        {
+            if (objectToParse == null)
+                throw new XmlParserException(&#34;Unable to parse a object which is null.&#34;, new ArgumentNullException(&#34;objectToParse&#34;));
+
+            var stringwriter = new System.IO.StringWriter();
+            var serializer = new XmlSerializer(typeof(T));
+            try
+            {
+                serializer.Serialize(stringwriter, objectToParse);
+            }
+            catch (Exception e)
+            {
+                throw new XmlParserException(string.Format(&#34;Unable to serialize the object {0}.&#34;, objectToParse.GetType()), e);
+            }
+
+            return stringwriter.ToString();
+        }
+
+        public static T ToObject&amp;lt;T&amp;gt;(string xmlTextToParse) where T : class, new()
+        {
+            if (string.IsNullOrEmpty(xmlTextToParse))
+                throw new XmlParserException(&#34;Invalid string input. Cannot parse an empty or null string.&#34;, new ArgumentException(&#34;xmlTestToParse&#34;));
+
+            var stringReader = new System.IO.StringReader(xmlTextToParse);
+            var serializer = new XmlSerializer(typeof(T));
+            try
+            {
+                return serializer.Deserialize(stringReader) as T;
+            }
+            catch (Exception e)
+            {
+                throw new XmlParserException(string.Format(&#34;Unable to convert to given string into the type {0}. See inner exception for details.&#34;, typeof(T)), e);
+            }
+        }
+&lt;/pre&gt;
+
+&lt;p&gt;Nothing special going on here, using some XmlSerializers &amp;#8216;n stuff. But the main value of this is that it is wrapped up in my toolbox library so I can just reference this class whenever I need it.&lt;/p&gt;
+
+&lt;p&gt;Let me know what you think and if you have any ideas what else should be in a developer source toolbox and I will add it!&lt;/p&gt;
+
+&lt;p&gt;For the complete solution and source code, &lt;a href=&#34;http://sdrv.ms/18BwjwK&#34; title=&#34;XmlParser.zip&#34; target=&#34;_blank&#34;&gt;click here!&lt;/a&gt;&lt;/p&gt;
+
+&lt;div style=&#34;font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both&#34;&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

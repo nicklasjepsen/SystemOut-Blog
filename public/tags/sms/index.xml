@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sms on SystemOut</title>
+    <link>http://localhost:1313/tags/sms/</link>
+    <description>Recent content in Sms on SystemOut</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
+    <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
+    <lastBuildDate>Wed, 07 Dec 2011 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/sms/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>WP7 Sms Templates</title>
+      <link>http://localhost:1313/2011/12/07/wp7-sms-templates/</link>
+      <pubDate>Wed, 07 Dec 2011 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2011/12/07/wp7-sms-templates/</guid>
+      <description>&lt;p&gt;&lt;p&gt;&lt;a href=&#34;http://systemout.net/wp-content/uploads/2011/12/icon-master.png&#34;&gt;&lt;img class=&#34;wp-image-24 alignleft&#34; title=&#34;Icon Master&#34; src=&#34;http://systemout.net/wp-content/uploads/2011/12/icon-master.png?w=300&#34; alt=&#34;&#34; width=&#34;150&#34; height=&#34;150&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&#34;padding-left:60px;&#34;&gt;Today I just finished my first (well actually second, but the first didn&amp;#8217;t really count) App for Windows Phone.&lt;/p&gt;
+&lt;p&gt;The App is a simple App providing the user with an easy way of sending standard text messages.&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+&lt;p&gt;It&amp;#8217;s pretty basic, but to be able to &amp;#8220;win&amp;#8221; a WP I need to create 3 Apps in no time :) &lt;/p&gt;
+&lt;p&gt;Here are some screens:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;http://systemout.net/wp-content/uploads/2011/12/wp71.png&#34;&gt;
+        &lt;style type=&#39;text/css&#39;&gt;
+            #gallery-1 {
+                margin: auto;
+            }
+            #gallery-1 .gallery-item {
+                float: left;
+                margin-top: 10px;
+                text-align: center;
+                width: 50%;
+            }
+            #gallery-1 img {
+                border: 2px solid #cfcfcf;
+            }
+            #gallery-1 .gallery-caption {
+                margin-left: 0;
+            }
+            /* see gallery_shortcode() in wp-includes/media.php */
+        &lt;/style&gt;
+        &lt;div id=&#39;gallery-1&#39; class=&#39;gallery galleryid-16 gallery-columns-2 gallery-size-thumbnail&#39;&gt;&lt;dl class=&#39;gallery-item&#39;&gt;
+            &lt;dt class=&#39;gallery-icon landscape&#39;&gt;
+                &lt;a href=&#39;http://www.systemout.net/blog/2011/12/07/wp7-sms-templates/icon-master/&#39;&gt;&lt;img width=&#34;150&#34; height=&#34;150&#34; src=&#34;http://www.systemout.net/wp-content/uploads/2011/12/icon-master-150x150.png&#34; class=&#34;attachment-thumbnail&#34; alt=&#34;Icon Master&#34; /&gt;&lt;/a&gt;
+            &lt;/dt&gt;&lt;/dl&gt;&lt;dl class=&#39;gallery-item&#39;&gt;
+            &lt;dt class=&#39;gallery-icon portrait&#39;&gt;
+                &lt;a href=&#39;http://www.systemout.net/blog/2011/12/07/wp7-sms-templates/wp72/&#39;&gt;&lt;img width=&#34;150&#34; height=&#34;150&#34; src=&#34;http://www.systemout.net/wp-content/uploads/2011/12/wp72-150x150.png&#34; class=&#34;attachment-thumbnail&#34; alt=&#34;WP7App2&#34; /&gt;&lt;/a&gt;
+            &lt;/dt&gt;&lt;/dl&gt;&lt;br style=&#34;clear: both&#34; /&gt;&lt;dl class=&#39;gallery-item&#39;&gt;
+            &lt;dt class=&#39;gallery-icon portrait&#39;&gt;
+                &lt;a href=&#39;http://www.systemout.net/blog/2011/12/07/wp7-sms-templates/wp71/&#39;&gt;&lt;img width=&#34;150&#34; height=&#34;150&#34; src=&#34;http://www.systemout.net/wp-content/uploads/2011/12/wp71-150x150.png&#34; class=&#34;attachment-thumbnail&#34; alt=&#34;WP7 App1&#34; /&gt;&lt;/a&gt;
+            &lt;/dt&gt;&lt;/dl&gt;
+            &lt;br style=&#39;clear: both;&#39; /&gt;
+        &lt;/div&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Now I&amp;#8217;m justing waiting to get my token to the free Windows Phone App Hub to publish the App :) &lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;div style=&#34;font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both&#34;&gt;&lt;/div&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

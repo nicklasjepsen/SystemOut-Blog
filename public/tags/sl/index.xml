@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sl on SystemOut</title>
+    <link>http://localhost:1313/tags/sl/</link>
+    <description>Recent content in Sl on SystemOut</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
+    <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
+    <lastBuildDate>Sat, 10 Dec 2011 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/sl/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Windows Phone RSS Reader</title>
+      <link>http://localhost:1313/2011/12/10/windows-phone-rss-reader/</link>
+      <pubDate>Sat, 10 Dec 2011 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2011/12/10/windows-phone-rss-reader/</guid>
+      <description>
+
+&lt;p&gt;As part of a competition to win a Windows Phone I have created 3 WP7 apps. One of these is a RSS reader made specific for the danish it news site &lt;a title=&#34;Version2&#34; href=&#34;http://www.version2.dk&#34; target=&#34;_blank&#34;&gt;Version2&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The source for this application can be found on&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://version2viewer.codeplex.com/&#34; target=&#34;_blank&#34;&gt;Codeplex&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The app is based on the &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/ff941098(v=vs.92).aspx&#34; target=&#34;_blank&#34;&gt;Pivot control&lt;/a&gt; in WP7. In short this means that you have a page with a list of feed items. On the same page there is a &amp;#8216;tab&amp;#8217; to another page where another feed&amp;#8217;s items are visible:&lt;/p&gt;
+
+&lt;p style=&#34;text-align:center;&#34;&gt;
+  &lt;a href=&#34;http://systemout.net/wp-content/uploads/2011/12/v2-screen1.png&#34;&gt;&lt;img class=&#34; wp-image-53 aligncenter&#34; title=&#34;V2-screen1&#34; src=&#34;http://systemout.net/wp-content/uploads/2011/12/v2-screen1.png&#34; alt=&#34;&#34; width=&#34;241&#34; height=&#34;438&#34; /&gt;&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;h2 id=&#34;the-view:feba98f87e7da1dc9b77288a18b111e7&#34;&gt;The View&lt;/h2&gt;
+
+&lt;p&gt;The view is XAML code and is implemented using the &lt;a href=&#34;http://en.wikipedia.org/wiki/Model_View_ViewModel&#34; target=&#34;_blank&#34;&gt;MVVM&lt;/a&gt; pattern. This pattern is extremely powerful when it comes to binding data to the view. Furthermore DataTemplates are used to reuse the layout of the feed items.&lt;/p&gt;
+
+&lt;p&gt;Here is an example of a DataTemplate:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: xml; title: ; notranslate&#34; title=&#34;&#34;&gt;&amp;lt;DataTemplate x:Name=&#34;FeedItemTemplate&#34;&amp;gt;
+         &amp;lt;StackPanel Orientation=&#34;Vertical&#34;&amp;gt;
+             &amp;lt;TextBlock Text=&#34;{Binding TruncatedTitle}&#34; 
+                        TextWrapping=&#34;Wrap&#34; 
+                        Margin=&#34;12,0,0,0&#34; 
+                        Style=&#34;{StaticResource PhoneTextTitle3Style}&#34;/&amp;gt;
+             &amp;lt;StackPanel Orientation=&#34;Horizontal&#34; 
+                         Margin=&#34;0,0,0,17&#34;&amp;gt;
+                 &amp;lt;TextBlock Text=&#34;{Binding TimeStamp}&#34; 
+                            Foreground=&#34;#B0D011&#34; 
+                            Margin=&#34;12,-6,0,0&#34; 
+                            Style=&#34;{StaticResource PhoneTextSubtleStyle}&#34; /&amp;gt;
+                 &amp;lt;TextBlock Text=&#34;{Binding Url}&#34;  
+                            TextWrapping=&#34;NoWrap&#34; 
+                            Margin=&#34;12,-6,0,0&#34; 
+                            Style=&#34;{StaticResource PhoneTextSubtleStyle}&#34;/&amp;gt;
+             &amp;lt;/StackPanel&amp;gt;
+         &amp;lt;/StackPanel&amp;gt;
+&amp;lt;/DataTemplate&amp;gt;
+&lt;/pre&gt;
+
+&lt;p&gt;This DataTemplate is then used in the ListBox ItemTemplate by using the FeedItemTemplate name:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: xml; title: ; notranslate&#34; title=&#34;&#34;&gt;&amp;lt;ListBox x:Name=&#34;NewsLbx&#34;
+         Margin=&#34;0,0,-12,0&#34;
+         ItemTemplate=&#34;{StaticResource FeedItemTemplate}&#34;
+         ItemsSource=&#34;{Binding NewsItems}&#34;
+         Tap=&#34;NewsLbx_Tap&#34;/&amp;gt;
+&lt;/pre&gt;
+
+&lt;p&gt;This is more or less the only thing required for the view to work. Remember the complete source is available at Codeplex, link at the top of this post.&lt;/p&gt;
+
+&lt;h2 id=&#34;the-viewmodel:feba98f87e7da1dc9b77288a18b111e7&#34;&gt;The ViewModel&lt;/h2&gt;
+
+&lt;p&gt;Now if you&amp;#8217;re wondering where the view is actually getting it&amp;#8217;s data from, then read on!&lt;/p&gt;
+
+&lt;p&gt;In the project there is class, MainViewModel, this class is responsible of holding the data that the view uses and in this class has the ObservableCollections that contains the data.&lt;/p&gt;
+
+&lt;p&gt;The view is bound to the data in the App.xaml.cs:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;	
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;static&lt;/span&gt; MainViewModel viewModel = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt;;
+
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;static&lt;/span&gt; MainViewModel ViewModel
+        {
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;get&lt;/span&gt;
+            {
+                &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Delay creation of the view model until necessary&lt;/span&gt;
+                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; (viewModel == &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt;)
+                    viewModel = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; MainViewModel();
+
+                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; viewModel;
+            }
+        }
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The ItemViewModel is pretty straight forward; the class is implementing the INotifyPropertyChanged which makes the View auto updated when the data in the model is changed. To implement this the following is done:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;	
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;FeedItemViewModel&lt;/span&gt; : INotifyPropertyChanged
+	{
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; title;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; Title
+        {
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;get&lt;/span&gt; { &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; title; }
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;set&lt;/span&gt;
+            {
+                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;value&lt;/span&gt; != title)
+                {
+                    title = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;value&lt;/span&gt;;
+                    NotifyPropertyChanged(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;Title&amp;quot;&lt;/span&gt;);
+                }
+            }
+        }
+
+        ...
+	}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The most noticeable thing in the above is the call to NotifyPropertyChanged(&amp;#8220;Title&amp;#8221;) &amp;#8211; this is to make the the view aware that a property has changed.&lt;/p&gt;
+
+&lt;h2 id=&#34;the-rss-consumer:feba98f87e7da1dc9b77288a18b111e7&#34;&gt;The RSS Consumer&lt;/h2&gt;
+
+&lt;p&gt;To retrieve the  RSS data a WebClient is used:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;	
+	WebClient web = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; WebClient();
+    web.DownloadStringCompleted += &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; DownloadStringCompletedEventHandler(WebClient_DownloadStringCompleted);
+    web.DownloadStringAsync(uri);
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;When the download is completed the following are executed:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;	
+	StringReader sr = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; StringReader(e.Result);
+    &lt;span style=&#34;color: #902000&#34;&gt;var&lt;/span&gt; reader = XmlReader.Create(sr);
+    &lt;span style=&#34;color: #902000&#34;&gt;var&lt;/span&gt; document = XDocument.Load(reader);
+
+    &lt;span style=&#34;color: #902000&#34;&gt;var&lt;/span&gt; entries =
+                 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;from&lt;/span&gt; entry &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;in&lt;/span&gt; document.Descendants(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;channel&amp;quot;&lt;/span&gt;).Descendants(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;item&amp;quot;&lt;/span&gt;)
+                 let title = entry.Element(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;title&amp;quot;&lt;/span&gt;).Value
+                 let link = entry.Element(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;comments&amp;quot;&lt;/span&gt;).Value
+                 let pubDate = entry.Element(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;pubDate&amp;quot;&lt;/span&gt;).Value
+                 &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;select&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;FeedItemViewModel&lt;/span&gt;()
+                 {
+                     Title = title,
+                     Url = link,
+                     PubDate = DateTime.Parse(pubDate)
+                 };
+    feedHandler(entries.ToArray());
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;By using LINQ the response from the RSS feed is handled and parsed into the FeedItemViewModel. This could probably be made a hole lot prettier, but hey; it&amp;#8217;s open source and yours to edit on Codeplex.&lt;/p&gt;
+
+&lt;p&gt;That&amp;#8217;s pretty much it!&lt;/p&gt;
+
+&lt;p&gt;If you have any comments/suggestions/questions, then please contact me :)&lt;/p&gt;
+
+&lt;div style=&#34;font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both&#34;&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

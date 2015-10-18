@@ -1,0 +1,12 @@
+<div id="navigation">
+	<section>
+		<h4><small>featured:</small> <a href="/categories/signalr/">SignalR</a></h4>
+		<a href="/categories/">categories &bull; tags</a>
+	<nav class="sidebar-nav">
+        {{ $currentNode := . }}
+        {{ range .Site.Menus.main }}
+        <a class="sidebar-nav-item{{if or ($currentNode.IsMenuCurrent "main" .) ($currentNode.HasMenuCurrent "main" .) }} active{{end}}" href="{{.URL}}">{{ .Name }}</a>
+        {{ end }}
+    </nav>
+	</section>
+</div>

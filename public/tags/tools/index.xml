@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tools on SystemOut</title>
+    <link>http://localhost:1313/tags/tools/</link>
+    <description>Recent content in Tools on SystemOut</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
+    <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
+    <lastBuildDate>Tue, 19 Aug 2014 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/tools/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How To Measure Execution Time and Performance Optimize Source Code</title>
+      <link>http://localhost:1313/2014/08/19/measure-execution-time-and-performance-optimize-source-code</link>
+      <pubDate>Tue, 19 Aug 2014 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2014/08/19/measure-execution-time-and-performance-optimize-source-code</guid>
+      <description>
+
+&lt;h2 id=&#34;why-should-you-measure-your-source-code:e101fc7e35c9091dc41dd896bd262d34&#34;&gt;Why Should You Measure Your Source Code?&lt;/h2&gt;
+
+&lt;p&gt;I work by the princip; don&amp;rsquo;t optimize until needed. Which means that I write the code, make sure it does what it is supposed to, compile, test and release and &lt;strong&gt;then if&lt;/strong&gt; a bottleneck is found, I try to optimize it.&lt;/p&gt;
+
+&lt;p&gt;But before I&amp;rsquo;m able to optimize, I need to be able to measure for the simple reason that otherwise I&amp;rsquo;m not able to determine wheter or not the optimization actually hard an inpact and most importantly; that it did not have a negative impact on the performance.&lt;/p&gt;
+
+&lt;p&gt;For that simple reason, I have written a small component that is able to measure the time a specific operation takes to complete. The component uses the &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/system.diagnostics.stopwatch.aspx&#34; title=&#34;Stopwatch class on MSDN&#34;&gt;Stopwatch class&lt;/a&gt;, which seemed to be a good choise for the purpose, but I must say I haven&amp;rsquo;t made througly analasys of wheter this class is the best suited for the job.&lt;/p&gt;
+
+&lt;h3 id=&#34;results:e101fc7e35c9091dc41dd896bd262d34&#34;&gt;Results&lt;/h3&gt;
+
+&lt;p&gt;It&amp;rsquo;s always a good idea to prove the importance of the contents of a post, before actually writting the post, so here are some simple results (and also reasons) for code optimization:&lt;/p&gt;
+
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;b&gt;Method&lt;/td&gt;
+        &lt;td&gt;&lt;b&gt;Iterations&lt;/td&gt;
+        &lt;td&gt;&lt;b&gt;Average in miliseconds&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;MaxFactor1 for 123456789&lt;/td&gt;
+        &lt;td&gt;50&lt;/td&gt;
+        &lt;td&gt;557,48&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;MaxFactor2 for 123456789&lt;/td&gt;
+        &lt;td&gt;50&lt;/td&gt;
+        &lt;td&gt;0,04&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;  
+
+&lt;p&gt;Basicly I have taken the samples from &lt;a href=&#34;http://stackoverflow.com/questions/2535251/c-finding-the-largest-prime-factor-of-a-number&#34;&gt;this StackOverflow post&lt;/a&gt; and measured 2 of the solutions, see for clarity I have included the Maxfactor1 and 2 method at the bottom of this post.&lt;/p&gt;
+
+&lt;p&gt;The point of the above table is to show the big difference in the performance of the 2 Maxfactor methods - when run 50 times the average time taken is much faster in the Maxfactor2 method.&lt;/p&gt;
+
+&lt;h2 id=&#34;the-measurement-component:e101fc7e35c9091dc41dd896bd262d34&#34;&gt;The Measurement Component&lt;/h2&gt;
+
+&lt;p&gt;You can download the source/solution &lt;a href=&#34;http://1drv.ms/1qn4PNM&#34; title=&#34;Solution on OneDrive&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I wanted to make an easy to use component with minimal impact on the actual code that do the main stuff in the application.
+To accomplish this, I have written a &lt;strong&gt;Time&lt;/strong&gt; method:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public void Time(Action actionToTime, int numberOfRuns, string actionIdentifier)
+    {
+        var sw = new Stopwatch();
+        var resultSet = GetResultSet(actionIdentifier);
+        for (var i = 0; i &amp;lt; numberOfRuns; i++)
+        {
+            var executionTime = DateTime.Now;
+            sw.Start();
+            actionToTime();
+            sw.Stop();
+
+            resultSet.Results.Add(new Result
+            {
+                Elapsed = sw.ElapsedMilliseconds,
+                TimeOfExecution = executionTime,
+            });
+
+            sw.Reset();
+        }
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Which can be invoked like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    [TestMethod]
+    public void TestDownloadString()
+    {
+        var tm = new TimeMeasurement();
+        tm.Time(() =&amp;gt; DownloadString(&amp;quot;http://systemout.net&amp;quot;), 50, &amp;quot;DownloadString&amp;quot;);
+
+        tm.FlushResultsAsync().Wait();
+    }
+
+    public void DownloadString(string url)
+    {
+        using (var web = new WebClient())
+        {
+            web.DownloadString(new Uri(url));
+        }
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now the thing that&amp;rsquo;s happening in the Time method is that we&amp;rsquo;re using a Stopwatch to measure the execution time of the method. Furthermore we&amp;rsquo;re adding a ResultSet (see below) for the given actionIdentifier. This is used to keep track of the results for the given actionIdentifier so it later can be flushed to a file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    public async Task FlushResultsAsync()
+    {
+        // First get a copy of the results so no modifications are made
+        // while we process the results.
+        var results = resultSets.Values.ToList();
+        resultSets.Clear();
+
+        await writer.WriteResultSetsAsync(results);
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The writer is for the time being a CSV text writer implementation. I plan on making it an IResultWriter so that the caller can provide it&amp;rsquo;s own writer implementation to control how the timing output is stored - for now it is written to a file in C:\Users\USERNAME\AppData\Roaming\SystemOut\Performance&lt;/p&gt;
+
+&lt;p&gt;You can download the complete source including the solution/project files &lt;a href=&#34;http://1drv.ms/1qn4PNM&#34; title=&#34;Solution on OneDrive&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;maxfactor-methods:e101fc7e35c9091dc41dd896bd262d34&#34;&gt;Maxfactor Methods&lt;/h2&gt;
+
+&lt;p&gt;I&amp;rsquo;m not a math genious, but from the below source it seems that it&amp;rsquo;s much faster to go from largest number and down then the other way around. Obviously. :)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    static private long Maxfactor1(long n)
+    {
+        for (var k = n / 2; k &amp;gt; 1; k--)
+        {
+            if (n % k == 0 &amp;amp;&amp;amp; Prime(k))
+            {
+                return k;
+            }
+        }
+
+        return 1;
+    }
+
+    static private long Maxfactor2(long n)
+    {
+        long k = 2;
+        while (k * k &amp;lt;= n)
+        {
+            if (n % k == 0)
+            {
+                n /= k;
+            }
+            else
+            {
+                ++k;
+            }
+        }
+
+        return n;
+    }
+
+    static private bool Prime(long x)
+    {
+        for (long i = 2; i &amp;lt;= x / 2; i++)
+        {
+            if (x % i == 0)
+                return false;
+        }
+        return true;
+    }
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

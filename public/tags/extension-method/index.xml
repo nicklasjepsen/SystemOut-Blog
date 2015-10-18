@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Extension Method on SystemOut</title>
+    <link>http://localhost:1313/tags/extension-method/</link>
+    <description>Recent content in Extension Method on SystemOut</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
+    <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
+    <lastBuildDate>Tue, 10 Dec 2013 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/extension-method/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>&#39;Extension methods in C#/.NET&#39;</title>
+      <link>http://localhost:1313/2013/12/10/extensions-methods-in-c-net/</link>
+      <pubDate>Tue, 10 Dec 2013 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2013/12/10/extensions-methods-in-c-net/</guid>
+      <description>&lt;p&gt;A nice feature in C# is the ability to use extension methods. These methods can be used (as the name suggests) to extend functionality to existing classes.&lt;/p&gt;
+
+&lt;p&gt;In my opinion, extension methods can be used to &lt;strong&gt;write cleaner and more easy to read code&lt;/strong&gt;. They can also be used to avoid &lt;strong&gt;duplicate code&lt;/strong&gt;.&lt;br /&gt;
+Take an example; you are writing an application, which needs to determine if an email address is in a valid format (eg. name@domain.com). Now, you could make this check right where the users enters the email or you could create a custom TextBox control which will only accept valid email addresses. That is fine.&lt;/p&gt;
+
+&lt;p&gt;But what if another part of your application is using the provided email address but to make the application robust it is surely validating that the email is in fact a valid email address before using it?&lt;/p&gt;
+
+&lt;p&gt;The custom TextBox would not be of much use and the code you wrote where the user enters the email address cannot be invoked from the other part of your application.&lt;br /&gt;
+Now the extension method comes in handy. Let’s say you can call a method on the string object with the name IsValidEmail – that would be nice. This can be achieved by writing an extension method for a string.&lt;br /&gt;
+There are some general rules when writing extension methods:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;The containing &lt;strong&gt;class **must be declared as **static&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;method&lt;/strong&gt; must be &lt;strong&gt;static&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;The first &lt;strong&gt;parameter&lt;/strong&gt; of the method must be declared with &lt;strong&gt;this keyword&lt;/strong&gt; and be of the type you want to extent&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Oh and the namespace in which you declare the extension method must be used by the class where you are calling the extension from. As an example, try to remove ‘using System.Linq’ from a class and the try to use List.Any() – that won’t compile.&lt;/p&gt;
+
+&lt;p&gt;Now for an example here is a simple IsValidEmail extension method implementation.&lt;/p&gt;
+
+&lt;pre class=&#34;brush: csharp; title: ; notranslate&#34; title=&#34;&#34;&gt;public static class StringExtensions
+    {
+        public static bool IsValidEmail(this string input)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(input))
+                    return false;
+                new System.Net.Mail.MailAddress(input);
+                return true;
+            }
+            catch (FormatException)
+            {
+                return false;
+            }
+        }
+    }
+&lt;/pre&gt;
+
+&lt;p&gt;And here is how the extension can be used:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: csharp; title: ; notranslate&#34; title=&#34;&#34;&gt;string emailAddress = &#34;someone@domain.com&#34;;
+            if (emailAddress.IsValidEmail())
+                // The string is a valid email
+&lt;/pre&gt;
+
+&lt;p&gt;Surely there are other ways to achieve the same thing, and sometimes extension methods are not the best way of doing so (C# is object oriented, so you should write OO code which extension methods can tend to abstain a little from), but this post will not go into details about the OO thinking, look for a later post on that subject.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sdrv.ms/1f4XzCH&#34; title=&#34;Extension method source code&#34; target=&#34;_blank&#34;&gt;Download the source code from here.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;For further reading about the subject, have a look at &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/bb383977.aspx&#34; target=&#34;_blank&#34;&gt;Microsoft&amp;#8217;s Programming Guide on Extentension Methods&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div style=&#34;font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both&#34;&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

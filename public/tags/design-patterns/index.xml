@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Design Patterns on SystemOut</title>
+    <link>http://localhost:1313/tags/design-patterns/</link>
+    <description>Recent content in Design Patterns on SystemOut</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
+    <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
+    <lastBuildDate>Sat, 07 Dec 2013 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/design-patterns/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Generic Retry Function to Avoid Duplicate Code</title>
+      <link>http://localhost:1313/2013/12/07/retryfunction/</link>
+      <pubDate>Sat, 07 Dec 2013 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2013/12/07/retryfunction/</guid>
+      <description>&lt;p&gt;Sometimes you have a method which you want to be executed again if it fails the first time.&lt;br /&gt;
+This could lead to duplicate code, or to at least to a for loop wrapping the implementation of the method which is OK but what if you had two methods you needed this retry logic for?&lt;/p&gt;
+
+&lt;p&gt;You simply make a method which takes a the method you need to be executed with retry as a parameter. Like this:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: csharp; title: ; notranslate&#34; title=&#34;&#34;&gt;private static string ExecuteWithRetry(Func&amp;lt;MethodResult&amp;gt; method, int maxRetries)
+        {
+            Console.WriteLine(&#34;Executing operation.&#34;);
+            for (var iteration = 1; iteration &amp;lt;= maxRetries; iteration++)
+            {
+                var result = method();
+                _numberOfRuns++;
+                Console.WriteLine(&#34;Operation executed {0} times.&#34;, _numberOfRuns);
+                if (result.Success)
+                    return result.Message;
+
+                // No luck yet - continue the loop
+            }
+
+            throw new Exception(string.Format(&#34;Method ran {0} times but did not return successful response.&#34;, RetryMax));
+        }
+&lt;/pre&gt;
+
+&lt;p&gt;Now how would you invoke this method?&lt;/p&gt;
+
+&lt;pre class=&#34;brush: csharp; title: ; notranslate&#34; title=&#34;&#34;&gt;var message = ExecuteWithRetry(MethodToRun, numberOfRetries);
+&lt;/pre&gt;
+
+&lt;p&gt;That&amp;#8217;s easy :)&lt;/p&gt;
+
+&lt;p&gt;If you want to see the full implementation you can get it &lt;a href=&#34;http://sdrv.ms/18rLfuW&#34; target=&#34;_blank&#34;&gt;here!&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Please feel free to write a comment if you have any questions.&lt;/p&gt;
+
+&lt;div style=&#34;font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both&#34;&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>&#39;Code Snippet &amp;#8211; Singleton&#39;</title>
+      <link>http://localhost:1313/2011/12/07/code-snippet-singleton/</link>
+      <pubDate>Wed, 07 Dec 2011 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2011/12/07/code-snippet-singleton/</guid>
+      <description>&lt;p&gt;I&amp;#8217;ve written some code snippets which makes the daily job as a developer more convenient. These snippets are for use with Visual Studio.&lt;/p&gt;
+
+&lt;p&gt;If you want to have a look at how these snippets are added to Visual Studio see how to add a snippet &lt;a href=&#34;http://systemout.net/blog/2011/12/07/code-snippet-how-to-add-visual-studio/&#34; title=&#34;Code Snippet – How to add to Visual Studio&#34;&gt;here.&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This post is about the Singleton pattern and the snippet I use to quickly implement this pattern in a class.&lt;/p&gt;
+
+&lt;p&gt;The &lt;a title=&#34;Singleton&#34; href=&#34;http://en.wikipedia.org/wiki/Singleton_pattern&#34; target=&#34;_blank&#34;&gt;Singleton pattern&lt;/a&gt; is a pattern that make sure that only one instance of an object exists. Al thou there might be pros and cons for using the pattern, but for instance settings classes and controllers it probably is best that these are always single instances.&lt;/p&gt;
+
+&lt;p&gt;The snippet looks like this:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: xml; title: ; notranslate&#34; title=&#34;&#34;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;CodeSnippets xmlns=&amp;quot;http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet&amp;quot;&amp;gt;
+    &amp;lt;CodeSnippet Format=&amp;quot;1.0.0&amp;quot;&amp;gt;
+        &amp;lt;Header&amp;gt;
+            &amp;lt;Title&amp;gt;Singleton&amp;lt;/Title&amp;gt;
+            &amp;lt;Shortcut&amp;gt;sglt&amp;lt;/Shortcut&amp;gt;
+            &amp;lt;Description&amp;gt;Implement the Singleton pattern here.&amp;lt;/Description&amp;gt;
+            &amp;lt;Author&amp;gt;Nicklas Møller Jepsen&amp;lt;/Author&amp;gt;
+            &amp;lt;SnippetTypes&amp;gt;
+                &amp;lt;SnippetType&amp;gt;Expansion&amp;lt;/SnippetType&amp;gt;
+            &amp;lt;/SnippetTypes&amp;gt;
+        &amp;lt;/Header&amp;gt;
+        &amp;lt;Snippet&amp;gt;
+        &amp;lt;Declarations&amp;gt;
+            &amp;lt;Literal&amp;gt;
+                &amp;lt;ID&amp;gt;instancepropname&amp;lt;/ID&amp;gt;
+                &amp;lt;ToolTip&amp;gt;The name of the property to get a Singleton instance&amp;lt;/ToolTip&amp;gt;
+                &amp;lt;Default&amp;gt;Instance&amp;lt;/Default&amp;gt;
+            &amp;lt;/Literal&amp;gt;
+            &amp;lt;Literal default=&amp;quot;true&amp;quot; Editable=&amp;quot;false&amp;quot;&amp;gt;
+                    &amp;lt;ID&amp;gt;classname&amp;lt;/ID&amp;gt;
+                    &amp;lt;ToolTip&amp;gt;Class name&amp;lt;/ToolTip&amp;gt;
+                    &amp;lt;Function&amp;gt;ClassName()&amp;lt;/Function&amp;gt;
+                    &amp;lt;Default&amp;gt;ClassNamePlaceholder&amp;lt;/Default&amp;gt;
+                &amp;lt;/Literal&amp;gt;
+
+        &amp;lt;/Declarations&amp;gt;
+        &amp;lt;Code Language=&amp;quot;csharp&amp;quot; Kind=&amp;quot;method head&amp;quot;&amp;gt;&amp;lt;![CDATA[private static $classname$ _instance;
+        private $classname$() {}
+
+        public static $classname$ $instancepropname$
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new $classname$();
+                return _instance;
+            }
+        }
+        $end$
+        ]]&amp;gt;
+        &amp;lt;/Code&amp;gt;
+        &amp;lt;/Snippet&amp;gt;
+    &amp;lt;/CodeSnippet&amp;gt;
+&amp;lt;/CodeSnippets&amp;gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Remember to use the Source, Luke &amp;#8211; so don&amp;#8217;t go abusing the above. Singletons are good, but only when they are needed. Or something like that :)&lt;/p&gt;
+
+&lt;div style=&#34;font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both&#34;&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

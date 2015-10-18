@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Repository on SystemOut</title>
+    <link>http://localhost:1313/tags/repository/</link>
+    <description>Recent content in Repository on SystemOut</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
+    <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
+    <lastBuildDate>Thu, 02 Jan 2014 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/repository/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Testable Data Access Layer using Entity Framework 6</title>
+      <link>http://localhost:1313/2014/01/02/testable-data-access-layer-using-entity-framework-6/</link>
+      <pubDate>Thu, 02 Jan 2014 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2014/01/02/testable-data-access-layer-using-entity-framework-6/</guid>
+      <description>
+
+&lt;h2 id=&#34;introduction:469fa61daacdb60e7cccde776c4e7633&#34;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;Unit testing is a great way to get some quick feedback on the code you have just implemented. Normally you can just write a unit test where you create an instance of a type and then invoke the method you want to test.&lt;br /&gt;
+When you have a database involved you could do the same, however this creates a strong connection between your database and the unit test. One way of avoiding this dependency is to mock your database context.&lt;br /&gt;
+To be able to mock your database context when using Entity Framework 6 Model First approach you need to make some modifications to the generated classes. In this guide I will show you how to make your data access layer testable.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;This guide assumes you know how to set up a database and how to connect to your database from within Visual Studio.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;If you just want to see the code, scroll to the bottom for a download link of the complete solution.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;generate-the-data-model:469fa61daacdb60e7cccde776c4e7633&#34;&gt;Generate the Data Model&lt;/h2&gt;
+
+&lt;p&gt;Add the model to your solution:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.systemout.net/wp-content/uploads/2014/01/AddNewItem.png&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-243&#34; alt=&#34;Add New Item&#34; src=&#34;http://www.systemout.net/wp-content/uploads/2014/01/AddNewItem.png&#34; width=&#34;955&#34; height=&#34;660&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Select ADO.NET Entity Data Model, name it Model.edmx, Choose Generate From Database&lt;/p&gt;
+
+&lt;p&gt;Connect to your database and:&lt;br /&gt;
+&lt;a href=&#34;http://www.systemout.net/wp-content/uploads/2014/01/ConnectToDb.png&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-244&#34; alt=&#34;Connect To Db&#34; src=&#34;http://www.systemout.net/wp-content/uploads/2014/01/ConnectToDb.png&#34; width=&#34;631&#34; height=&#34;566&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In the next screen select Entity Framework 6.0.&lt;br /&gt;
+Then you must configure how the types in the model will be generated:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.systemout.net/wp-content/uploads/2014/01/ChooseDbOjects.png&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-245&#34; alt=&#34;Choose Db Ojects&#34; src=&#34;http://www.systemout.net/wp-content/uploads/2014/01/ChooseDbOjects.png&#34; width=&#34;631&#34; height=&#34;566&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Set a check mark in the box for Tables and in the Pluralize or singularize generated object names checkbox and click Finish.&lt;br /&gt;
+The above will create the objects required to interact with the database and add references to the relevant EF components to the current project in Visual Studio. It will also generate an App.config file where the configuration required by EF will be inserted.&lt;br /&gt;
+Most relevant for this guide; &lt;strong&gt;templates for class generation is also added to our project.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;wrapping-the-generated-classes-in-interfaces:469fa61daacdb60e7cccde776c4e7633&#34;&gt;Wrapping the Generated Classes in Interfaces&lt;/h2&gt;
+
+&lt;p&gt;This guide’s focus is to make use of interfaces, which enables us to mock the database. To do so we must manipulate with the generated classes. Now we could just type the changes directly in the generated classes, but as I am sure you are aware of these changes will be lost if/when we make changes to our model and then update from the model.&lt;br /&gt;
+Luckily, EF uses some text templates to generate the required classes and these templates can be modified to suite our needs. By modifying these templates, we will keep our changes, even if we update our model from the database.&lt;br /&gt;
+As I mentioned previously, the templates are already added to the project. Look for the generated Model.edmx file and expand this in the Solution Explorer.&lt;br /&gt;
+Now you should see a Model.Context.tt and a Model.tt file:&lt;br /&gt;
+&lt;a href=&#34;http://www.systemout.net/wp-content/uploads/2014/01/SolutionExplorerTt.png&#34;&gt;&lt;img src=&#34;http://www.systemout.net/wp-content/uploads/2014/01/SolutionExplorerTt.png&#34; alt=&#34;Solution Explorer TextTemplates&#34; width=&#34;356&#34; height=&#34;397&#34; class=&#34;aligncenter size-full wp-image-246&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Basically what we need to do is extract an interface of the Model.Context.cs and make Model.Context.cs implement this interface.&lt;br /&gt;
+In Model.Context.cs: Right-click the class name, select Refactor, select Extract, select Interface and mark the DbSet&lt;T&gt; corresponding to the tables in your database. Next we need to change the interface so that all DbSet&lt;T&gt; are changed to IDbSet&lt;T&gt;.&lt;br /&gt;
+Now we will modify the Text Templates.&lt;/p&gt;
+
+&lt;h2 id=&#34;model-context-tt:469fa61daacdb60e7cccde776c4e7633&#34;&gt;Model.Context.tt&lt;/h2&gt;
+
+&lt;p&gt;On line 56 add&lt;/p&gt;
+
+&lt;pre class=&#34;brush: plain; title: ; notranslate&#34; title=&#34;&#34;&gt;, I&amp;lt;#=code.Escape(container)#&amp;gt;&lt;/pre&gt;
+
+&lt;p&gt;so the full line is:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: plain; title: ; notranslate&#34; title=&#34;&#34;&gt;&amp;lt;#=Accessibility.ForType(container)#&amp;gt; partial class &amp;lt;#=code.Escape(container)#&amp;gt; : DbContext, I&amp;lt;#=code.Escape(container)#&amp;gt;&lt;/pre&gt;
+
+&lt;p&gt;What did we just add? After the DbContext we assigned an interface of the name I*NameOfTheContextClass* which corresponds to the name of the interface generated when we refactored our model context.&lt;br /&gt;
+On line 311, change the type of DbSet to IDbSet:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: plain; title: ; notranslate&#34; title=&#34;&#34;&gt;&#34;{0} virtual IDbSet&amp;lt;{1}&amp;gt; {2} {{ get; set; }}&#34;,&lt;/pre&gt;
+
+&lt;p&gt;Here we simply just changes the type to an interface type just as we did in our refactored interface.&lt;br /&gt;
+Save the .tt file and Visual Studio should automatically generate the files again and if you open the Model.Context.cs it should look something like this:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: csharp; title: ; notranslate&#34; title=&#34;&#34;&gt;public partial class EfRepositoryGuideEntities : DbContext, IEfRepositoryGuideEntities
+    {
+        public EfRepositoryGuideEntities()
+            : base(&#34;name=EfRepositoryGuideEntities&#34;)
+        {
+        }
+    
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            throw new UnintentionalCodeFirstException();
+        }
+    
+        public virtual IDbSet&amp;lt;Artist&amp;gt; Artists { get; set; }
+        public virtual IDbSet&amp;lt;Track&amp;gt; Tracks { get; set; }
+    }
+&lt;/pre&gt;
+
+&lt;h2 id=&#34;creating-the-unit-test-project:469fa61daacdb60e7cccde776c4e7633&#34;&gt;Creating the unit test project&lt;/h2&gt;
+
+&lt;p&gt;We need to make our mock of the ModelContext before we can write our tests. We also need to implement a fake DbSet which we can use when testing.&lt;br /&gt;
+To your unit test project, add a class and implement it like the this:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: csharp; title: ; notranslate&#34; title=&#34;&#34;&gt;class TestDataContext : IEfRepositoryGuideEntities
+    {
+        public IDbSet&amp;lt;Artist&amp;gt; Artists { get; set; }
+        public IDbSet&amp;lt;Track&amp;gt; Tracks { get; set; }
+
+        public TestDataContext()
+        {
+            Artists = new FakeDbSet&amp;lt;Artist&amp;gt;();
+        }
+    }
+&lt;/pre&gt;
+
+&lt;p&gt;Now add a FakeDbSet class:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: csharp; title: ; notranslate&#34; title=&#34;&#34;&gt;public class FakeDbSet&amp;lt;T&amp;gt; : IDbSet&amp;lt;T&amp;gt; where T : class
+    {
+        readonly ObservableCollection&amp;lt;T&amp;gt; data;
+        readonly IQueryable query;
+
+        public FakeDbSet()
+        {
+            data = new ObservableCollection&amp;lt;T&amp;gt;();
+            query = data.AsQueryable();
+        }
+
+        public virtual T Find(params object[] keyValues)
+        {
+            throw new NotImplementedException(&#34;Derive from FakeDbSet&amp;lt;T&amp;gt; and override Find&#34;);
+        }
+
+        public T Add(T item)
+        {
+            data.Add(item);
+            return item;
+        }
+
+        public T Remove(T item)
+        {
+            data.Remove(item);
+            return item;
+        }
+
+        public T Attach(T item)
+        {
+            data.Add(item);
+            return item;
+        }
+
+        public T Detach(T item)
+        {
+            data.Remove(item);
+            return item;
+        }
+
+        public T Create()
+        {
+            return Activator.CreateInstance&amp;lt;T&amp;gt;();
+        }
+
+        public TDerivedEntity Create&amp;lt;TDerivedEntity&amp;gt;() where TDerivedEntity : class, T
+        {
+            return Activator.CreateInstance&amp;lt;TDerivedEntity&amp;gt;();
+        }
+
+        public ObservableCollection&amp;lt;T&amp;gt; Local
+        {
+            get { return data; }
+        }
+
+        Type IQueryable.ElementType
+        {
+            get { return query.ElementType; }
+        }
+
+        System.Linq.Expressions.Expression IQueryable.Expression
+        {
+            get { return query.Expression; }
+        }
+
+        IQueryProvider IQueryable.Provider
+        {
+            get { return query.Provider; }
+        }
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            return data.GetEnumerator();
+        }
+
+        IEnumerator&amp;lt;T&amp;gt; IEnumerable&amp;lt;T&amp;gt;.GetEnumerator()
+        {
+            return data.GetEnumerator();
+        }
+    }
+&lt;/pre&gt;
+
+&lt;p&gt;In this test we are only using in-memory objects which we inject on runtime. No connection is made to the database, there are no connection string in the unit test projects app.config and this makes our test totally independent of the database and gives us the control of what data we want our test to work with.&lt;/p&gt;
+
+&lt;p&gt;I have zipped the solution and please feel free to download it. It is complete with both the console application using the real database and the unit test project using in-memory objects. Of course the Data layer is also included. Please note that if you intend to try the console application, you need to setup a database on your local machine.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://sdrv.ms/1kb7gpj&#34; title=&#34;Testable Ef Repository Solution&#34; target=&#34;_blank&#34;&gt;Download the source here!&lt;/a&gt;&lt;/p&gt;
+
+&lt;div style=&#34;font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both&#34;&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

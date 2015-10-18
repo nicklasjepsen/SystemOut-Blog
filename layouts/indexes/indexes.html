@@ -1,0 +1,18 @@
+{{ partial "header.html" . }}
+
+<main id="content">
+<h1>categories</h1>
+<ul id="all-categories">
+	{{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+		<li><a href="/categories/{{ $name | urlize }}">{{ $name }}</a></li>
+	{{ end }}
+</ul>
+<h1>tags</h1>
+<ul id="all-tags">
+	{{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+		<li><a href="/tags/{{ $name | urlize }}">{{ $name }}</a></li>
+	{{ end }}
+</ul>
+</main>
+
+{{ partial "footer.html" . }}

@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Raspbian on SystemOut</title>
+    <link>http://localhost:1313/tags/raspbian/</link>
+    <description>Recent content in Raspbian on SystemOut</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
+    <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
+    <lastBuildDate>Sun, 20 Jul 2014 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/raspbian/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How To Setup Octopress for Jekyll on a Raspberry Pi</title>
+      <link>http://localhost:1313/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</link>
+      <pubDate>Sun, 20 Jul 2014 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</guid>
+      <description>
+
+&lt;h3 id=&#34;introduction:68e5c07e240ab8ba63c1b33cbb305bb3&#34;&gt;Introduction&lt;/h3&gt;
+
+&lt;p&gt;There are several things we need to take care of to make a successful installation of Octopress on the Pi:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Prepare the Raspbian for web hosting&lt;/li&gt;
+&lt;li&gt;Install NGINX&lt;/li&gt;
+&lt;li&gt;Install Git&lt;/li&gt;
+&lt;li&gt;Install Curl&lt;/li&gt;
+&lt;li&gt;Install RVM (Ruby Version Manager) and Ruby&lt;/li&gt;
+&lt;li&gt;Finally install Octopress&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;But don&amp;rsquo;t worry - all of the above is quite straight forward, although the Ruby installation might take some time.&lt;/p&gt;
+
+&lt;h4 id=&#34;preparing-raspbian:68e5c07e240ab8ba63c1b33cbb305bb3&#34;&gt;Preparing Raspbian&lt;/h4&gt;
+
+&lt;p&gt;First of you need a running Raspbian installation. The easiest way to get this, is by downloading it from &lt;a href=&#34;http://www.raspberrypi.org/downloads/&#34;&gt;http://www.raspberrypi.org/downloads/&lt;/a&gt;.
+Follow the official instructions to get up and running.&lt;/p&gt;
+
+&lt;p&gt;This tutorial will use the terminal/SSH from a remote computer and therefore we need to make sure we can reach it over the network.
+To find the Pi&amp;rsquo;s current IP write this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ifconfig
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In my case I got a eth0 inet addr:192.168.X.YYY
+When using the Pi as a web server it is a good idea to give it a static IP address. I have an DHCP server where this is handled, but if you want to set up a static IP on the Pi, here is how it is done: &lt;a href=&#34;https://wiki.debian.org/NetworkConfiguration#Configuring_the_interface_manually&#34;&gt;https://wiki.debian.org/NetworkConfiguration#Configuring_the_interface_manually&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we can disconnect the screen and go back to our main desktop. I use Windows and therefore Putty (&lt;a href=&#34;http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe&#34;&gt;http://the.earth.li/~sgtatham/putty/latest/x86/putty.exe&lt;/a&gt;) to connect to Pi.&lt;/p&gt;
+
+&lt;p&gt;I also like to give my computers a decent name (Raspbian sets the hostname to raspberrypi).
+To change the hostname do the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo namo /etc/hostname
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Change the name to whatever you like and hit Ctrl+X, answer Y and the Enter to overwrite the file.
+Now we need to update the hosts file:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo nano /etc/hosts
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Replace raspberrypi with the new hostname you provided in the previous step and hit Ctrl+X, answer Y and the Enter to overwrite the file.
+Reboot the Pi:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo reboot
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For further info on changing the hostname of see: &lt;a href=&#34;https://wiki.debian.org/HowTo/ChangeHostname&#34;&gt;https://wiki.debian.org/HowTo/ChangeHostname&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that Raspbian is installed and we have access to the Pi from SSH/Putty we need to make sure it is up to date by first collecting available updates and then upgrade/install them:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install update
+sudo apt-get install upgrade
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;install-nginx-curl-git-and-ruby:68e5c07e240ab8ba63c1b33cbb305bb3&#34;&gt;Install NGINX, Curl, Git and Ruby&lt;/h3&gt;
+
+&lt;p&gt;First things first:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install nginx git curl
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;With my Raspbian install I actually only needed to install NGINX, but just run the above to be sure to have what wee need, no damage done.&lt;/p&gt;
+
+&lt;p&gt;No RVM and Ruby:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;\curl -L https://get.rvm.io | bash -s stable --ruby
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;hellip;to get the latest stable RVM.
+This process takes some time, on my Pi it took about &lt;strong&gt;1 and  a half hour&lt;/strong&gt;, so go watch some Simpsons. :)&lt;/p&gt;
+
+&lt;p&gt;To start using RVM you need to run the command the installer tells you to or simply reconnect to the terminal.&lt;/p&gt;
+
+&lt;p&gt;According to the Octopress docs, &lt;a href=&#34;http://octopress.org/docs/setup/rvm/&#34;&gt;http://octopress.org/docs/setup/rvm/&lt;/a&gt;, we need Ruby version 1.9.3.
+Therefore we do the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rvm install 1.9.3
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This command also took an hour or so on my Pi, but the rest should be easyly done.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rvm use 1.9.3
+rvm rubygems latest
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And now check the the correct Ruby version is used:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ruby --version
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It should display 1.9.3-something.&lt;/p&gt;
+
+&lt;h3 id=&#34;installing-octopress:68e5c07e240ab8ba63c1b33cbb305bb3&#34;&gt;Installing Octopress&lt;/h3&gt;
+
+&lt;p&gt;To install Octopress from Git run the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone git://github.com/imathis/octopress.git octopress
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&amp;hellip;where the last option &amp;lsquo;octopress&amp;rsquo; is the name of the site/directory for your Octopress installation. I name mine according to the site I&amp;rsquo;m going to host.&lt;/p&gt;
+
+&lt;p&gt;Now we need to install Octopress&amp;rsquo; dependencies.
+Browse to the name of the directory which you specified in the git command, like so:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd octopress
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and run&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install bundler
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and lastly&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;bundle install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To install the default Octopress theme:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rake install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;setting-up-nginx:68e5c07e240ab8ba63c1b33cbb305bb3&#34;&gt;Setting up NGINX&lt;/h3&gt;
+
+&lt;p&gt;NGINX has a folder where it stores configuration for different sites.
+We use nano to create a new configuration file for our site:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo nano /etc/nginx/sites-available/DOMAIN
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And then copy the following into the new file, remeber to change IPOFTHEPI and DOMAIN with your values. Also, if you gave another name for your Octopress installation in previeus steps, change the path in the location accordingly:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;server {
+    listen IPOFTHEPI:80;
+    server_name DOMAIN;
+
+        location / {
+            root /home/pi/octopress/public;
+            index index.html index.htm;
+            access_log /home/pi/octopress/source/YOURDOMAIN.access.log;
+            error_log /home/pi/octopress/source/YOURDOMAIN.error.log;
+        }
+    }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Save the new file.&lt;/p&gt;
+
+&lt;p&gt;Create a link from the created file to the NGINX enabled sites directory:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd /etc/nginx/sites-enabled
+ln -s /etc/nginx/sites-available/DOMAIN /etc/nginx/sites-enabled/DOMAIN
+ls
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Restart NGINX:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/etc/init.d/nginx restart
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And that&amp;rsquo;s it!&lt;/p&gt;
+
+&lt;p&gt;Now all theres left to be done, is setting up your blog/site by following the guidelines on the official Octopress web site: &lt;a href=&#34;http://octopress.org/&#34;&gt;http://octopress.org/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;If you want to ease the generation and deployment process, you can build the blog on your windows machine and deploy it to the Raspberry Pi in a single click. Learn how to set this up by reading my guide here: &lt;a href=&#34;http://systemout.net/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p1/&#34;&gt;http://systemout.net/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p1/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How To Host a Transmission Daemon part 1</title>
+      <link>http://localhost:1313/2014/07/09/how-to-host-a-transmission-daemon/</link>
+      <pubDate>Wed, 09 Jul 2014 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2014/07/09/how-to-host-a-transmission-daemon/</guid>
+      <description>
+
+&lt;p&gt;If you want to skip to the &amp;ldquo;How to install transmission daemon on the Pi, look here: &lt;a href=&#34;http://systemout.net/2014/07/09/setting-up-transmission-on-a-raspberry-pi/&#34;&gt;http://systemout.net/2014/07/09/setting-up-transmission-on-a-raspberry-pi/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;first-a-disclaimer:d29c37ebdd62edfaa4980756b87b72e5&#34;&gt;First a disclaimer&amp;hellip;&lt;/h2&gt;
+
+&lt;p&gt;I started out wanting to host a Transmission Daemon on a Raspberry Pi for some simple reasons; I wanted a torrent client which was always on, accessible from all my devices, and easy to use. I had a Transmission Daemon running on my NAS, but I have decided to let my NAS do what is is best at: Serving as a storage device, and nothing more. To keep the cost down, and because I thought it would be exciting (which it was!), I decided to install Transmission on a Raspberry Pi.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;But then all the &amp;lsquo;fun&amp;rsquo; began&amp;hellip;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Short story: I mounted a network share where the Pi shoud download files to, after long strugling whith permissions I found out that the CPU usage was extensive when writing directly from Transmission to the share. Or, I thought that was the issue..
+To optimize I mounted a USB drive to the Pi and used it as a placeholder for downloads in progress only to see that the CPU usage was still in the extreme zone.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s why I decided to go back to my Hyper-V hosted Transmission Daemon.&lt;/p&gt;
+
+&lt;p&gt;For all of this not to be a total waste of time (oh btw, it isn&amp;rsquo;t - I&amp;rsquo;ve learned a lot), I have decided to publish the procedure of how I did setup the Pi to host Transmission, how I mounted the share, how I formatted the external USB disk and how it all came up and running.
+Furthermore I will describe how I installed Transmission on Windows Server 2012 r2 and how it is running now.&lt;/p&gt;
+
+&lt;h3 id=&#34;why-i-skipped-the-transmission-daemon-on-the-pi:d29c37ebdd62edfaa4980756b87b72e5&#34;&gt;Why I skipped the Transmission Daemon on the Pi&lt;/h3&gt;
+
+&lt;p&gt;Look at the CPU usage Transmission:
+&lt;img src=&#34;http://systemout.net/images/TopCpu.png&#34; alt=&#34;CPU usage&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;And I did only manage to get download speeds of around 1-2 mb/s:
+&lt;img src=&#34;http://systemout.net/images/TransmissionWeb.png&#34; alt=&#34;Trasnmission UI&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Now, have a look at the post about how to set the Transmission up on the Pi and please leave comments, if you find a better way, or even a way where you are able to get descent download speeds:
+&lt;a href=&#34;http://systemout.net/2014/07/09/setting-up-transmission-on-a-raspberry-pi&#34;&gt;http://systemout.net/2014/07/09/setting-up-transmission-on-a-raspberry-pi&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>How To Host a Transmission Daemon part 2</title>
+      <link>http://localhost:1313/2014/07/09/setting-up-transmission-on-a-raspberry-pi/</link>
+      <pubDate>Wed, 09 Jul 2014 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2014/07/09/setting-up-transmission-on-a-raspberry-pi/</guid>
+      <description>
+
+&lt;h2 id=&#34;setting-up-transmission-on-a-raspberry-pi:348dea259e91783c75366aabbad13fcc&#34;&gt;Setting Up Transmission on a Raspberry Pi&lt;/h2&gt;
+
+&lt;p&gt;Before you start, please read why &lt;strong&gt;I&amp;rsquo;m not using the Pi for Transmission&lt;/strong&gt;: &lt;a href=&#34;http://systemout.net/2014/07/09/how-to-host-a-transmission-daemon/&#34;&gt;http://systemout.net/2014/07/09/how-to-host-a-transmission-daemon/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The setup: A Raspberry Pi with Raspbian, a NAS with a share for the downloads
+As you probably are well aware of the Pi OS is installed on a SD card. The Pi needs an OS and for that I used Raspbian.
+Normally I am a Windows user and there fore I used a tool called Win32 Disk Imager to prepare the SD card with Raspbian. It is easy to use and can be downloaded here: &lt;a href=&#34;http://sourceforge.net/projects/win32diskimager/&#34;&gt;http://sourceforge.net/projects/win32diskimager/&lt;/a&gt;
+You just give it the Raspbian IMG file that you can download (as a torrent, of course), from here: &lt;a href=&#34;http://downloads.raspberrypi.org/raspbian_latest.torrent&#34;&gt;http://downloads.raspberrypi.org/raspbian_latest.torrent&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Once this is done, insert the card in to Pi, boot the device and follow the on screen instructions to finish configuring Raspbian. There’s nothing special to notice about the configuration with regards to using it with Transmission.&lt;/p&gt;
+
+&lt;h3 id=&#34;mounting-the-share:348dea259e91783c75366aabbad13fcc&#34;&gt;Mounting the share&lt;/h3&gt;
+
+&lt;p&gt;Because we want Transmission to download files to a network share, we need to mount this first.
+There are many ways to mount a share, but I used quite a lot of time to find the most conveinient for my setup, because I needed the share to be mounted on reboot, there where some issues regarding the permissions and also some troubles with the security. But after all of that were tried and tested, I ended up with the following commands in terminal/putty/whatever:
+(Open the fstab file, the place where mount points can be specified)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo nano /etc/fstab
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;(Insert line at buttom)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//&amp;lt;ip of NAS&amp;gt;/&amp;lt;name of share&amp;gt; /mnt/shares/downloads cifs username=&amp;lt;username on NAS&amp;gt;,password=&amp;lt;password on NAS&amp;gt;,sec=ntlm,uid=1000,gid=1000 0 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Press Ctrl+X Y Enter&lt;/p&gt;
+
+&lt;p&gt;Okay, to sum up: We inserted a line in the fstab file telling that we want to mount a share on &lt;ip of NAS&gt;/&lt;name of share&gt; in location /mnt/shares/downloads. Further more we are using the cifs protocol and provide a username and password &lt;strong&gt;used to log on to the NAS&lt;/strong&gt;. We need to define NTLM as the security we are using because of something with the cifs protocol (can’t remember were I read about it, but it works!). Last we are mounting with user 1000 (pi) as owners.&lt;/p&gt;
+
+&lt;p&gt;After that we save the fstab file by pressing Ctrl+X answering Y to save and Enter to overwrite.
+Now we need to create the mount folder:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo mkdir /mnt/shares/downloads
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;installing-transmission:348dea259e91783c75366aabbad13fcc&#34;&gt;Installing Transmission&lt;/h3&gt;
+
+&lt;p&gt;First some basics:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get update
+sudo apt-get upgrade    
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then install Transmission:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo apt-get install transmission-daemon
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Stop the Transmission Daemon, we need to do some configuration:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo service transmission-daemon stop 
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then modify the default transmission user, the daemon-transmission:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo usermod -a -G debian-transmission pi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And then let the user access the download folder:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;chgrp debian-transmission /mnt/shares/downloads
+chmod 770 /mnt/shares/downloads
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now we need to enable the Pi user (our user) to have ownership of Transmission files and add the Pi user to the debian-transmission group:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo adduser pi debian-transmission 
+sudo nano /etc/init.d/transmission-daemon 
+sudo chown pi -R /var/lib/transmission-daemon/info/ 
+sudo chown pi -R /etc/transmission-daemon/settings.json 
+sudo chown pi -R /mnt/shares/downloads
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Now before we start the Transmission Daemon, we need to change its configuration, to allow remote access and set the username and password. This is done by modifying the settings.json and we do this in nano:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo nano /etc/transmission-daemon/settings.json
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;There are plenty of settings to play around with, but you probably want to change the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;“incomplete-dir-enabled”: false,
+“download-dir”: “/mnt/shares/downloads”,
+“rpc-password”: “&amp;lt;yourpassword&amp;gt;”,
+“rpc-username”: “&amp;lt;yourusername&amp;gt;”,
+“rpc-whitelist-enabled”: false,
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Only set the whitelist setting, if you want to connect from other clients then the Pi you are installing on.
+Save the file; Ctrl+X Y and Enter.&lt;/p&gt;
+
+&lt;p&gt;Now we can start Transmission:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sudo service transmission-daemon start
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

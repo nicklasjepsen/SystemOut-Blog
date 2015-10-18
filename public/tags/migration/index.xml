@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Migration on SystemOut</title>
+    <link>http://localhost:1313/tags/migration/</link>
+    <description>Recent content in Migration on SystemOut</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
+    <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
+    <lastBuildDate>Fri, 02 May 2014 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/migration/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>&#39;Moving on – WordPress to Octopress/Jekyll on a Pi&#39;</title>
+      <link>http://localhost:1313/2014/05/02/moving-on-wordpress-to-octopress-slash-jekyll-on-a-pi/</link>
+      <pubDate>Fri, 02 May 2014 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2014/05/02/moving-on-wordpress-to-octopress-slash-jekyll-on-a-pi/</guid>
+      <description>
+
+&lt;p&gt;This 1 post is part of a series of posts.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Summary (this post)&lt;/li&gt;
+&lt;li&gt;The Pi: &lt;a href=&#34;http://systemout.net/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/&#34;&gt;http://systemout.net/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;The Blog&lt;/li&gt;
+&lt;li&gt;The Rest (including the network)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;introduction:5242ebc0f1909014c89a5f31ee286dd7&#34;&gt;Introduction&lt;/h3&gt;
+
+&lt;p&gt;The look ’n feel of the blog has changed, as you may have noticed.
+The reason for this is simple; slow performance, increasing cost to hosting and pure curiosity, got me into migrating the existing WordPress solution into a static Octopress on Jekyll solution. Oh, and the new solution is hosted on a Raspberry Pi, &lt;a href=&#34;http://swag.raspberrypi.org/collections/frontpage/products/raspberry-pi-model-b&#34; target=&#34;_blank&#34;&gt;model B&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The result is amazing – the average response time is down around 400 MS after little over a week on the pie. Before it was about 1,5-2 secs.
+In this post I’ll explain how the migration is done and which challenges I faced. I will not go into details, but I will provide you with the links to some great articles I used along the way.&lt;/p&gt;
+
+&lt;h3 id=&#34;summary:5242ebc0f1909014c89a5f31ee286dd7&#34;&gt;Summary&lt;/h3&gt;
+
+&lt;p&gt;First a brief summary of the steps required.
+The Pi:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Install Raspbian&lt;/li&gt;
+&lt;li&gt;Setup static IP&lt;/li&gt;
+&lt;li&gt;Install NGINX&lt;/li&gt;
+&lt;li&gt;Install RVM&lt;/li&gt;
+&lt;li&gt;Install Ruby&lt;/li&gt;
+&lt;li&gt;Install Octopress&lt;/li&gt;
+&lt;li&gt;Configuration of NGINX/Octopress&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The Blog:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Download existing post, comments, pages, etc&lt;/li&gt;
+&lt;li&gt;Convert to Octopress/Jekyll format&lt;/li&gt;
+&lt;li&gt;Upload to Pi&lt;/li&gt;
+&lt;li&gt;Build the new Blog&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The Network:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;DNS&lt;/li&gt;
+&lt;li&gt;NAT on home network&lt;/li&gt;
+&lt;li&gt;Limit torrents!&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;In the next post, I will dig into the details in configuring the Pi, and that post is available right here: &lt;a href=&#34;http://systemout.net/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/&#34;&gt;http://systemout.net/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

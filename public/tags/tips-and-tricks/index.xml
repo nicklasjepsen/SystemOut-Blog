@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tips And Tricks on SystemOut</title>
+    <link>http://localhost:1313/tags/tips-and-tricks/</link>
+    <description>Recent content in Tips And Tricks on SystemOut</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
+    <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
+    <lastBuildDate>Mon, 22 Jun 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/tips-and-tricks/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>404 Hubs Not Found And Debugging Problems</title>
+      <link>http://localhost:1313/2014/07/17/404-hubs-not-found-and-debugging-problems/</link>
+      <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2014/07/17/404-hubs-not-found-and-debugging-problems/</guid>
+      <description>
+
+&lt;h2 id=&#34;introduction:c19d32463fb40573265337c22adbb0e8&#34;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;When working with SignalR I sometimes stumble upon some irritating problems that mostly seems related to Visual Studio and maybe also related to the SignalR framework being relatively new.&lt;/p&gt;
+
+&lt;p&gt;In this post I have assembled some of the errors I have been facing while developing with SignalR.&lt;/p&gt;
+
+&lt;h3 id=&#34;404-hub-s-not-found:c19d32463fb40573265337c22adbb0e8&#34;&gt;404 Hub(s) not found&lt;/h3&gt;
+
+&lt;p&gt;This error seems to have a different solution whether you have deployed your app to IIS or you are debugging.&lt;/p&gt;
+
+&lt;h5 id=&#34;debugging:c19d32463fb40573265337c22adbb0e8&#34;&gt;Debugging&lt;/h5&gt;
+
+&lt;p&gt;I have experienced a lot of difficulties while debugging/running my SignalR apps in Visual Studio 2013. Sometimes, when I reopen a solution that previously “just worked”, it all of the sudden don’t anymore, meaning that the ~/signalr/hubs gives a 404 on localhost or the client can not be found. A fix for this seems to be the following:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Close Visual Studio&lt;/li&gt;
+&lt;li&gt;Make sure IIS Express is shutdown also (look for the IIS Express tray icon)&lt;/li&gt;
+&lt;li&gt;Start Visual Studio&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If the above doesn&amp;rsquo;t work, sometimes going out for a cup of coffee and returning does :)&lt;/p&gt;
+
+&lt;h5 id=&#34;deployed-on-iis:c19d32463fb40573265337c22adbb0e8&#34;&gt;Deployed on IIS&lt;/h5&gt;
+
+&lt;p&gt;This is most likely related to the hub reference and how you are hosting the SignalR site on the server. I have written a post about the case, which you can find &lt;a href=&#34;http://systemout.net/2014/07/15/signalr-hub-reference-done-right/&#34;&gt;right here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;troubleshooting:c19d32463fb40573265337c22adbb0e8&#34;&gt;Troubleshooting&lt;/h3&gt;
+
+&lt;p&gt;Remember that you can enable detailed errors when trying to troubleshoot SignalR related problems. Just add this to your OWIN Startup.cs:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #902000&#34;&gt;var&lt;/span&gt; hubConfiguration = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; HubConfiguration
+{
+	EnableDetailedErrors = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;,
+};
+app.MapSignalR(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;/~/signalr&amp;quot;&lt;/span&gt;, hubConfiguration);
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Leave a comment if you have any other problems, and I&amp;rsquo;ll be glad to try and help out!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>&#39;Code Snippet &amp;#8211; How to add to Visual Studio&#39;</title>
+      <link>http://localhost:1313/2011/12/07/code-snippet-how-to-add-visual-studio/</link>
+      <pubDate>Wed, 07 Dec 2011 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2011/12/07/code-snippet-how-to-add-visual-studio/</guid>
+      <description>&lt;p&gt;This post describes how you can add your own code snippets to Visual Studio.&lt;/p&gt;
+
+&lt;p&gt;Go to Tools &amp;gt; Code Snippets Manager&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://systemout.net/wp-content/uploads/2011/12/vscs.png&#34;&gt;&lt;img class=&#34;size-full wp-image-41 aligncenter&#34; title=&#34;Code Snippets Manager&#34; src=&#34;http://systemout.net/wp-content/uploads/2011/12/vscs.png&#34; alt=&#34;&#34; width=&#34;629&#34; height=&#34;469&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Select C# (presuming you want to add a snippet for C# &lt;img src=&#34;http://www.systemout.net/wp-includes/images/smilies/icon_wink.gif&#34; alt=&#34;;)&#34; class=&#34;wp-smiley&#34; /&gt; )&lt;/p&gt;
+
+&lt;p&gt;Click the Add button and browse to the location where your code snippet is stored. The file must end with .snippet&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://systemout.net/wp-content/uploads/2011/12/vscs2.png&#34;&gt;&lt;img class=&#34;size-full wp-image-42 aligncenter&#34; title=&#34;Code Snippets Manager 2&#34; src=&#34;http://systemout.net/wp-content/uploads/2011/12/vscs2.png&#34; alt=&#34;&#34; width=&#34;629&#34; height=&#34;469&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you can use the snippet by typing the shortcut in your C# class witch in this case is sglt:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://systemout.net/wp-content/uploads/2011/12/sgltsnippetbefore.png&#34;&gt;&lt;img class=&#34;size-full wp-image-43 aligncenter&#34; title=&#34;Before insertion of the snippet&#34; src=&#34;http://systemout.net/wp-content/uploads/2011/12/sgltsnippetbefore.png&#34; alt=&#34;&#34; width=&#34;527&#34; height=&#34;113&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;After the snippet are inserted:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://systemout.net/wp-content/uploads/2011/12/sgltsnippetafter.png&#34;&gt;&lt;img class=&#34;size-full wp-image-44 aligncenter&#34; title=&#34;After snippet are inserted&#34; src=&#34;http://systemout.net/wp-content/uploads/2011/12/sgltsnippetafter.png&#34; alt=&#34;&#34; width=&#34;391&#34; height=&#34;348&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Pretty simple, right? :)&lt;/p&gt;
+
+&lt;div style=&#34;font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both&#34;&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

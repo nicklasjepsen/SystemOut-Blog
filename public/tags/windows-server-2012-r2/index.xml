@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Windows Server 2012 R2 on SystemOut</title>
+    <link>http://localhost:1313/tags/windows-server-2012-r2/</link>
+    <description>Recent content in Windows Server 2012 R2 on SystemOut</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
+    <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
+    <lastBuildDate>Wed, 09 Jul 2014 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/windows-server-2012-r2/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How To Host a Transmission Daemon part 1</title>
+      <link>http://localhost:1313/2014/07/09/how-to-host-a-transmission-daemon/</link>
+      <pubDate>Wed, 09 Jul 2014 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2014/07/09/how-to-host-a-transmission-daemon/</guid>
+      <description>
+
+&lt;p&gt;If you want to skip to the &amp;ldquo;How to install transmission daemon on the Pi, look here: &lt;a href=&#34;http://systemout.net/2014/07/09/setting-up-transmission-on-a-raspberry-pi/&#34;&gt;http://systemout.net/2014/07/09/setting-up-transmission-on-a-raspberry-pi/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;first-a-disclaimer:d29c37ebdd62edfaa4980756b87b72e5&#34;&gt;First a disclaimer&amp;hellip;&lt;/h2&gt;
+
+&lt;p&gt;I started out wanting to host a Transmission Daemon on a Raspberry Pi for some simple reasons; I wanted a torrent client which was always on, accessible from all my devices, and easy to use. I had a Transmission Daemon running on my NAS, but I have decided to let my NAS do what is is best at: Serving as a storage device, and nothing more. To keep the cost down, and because I thought it would be exciting (which it was!), I decided to install Transmission on a Raspberry Pi.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;But then all the &amp;lsquo;fun&amp;rsquo; began&amp;hellip;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Short story: I mounted a network share where the Pi shoud download files to, after long strugling whith permissions I found out that the CPU usage was extensive when writing directly from Transmission to the share. Or, I thought that was the issue..
+To optimize I mounted a USB drive to the Pi and used it as a placeholder for downloads in progress only to see that the CPU usage was still in the extreme zone.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s why I decided to go back to my Hyper-V hosted Transmission Daemon.&lt;/p&gt;
+
+&lt;p&gt;For all of this not to be a total waste of time (oh btw, it isn&amp;rsquo;t - I&amp;rsquo;ve learned a lot), I have decided to publish the procedure of how I did setup the Pi to host Transmission, how I mounted the share, how I formatted the external USB disk and how it all came up and running.
+Furthermore I will describe how I installed Transmission on Windows Server 2012 r2 and how it is running now.&lt;/p&gt;
+
+&lt;h3 id=&#34;why-i-skipped-the-transmission-daemon-on-the-pi:d29c37ebdd62edfaa4980756b87b72e5&#34;&gt;Why I skipped the Transmission Daemon on the Pi&lt;/h3&gt;
+
+&lt;p&gt;Look at the CPU usage Transmission:
+&lt;img src=&#34;http://systemout.net/images/TopCpu.png&#34; alt=&#34;CPU usage&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;And I did only manage to get download speeds of around 1-2 mb/s:
+&lt;img src=&#34;http://systemout.net/images/TransmissionWeb.png&#34; alt=&#34;Trasnmission UI&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Now, have a look at the post about how to set the Transmission up on the Pi and please leave comments, if you find a better way, or even a way where you are able to get descent download speeds:
+&lt;a href=&#34;http://systemout.net/2014/07/09/setting-up-transmission-on-a-raspberry-pi&#34;&gt;http://systemout.net/2014/07/09/setting-up-transmission-on-a-raspberry-pi&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

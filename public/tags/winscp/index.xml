@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Winscp on SystemOut</title>
+    <link>http://localhost:1313/tags/winscp/</link>
+    <description>Recent content in Winscp on SystemOut</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
+    <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
+    <lastBuildDate>Thu, 18 Dec 2014 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/winscp/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>How to build and deploy octopress with a single click, part 2 </title>
+      <link>http://localhost:1313/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</link>
+      <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</guid>
+      <description>
+
+&lt;h2 id=&#34;introduction:3560ed7cf74d4df07c025fe02915a1b2&#34;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;This post is a continuation of the post about generating an Octopress site on a Windows machine and deploying it to a web server/Raspberry Pi.
+You can find the post about setting up your Windows dev box to generate the Octopress site &lt;a href=&#34;http://systemout.net/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p1/&#34;&gt;right here&lt;/a&gt;!&lt;/p&gt;
+
+&lt;h2 id=&#34;steps:3560ed7cf74d4df07c025fe02915a1b2&#34;&gt;Steps&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;#winscp&#34;&gt;Donwload and install WinSCP&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#ftp&#34;&gt;Enable FTP on the Raspberry Pi/web server&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#winscpscript&#34;&gt;Create WinSCP script&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#deploy&#34;&gt;Create build and deployment script&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;#run&#34;&gt;Run!&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&#34;download-and-install-winscp-a-name-winscp-a:3560ed7cf74d4df07c025fe02915a1b2&#34;&gt;Download and install WinSCP&lt;a name=&#34;winscp&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;You can grab the latest version of WinSCP from &lt;a href=&#34;http://winscp.net/eng/download.php&#34;&gt;here&lt;/a&gt;.
+Just follow the installation instructions and you are done!&lt;/p&gt;
+
+&lt;h3 id=&#34;enable-ftp-on-the-raspberry-pi-web-server-a-name-ftp-a:3560ed7cf74d4df07c025fe02915a1b2&#34;&gt;Enable FTP on the Raspberry Pi/web server&lt;a name=&#34;ftp&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;I use &lt;a href=&#34;http://www.proftpd.org/&#34;&gt;ProFTPD&lt;/a&gt; as my FTP server on the Raspberry Pi running Raspbian. On Raspbian/Debian it can be installed like this:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;	apt-get install proftpd
+&lt;/pre&gt;&lt;/div&gt;
+
+Choose the standalone option when prompted.
+After installation is completed, the FTP server should be running.
+If you for some reason need to, you can stop/start the FTP server as follows:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;	/etc/init.d/proftpd stop
+	/etc/init.d/proftpd start
+&lt;/pre&gt;&lt;/div&gt;
+
+Now that&amp;rsquo;s up and running, we need to create a WinSCP script to upload the generated files.&lt;/p&gt;
+
+&lt;h3 id=&#34;create-winscp-script-a-name-winscpscript-a:3560ed7cf74d4df07c025fe02915a1b2&#34;&gt;Create WinSCP script&lt;a name=&#34;winscpscript&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;Besides being a gui tool for file handling, WinSCP comes with a command line interface. Refer to the documentation &lt;a href=&#34;http://winscp.net/eng/docs/scriptcommand_synchronize&#34;&gt;here&lt;/a&gt; if you need further information.&lt;/p&gt;
+
+&lt;p&gt;Create a new text file, name it winscpscript.scp and place it in octopress\scripts (create the scripts folder, if it doesn&amp;rsquo;t exist) and insert the following code:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;	option batch abort
+	option confirm &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;off&lt;/span&gt;
+	open username:password@ipOrHostOfWebserver
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;cd&lt;/span&gt; /srv/www/octopress
+	lcd C:\octopress\public\
+	synchronize remote -delete
+	exit
+&lt;/pre&gt;&lt;/div&gt;
+
+In this script, the following happens:
+The first 2 lines ensures that prompts are answered negativly and that confirmations are turned of.&lt;/p&gt;
+
+&lt;p&gt;The open command connects to the FTP server using the provided username/password on the hostname or ip address of you web server.&lt;/p&gt;
+
+&lt;p&gt;After that we change the remote directory (the directory on the server), using the cd command, to a suitable place to store our web site.&lt;/p&gt;
+
+&lt;p&gt;Then we use the lcd command to change the local directory to the location on the Windows computer where Octopress is installed/generated. Remember that the output of the generation is in the &amp;lsquo;public&amp;rsquo; directory.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Now the magic!&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Using the syncrhonize command we can sync the files in the local directory with the remote directory. The remote option tells WinSCP that it is the remote directory that shall be updated with changes from the local directory. By adding the -delete option, we tell WinSCP that the synchronization should make sure that locally deleted files also gets deleted from the remote directory.&lt;/p&gt;
+
+&lt;p&gt;Lastly we simply exit the WinSCP CLI and returning control to the caller.&lt;/p&gt;
+
+&lt;h3 id=&#34;create-build-and-deployment-script-a-name-deploy-a:3560ed7cf74d4df07c025fe02915a1b2&#34;&gt;Create build and deployment script&lt;a name=&#34;deploy&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;Now we can create the build script that will enable us to build/generate and publish our Octopress site with one single click.&lt;/p&gt;
+
+&lt;p&gt;Create new text file, name it BuildOctopress.bat and save it in octopress\scripts with the following content:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;cd&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;C:\octopress\&amp;quot;&lt;/span&gt;
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;call&lt;/span&gt; rake generate || true
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;cd&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;C:\Program Files (x86)\WinSCP\&amp;quot;&lt;/span&gt;
+	winscp /script=C:\octopress\scripts\winscpscript.scp
+&lt;/pre&gt;&lt;/div&gt;
+
+Now here is what happens in the script:&lt;/p&gt;
+
+&lt;p&gt;First we change working directory to the location of out octopress site.&lt;/p&gt;
+
+&lt;p&gt;Then we generate the site using rake generate. The call function is handy, because we&amp;rsquo;re calling another batch job.&lt;/p&gt;
+
+&lt;p&gt;Now cd to the WinSCP directory.&lt;/p&gt;
+
+&lt;p&gt;Run WinSCP and pass the script we created in the previous step.&lt;/p&gt;
+
+&lt;p&gt;Save the file and continue to the next step.&lt;/p&gt;
+
+&lt;h3 id=&#34;run-a-name-run-a:3560ed7cf74d4df07c025fe02915a1b2&#34;&gt;Run&lt;a name=&#34;run&#34;&gt;&lt;/a&gt;&lt;/h3&gt;
+
+&lt;p&gt;After all the above is done, we are now able to build and deploy out Octopress site by the single click of a mouse. Simply run the BuildOctopress.bat file and wait for it to finish.&lt;/p&gt;
+
+&lt;p&gt;And that&amp;rsquo;s it. Please feel free to leave any comments and/or questions.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

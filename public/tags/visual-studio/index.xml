@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Visual Studio on SystemOut</title>
+    <link>http://localhost:1313/tags/visual-studio/</link>
+    <description>Recent content in Visual Studio on SystemOut</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
+    <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
+    <lastBuildDate>Wed, 07 Dec 2011 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/visual-studio/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>&#39;Code Snippet &amp;#8211; How to add to Visual Studio&#39;</title>
+      <link>http://localhost:1313/2011/12/07/code-snippet-how-to-add-visual-studio/</link>
+      <pubDate>Wed, 07 Dec 2011 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2011/12/07/code-snippet-how-to-add-visual-studio/</guid>
+      <description>&lt;p&gt;This post describes how you can add your own code snippets to Visual Studio.&lt;/p&gt;
+
+&lt;p&gt;Go to Tools &amp;gt; Code Snippets Manager&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://systemout.net/wp-content/uploads/2011/12/vscs.png&#34;&gt;&lt;img class=&#34;size-full wp-image-41 aligncenter&#34; title=&#34;Code Snippets Manager&#34; src=&#34;http://systemout.net/wp-content/uploads/2011/12/vscs.png&#34; alt=&#34;&#34; width=&#34;629&#34; height=&#34;469&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Select C# (presuming you want to add a snippet for C# &lt;img src=&#34;http://www.systemout.net/wp-includes/images/smilies/icon_wink.gif&#34; alt=&#34;;)&#34; class=&#34;wp-smiley&#34; /&gt; )&lt;/p&gt;
+
+&lt;p&gt;Click the Add button and browse to the location where your code snippet is stored. The file must end with .snippet&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://systemout.net/wp-content/uploads/2011/12/vscs2.png&#34;&gt;&lt;img class=&#34;size-full wp-image-42 aligncenter&#34; title=&#34;Code Snippets Manager 2&#34; src=&#34;http://systemout.net/wp-content/uploads/2011/12/vscs2.png&#34; alt=&#34;&#34; width=&#34;629&#34; height=&#34;469&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now you can use the snippet by typing the shortcut in your C# class witch in this case is sglt:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://systemout.net/wp-content/uploads/2011/12/sgltsnippetbefore.png&#34;&gt;&lt;img class=&#34;size-full wp-image-43 aligncenter&#34; title=&#34;Before insertion of the snippet&#34; src=&#34;http://systemout.net/wp-content/uploads/2011/12/sgltsnippetbefore.png&#34; alt=&#34;&#34; width=&#34;527&#34; height=&#34;113&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;After the snippet are inserted:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://systemout.net/wp-content/uploads/2011/12/sgltsnippetafter.png&#34;&gt;&lt;img class=&#34;size-full wp-image-44 aligncenter&#34; title=&#34;After snippet are inserted&#34; src=&#34;http://systemout.net/wp-content/uploads/2011/12/sgltsnippetafter.png&#34; alt=&#34;&#34; width=&#34;391&#34; height=&#34;348&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Pretty simple, right? :)&lt;/p&gt;
+
+&lt;div style=&#34;font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both&#34;&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chat on SystemOut</title>
+    <link>http://localhost:1313/tags/chat/</link>
+    <description>Recent content in Chat on SystemOut</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
+    <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
+    <lastBuildDate>Mon, 22 Jun 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/chat/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>404 Hubs Not Found And Debugging Problems</title>
+      <link>http://localhost:1313/2014/07/17/404-hubs-not-found-and-debugging-problems/</link>
+      <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2014/07/17/404-hubs-not-found-and-debugging-problems/</guid>
+      <description>
+
+&lt;h2 id=&#34;introduction:c19d32463fb40573265337c22adbb0e8&#34;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;When working with SignalR I sometimes stumble upon some irritating problems that mostly seems related to Visual Studio and maybe also related to the SignalR framework being relatively new.&lt;/p&gt;
+
+&lt;p&gt;In this post I have assembled some of the errors I have been facing while developing with SignalR.&lt;/p&gt;
+
+&lt;h3 id=&#34;404-hub-s-not-found:c19d32463fb40573265337c22adbb0e8&#34;&gt;404 Hub(s) not found&lt;/h3&gt;
+
+&lt;p&gt;This error seems to have a different solution whether you have deployed your app to IIS or you are debugging.&lt;/p&gt;
+
+&lt;h5 id=&#34;debugging:c19d32463fb40573265337c22adbb0e8&#34;&gt;Debugging&lt;/h5&gt;
+
+&lt;p&gt;I have experienced a lot of difficulties while debugging/running my SignalR apps in Visual Studio 2013. Sometimes, when I reopen a solution that previously “just worked”, it all of the sudden don’t anymore, meaning that the ~/signalr/hubs gives a 404 on localhost or the client can not be found. A fix for this seems to be the following:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Close Visual Studio&lt;/li&gt;
+&lt;li&gt;Make sure IIS Express is shutdown also (look for the IIS Express tray icon)&lt;/li&gt;
+&lt;li&gt;Start Visual Studio&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If the above doesn&amp;rsquo;t work, sometimes going out for a cup of coffee and returning does :)&lt;/p&gt;
+
+&lt;h5 id=&#34;deployed-on-iis:c19d32463fb40573265337c22adbb0e8&#34;&gt;Deployed on IIS&lt;/h5&gt;
+
+&lt;p&gt;This is most likely related to the hub reference and how you are hosting the SignalR site on the server. I have written a post about the case, which you can find &lt;a href=&#34;http://systemout.net/2014/07/15/signalr-hub-reference-done-right/&#34;&gt;right here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;troubleshooting:c19d32463fb40573265337c22adbb0e8&#34;&gt;Troubleshooting&lt;/h3&gt;
+
+&lt;p&gt;Remember that you can enable detailed errors when trying to troubleshoot SignalR related problems. Just add this to your OWIN Startup.cs:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #902000&#34;&gt;var&lt;/span&gt; hubConfiguration = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; HubConfiguration
+{
+	EnableDetailedErrors = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;,
+};
+app.MapSignalR(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;/~/signalr&amp;quot;&lt;/span&gt;, hubConfiguration);
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Leave a comment if you have any other problems, and I&amp;rsquo;ll be glad to try and help out!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Developing a &#39;Who Is On&#39; Chat Web App Using SignalR and WPF</title>
+      <link>http://localhost:1313/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/</link>
+      <pubDate>Wed, 10 Jun 2015 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/</guid>
+      <description>
+
+&lt;h2 id=&#34;introduction:059a38db281f7dbb8fe36beb42876568&#34;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;In this tutorial I will guide you in creating a &amp;ldquo;Who Is On&amp;rdquo; client in Windows Presentation Foundation, WPF. The server is an ASP.NET SignalR app. This post is building upon my previous post about how to develop, deploy and host a SignalR Chat Web App. You can find that post &lt;a href=&#34;{% post_url 2014-07-17-developing-and-deploying-a-signalr-chat-web-app-to-iis %}&#34;&gt;right here!&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Because we are building upon the previous post and solution, you should download the solution &lt;a href=&#34;http://1drv.ms/1wB5IWF&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can find the source for the WPF app that we are creating in this post &lt;a href=&#34;http://1drv.ms/1IFqRKj&#34;&gt;rigth here!&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;We are going to add some methods to the server side and make an all new (horrible looking) WPF client - this is a SignalR post, not a &amp;ldquo;make some shiny WPF magic&amp;rdquo; post.&lt;/p&gt;
+
+&lt;h3 id=&#34;the-asp-net-signalr-backend:059a38db281f7dbb8fe36beb42876568&#34;&gt;The ASP.NET SignalR Backend&lt;/h3&gt;
+
+&lt;p&gt;In the MessageHub we are going to need to handle users logging on/off. There fore add to the MessageHub.cs the following ConcurrentDictionaries:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;static&lt;/span&gt; ConcurrentDictionary&amp;lt;&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;&amp;gt; Usernames = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; ConcurrentDictionary&amp;lt;&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;&amp;gt;();
+&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;static&lt;/span&gt; ConcurrentDictionary&amp;lt;&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;&amp;gt; UserList = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; ConcurrentDictionary&amp;lt;&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;&amp;gt;();  
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Now modify the Login method in the MessageHub class so that it checks if the username provided is in use, and if not, adds the username to the connected clients list:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;bool&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;Login&lt;/span&gt;(&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; username)
+{
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; (Usernames.ContainsKey(username))
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;;
+    Usernames.TryAdd(username, Context.ConnectionId);
+    UserList.TryAdd(Context.ConnectionId, username);
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Notify all clients that a user is logged in&lt;/span&gt;
+    Clients.All.showConnected(UserList);
+
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;;
+}        
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;We need also to be able to remove a user that is logged off/disconnected. This is done in the RemoveUser method:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;RemoveUser&lt;/span&gt;()
+{
+    &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; username;
+    &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; connectionId;
+    UserList.TryRemove(Context.ConnectionId, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;out&lt;/span&gt; username);
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; (!&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;.IsNullOrEmpty(username))
+    	Usernames.TryRemove(username, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;out&lt;/span&gt; connectionId);
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The RemoveUser method is called from multiple methods of the MessageHub, in a public Logoff method that clients can call:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;Logoff&lt;/span&gt;(&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; username)
+{
+    RemoveUser();
+    Clients.All.showConnected(UserList);
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&amp;hellip;and also in some overridden methods that handles SignalR events when users are disconnected:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;override&lt;/span&gt; Task &lt;span style=&#34;color: #06287e&#34;&gt;OnDisconnected&lt;/span&gt;()
+{
+    RemoveUser();
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; Clients.All.showConnected(UserList);
+}
+
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;/// &amp;lt;summary&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;/// Needed as of SignalR 2.1.0: http://stackoverflow.com/questions/24878187/signalr-detecting-alive-connection-in-c-sharp-clients&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;/// &amp;lt;/summary&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;/// &amp;lt;param name=&amp;quot;stopCalled&amp;quot;&amp;gt;&amp;lt;/param&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;/// &amp;lt;returns&amp;gt;&amp;lt;/returns&amp;gt;&lt;/span&gt;
+&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;override&lt;/span&gt; Task &lt;span style=&#34;color: #06287e&#34;&gt;OnDisconnected&lt;/span&gt;(&lt;span style=&#34;color: #902000&#34;&gt;bool&lt;/span&gt; stopCalled)
+{
+    RemoveUser();
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; Clients.All.showConnected(UserList);
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Finally, we add a GetActiveClients method that is used by the clients to trigger SignalR in sending a list of connected clients. Note that currently the methods takes a &amp;ldquo;requester&amp;rdquo; as parameter - this is for future use, you can ignore it for now. The method is not quite &amp;ldquo;sane&amp;rdquo; ATM because it actually triggers the SignalR event for all connected clients, because we are yet to see how we can send events to specific SignalR clients - look for a near future post about that one :)&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;GetActiveClients&lt;/span&gt;(&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; requster)
+{
+    Clients.All.showConnected(UserList);
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Now that was the server side part. Now we continue to the client.&lt;/p&gt;
+
+&lt;script async src=&#34;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;!-- ResponsiveHeader --&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block&#34;
+     data-ad-client=&#34;ca-pub-5807169669170468&#34;
+     data-ad-slot=&#34;5652122954&#34;
+     data-ad-format=&#34;auto&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+
+&lt;h3 id=&#34;implementing-the-signalr-client-int-wpf:059a38db281f7dbb8fe36beb42876568&#34;&gt;Implementing the SignalR client int WPF&lt;/h3&gt;
+
+&lt;p&gt;Now create a new solution/project and make an WPF app.
+We are going to use the Signal .NET client in our WPF project. Open the package manager (I usually uses Ctrl+Q, enter package, select first item in list and Enter). Enter Install-Package Microsoft.AspNet.SignalR.Client and hit enter.
+With that done, we can connect our WPF app to the ASP.NET SignalR service hosting our MessageHub. I have assembled all the server communication in a class called ChatService.cs. The class has a couple of public methods like Login, Logoff, StartSignalR, etc. It also holds some events that our UI can subscribe to, so that it can update when for instances receiving a new message or when a user/client is connected/disconnected.&lt;/p&gt;
+
+&lt;p&gt;Here is the ChatService.cs (look below the code for a description of how the code works):&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;System&lt;/span&gt;;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;System.Collections.Concurrent&lt;/span&gt;;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;System.Collections.Generic&lt;/span&gt;;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;System.Linq&lt;/span&gt;;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;System.Threading.Tasks&lt;/span&gt;;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;Microsoft.AspNet.SignalR.Client&lt;/span&gt;;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;WhoIsOn.Client.ViewModels&lt;/span&gt;;
+    
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;namespace&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;WhoIsOn.Client&lt;/span&gt;
+    {
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;ChatService&lt;/span&gt;
+        {
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; IHubProxy chatHubProxy;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; currentUsername;
+    
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;event&lt;/span&gt; EventHandler&amp;lt;MessageViewModel&amp;gt; OnMessageReceived;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;event&lt;/span&gt; EventHandler&amp;lt;List&amp;lt;UserViewModel&amp;gt;&amp;gt; OnConnectedUsersChanged;
+    
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;async&lt;/span&gt; Task &lt;span style=&#34;color: #06287e&#34;&gt;StartSignalR&lt;/span&gt;()
+            {
+                &lt;span style=&#34;color: #902000&#34;&gt;var&lt;/span&gt; connection = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; HubConnection(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;http://localhost:32986/~/&amp;quot;&lt;/span&gt;);
+                &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;//var connection = new HubConnection(&amp;quot;http://systemout.net:56677/ChatWebApp/~/&amp;quot;);&lt;/span&gt;
+    
+                chatHubProxy = connection.CreateHubProxy(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;MessageHub&amp;quot;&lt;/span&gt;);
+                chatHubProxy.On&amp;lt;&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;&amp;gt;(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;displayMessage&amp;quot;&lt;/span&gt;, OnUserMessage);
+                chatHubProxy.On&amp;lt;ConcurrentDictionary&amp;lt;&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;&amp;gt;&amp;gt;(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;showConnected&amp;quot;&lt;/span&gt;, ShowConnected);
+                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;await&lt;/span&gt; connection.Start();
+            }
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;ShowConnected&lt;/span&gt;(ConcurrentDictionary&amp;lt;&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;, &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;&amp;gt; userList)
+            {
+                FireOnConnectedUsersChanged(userList.Values.ToList());
+            }
+    
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;OnUserMessage&lt;/span&gt;(&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; username, &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; message)
+            {
+                FireOnMessageReceived(username, message);
+            }
+    
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;FireOnMessageReceived&lt;/span&gt;(&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; username, &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; message)
+            {
+                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; (OnMessageReceived != &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt;)
+                    OnMessageReceived(&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; MessageViewModel { Message = message, Username = username });
+            }
+    
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;FireOnConnectedUsersChanged&lt;/span&gt;(IEnumerable&amp;lt;&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;&amp;gt; users)
+            {
+                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; (OnMessageReceived == &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;null&lt;/span&gt;)
+                    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt;;
+                &lt;span style=&#34;color: #902000&#34;&gt;var&lt;/span&gt; usersViewModel = users.Select(user1 =&amp;gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; UserViewModel
+                {
+                    Username = user1, Status = &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;Online&amp;quot;&lt;/span&gt;
+                }).ToList();
+    
+                OnConnectedUsersChanged(&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;, usersViewModel);
+            }
+    
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;async&lt;/span&gt; Task&amp;lt;&lt;span style=&#34;color: #902000&#34;&gt;bool&lt;/span&gt;&amp;gt; LoginAsync(&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; username)
+            {
+                currentUsername = username;
+                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;await&lt;/span&gt; chatHubProxy.Invoke&amp;lt;&lt;span style=&#34;color: #902000&#34;&gt;bool&lt;/span&gt;&amp;gt;(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;Login&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;object&lt;/span&gt;[] { currentUsername });
+            }
+    
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;async&lt;/span&gt; Task &lt;span style=&#34;color: #06287e&#34;&gt;RequestConnectedClientList&lt;/span&gt;()
+            {
+                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;await&lt;/span&gt; chatHubProxy.Invoke(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;GetActiveClients&amp;quot;&lt;/span&gt;, currentUsername);
+            }
+    
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;async&lt;/span&gt; Task&amp;lt;&lt;span style=&#34;color: #902000&#34;&gt;bool&lt;/span&gt;&amp;gt; SendMessage(&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; message)
+            {
+                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;await&lt;/span&gt; chatHubProxy.Invoke&amp;lt;&lt;span style=&#34;color: #902000&#34;&gt;bool&lt;/span&gt;&amp;gt;(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;SendMessage&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;object&lt;/span&gt;[] { currentUsername, message });
+            }
+    
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;async&lt;/span&gt; Task &lt;span style=&#34;color: #06287e&#34;&gt;Logoff&lt;/span&gt;()
+            {
+                &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;await&lt;/span&gt; chatHubProxy.Invoke(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;Logoff&amp;quot;&lt;/span&gt;, currentUsername);
+            }
+        }
+    }
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The events in the ChatService is used so that the WPF Windows can be updated - there should be no trouble here!
+Then there is the StartSignalR method. First we are creating a new HubConnection giving the url where the ASP.NET SignalR app is hosted - if you run the sample from the previous post (donwload link in the top of this post) you should be able to connect to SignalR using the localhost address. Other wise, you can use my SignalR service by uncommenting the second HubConnection line in the StartSignalR method.&lt;/p&gt;
+
+&lt;p&gt;Next we create the HubProxy. The string/name must match the name of the class in the ASP.NET SignalR service, in our case that is MessageHub.&lt;/p&gt;
+
+&lt;script async src=&#34;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;!-- ResponsiveHeader --&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block&#34;
+     data-ad-client=&#34;ca-pub-5807169669170468&#34;
+     data-ad-slot=&#34;5652122954&#34;
+     data-ad-format=&#34;auto&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+
+&lt;p&gt;Then we create eventlisteners using the chatHubProxy.On methods. Here we must provide the name for the methods that, again, must correspond to dynamically created messages defined in the MessageHub methods in the ASP.NET SignalR app. For instance: Clients.All.showConnected(UserList) - here we use showConnected as an identifier. The signature of the delegate methods that we provide must also match.&lt;/p&gt;
+
+&lt;p&gt;The rest of the class is &amp;ldquo;just&amp;rdquo; implementation of the methods that will be invoked by SignalR and also triggering of the events to update the UI.&lt;/p&gt;
+
+&lt;p&gt;You can download the source for the WPF client &lt;a href=&#34;http://1drv.ms/1IFqRKj&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Please leave any comments/questions you might have!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Calling SignalR Hub from a C# WCF Service</title>
+      <link>http://localhost:1313/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</link>
+      <pubDate>Fri, 25 Jul 2014 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</guid>
+      <description>
+
+&lt;h2 id=&#34;introduction:1c0b33ef5ca6cf9a2ff28d934b29da72&#34;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;UPDATE&lt;/strong&gt;: See all my SignalR tutorials &lt;a href=&#34;http://systemout.net/categories/signalr/&#34;&gt;right here&lt;/a&gt; or find a post about how to list users that are connected &lt;a href=&#34;http://systemout.net/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/&#34;&gt;right here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Download the source for this tutorial here: &lt;a href=&#34;http://1drv.ms/1qEpMtQ&#34;&gt;http://1drv.ms/1qEpMtQ&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In a previous blog post I wrote a tutorial on how to develop and deploy a simple SignalR chat application using the bare minimum as a proof of concept. You can find that post right here: &lt;a href=&#34;http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/&#34;&gt;http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In this tutorial, we are going to make a WCF service that can talk to the SignalR chat app and broadcast messages from &amp;ldquo;the system&amp;rdquo; - not by a user.
+SignalR is easy to use with JavaScript, but if you need to broadcast messages to the SignalR hub, you need to use a browser (JavaScript) or otherwise things get a little more complicated.
+This tutorial, will guide you to calling SignalR hub methods from a WCF service that recides in a different DLL than the SignalR host.&lt;/p&gt;
+
+&lt;h3 id=&#34;setup:1c0b33ef5ca6cf9a2ff28d934b29da72&#34;&gt;Setup&lt;/h3&gt;
+
+&lt;p&gt;This tutorial uses the Chat web app as implemented in the previous mention blog post, you can find the solution from that post rigth here: &lt;a href=&#34;http://1drv.ms/1wB5IWF&#34;&gt;http://1drv.ms/1wB5IWF&lt;/a&gt;
+Oh, and if you want to see the app in action, you can try it out right here: &lt;a href=&#34;http://systemout.net:56677/ChatWebApp/Messenger.html?username=User1&#34;&gt;http://systemout.net:56677/ChatWebApp/Messenger.html?username=User1&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;We are going to add a WCF service to the ChatWebApp solution and provide functionality that allows the WCF service to invoke methods on the SignalR hub.&lt;/p&gt;
+
+&lt;h3 id=&#34;creating-the-wcf-service:1c0b33ef5ca6cf9a2ff28d934b29da72&#34;&gt;Creating the WCF Service&lt;/h3&gt;
+
+&lt;p&gt;Open up the ChatWebApp solution.
+Add a WCF Service Application, name it WcfService:
+&lt;img src=&#34;http://systemout.net/images/SignalRCreateWcfServiceProject.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Now add the SignalR depencies, right click References &amp;gt; Manage NuGet Packages &amp;gt; Search for SignalR &amp;gt; Install &lt;strong&gt;Microsoft ASP.NET SignalR .NET Client&lt;/strong&gt; and &lt;strong&gt;Microsoft ASP.NET SignalR Core Components&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;We also need a reference to the ChatWebApp project, so if you are not building on the ChatWebApp project which you can download in the top of this post, you need to write your own Hub class. But, for this tutorial we are using the ChatWebApp, so add a reference to that project.&lt;/p&gt;
+
+&lt;script async src=&#34;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;!-- ResponsiveHeader --&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block&#34;
+     data-ad-client=&#34;ca-pub-5807169669170468&#34;
+     data-ad-slot=&#34;5652122954&#34;
+     data-ad-format=&#34;auto&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+
+&lt;p&gt;VS have created the basic files needed to host the WCF Service but I have renamed the IService1.cs and Service1.cs to ISystemService.cs and SystemService.
+Replace the code in &lt;strong&gt;SystemService.cs&lt;/strong&gt; with:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;SystemService&lt;/span&gt; : ISystemService
+    {
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;readonly&lt;/span&gt; IHubProxy messageHub;
+
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;SystemService&lt;/span&gt;()
+        {
+            &lt;span style=&#34;color: #902000&#34;&gt;var&lt;/span&gt; connection = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; HubConnection(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;http://localhost:yourport/~/&amp;quot;&lt;/span&gt;);
+            messageHub = connection.CreateHubProxy(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;MessageHub&amp;quot;&lt;/span&gt;);
+            connection.Start().Wait();
+        }
+
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;SendMessage&lt;/span&gt;(&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; sender, &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; message)
+        {
+            messageHub.Invoke(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;SendMessage&amp;quot;&lt;/span&gt;, sender, message);
+        }
+    }
+&lt;/pre&gt;&lt;/div&gt;
+
+In the constructor of the service were a making a connection to the hub and creating a proxy for the MessageHub in the ChatWebApp project and last we are starting the connection.
+Maybe you don&amp;rsquo;t need the ~ at the end of the hub connection URL, but again, if working on the ChatWebApp you do.&lt;/p&gt;
+
+&lt;p&gt;The service publishes one operation: SendMessage. I don&amp;rsquo;t think further introduction to the workings are required, &lt;strong&gt;but&lt;/strong&gt; it is important the the method we are invoking on the hub is written exactly as it is named in the hub.&lt;/p&gt;
+
+&lt;p&gt;Now to the interface; replace the code in the ISystemService.cs whit this:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;    [ServiceContract]&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;interface&lt;/span&gt; ISystemService
+    {
+&lt;span style=&#34;color: #4070a0&#34;&gt;        [OperationContract]&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;SendMessage&lt;/span&gt;(&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; sender, &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; message);
+    }
+&lt;/pre&gt;&lt;/div&gt;
+
+And that&amp;rsquo;s it! We are ready to run the service.
+Mark the SystemService.cs file and hit F5 to bring up the WCF Test Client GUI the Visual Studio provides where you can invoke the SendMessage operation.&lt;/p&gt;
+
+&lt;p&gt;If you want, you can try to connect to the ChatWebApp that I have running, simply create the hub connection like so:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;	&lt;span style=&#34;color: #902000&#34;&gt;var&lt;/span&gt; connection = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; HubConnection(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;http://systemout.net:56677/ChatWebApp/~/&amp;quot;&lt;/span&gt;);
+&lt;/pre&gt;&lt;/div&gt;
+
+Then you can go to:&lt;a href=&#34;http://systemout.net:56677/ChatWebApp/Messenger.html?username=user1&#34; target=&#34;_blank&#34;&gt; my demo site&lt;/a&gt; and see that the messages you send from your WCF service are send all the way to my server in Denmark and back to your browser :)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://systemout.net/images/ChromeExample.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;You can download the updated solution including the WCF service here: &lt;a href=&#34;http://1drv.ms/1qEpMtQ&#34;&gt;http://1drv.ms/1qEpMtQ&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://systemout.net/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/&#34;&gt;You can find my new post about how to create a &amp;ldquo;Who Is On&amp;rdquo; SignalR service right here!&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Developing and Deploying a SignalR Chat Web App to IIS</title>
+      <link>http://localhost:1313/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</link>
+      <pubDate>Thu, 17 Jul 2014 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</guid>
+      <description>
+
+&lt;h2 id=&#34;introduction:819ac8d9cdec72dc096ec55720e219a7&#34;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;Download the complete solution: &lt;a href=&#34;http://1drv.ms/1wB5IWF&#34;&gt;http://1drv.ms/1wB5IWF&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In this tutorial I&amp;rsquo;m going to show you how you with ease can develop and deploy you very own SignalR Chat App!&lt;/p&gt;
+
+&lt;p&gt;The SignalR framework is great for bidirectional communication becauses it uses WebSockets. SignalR handles all the connections and you just need to focuse on implementing your business logic.
+&lt;strong&gt;But&lt;/strong&gt;, I have found, that it can be a bit of a fuzz to setup, and to get a connection to the SignalR Hub (which I&amp;rsquo;ll explain in details in a bit), and therefore I wrote this tutorial.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;UPDATE&lt;/em&gt;: I have posted &lt;a href=&#34;http://systemout.net/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/&#34;&gt;a new tutorial&lt;/a&gt; showing how it is possible to let the clients see who is online. That post builds on this tutorial, so check it out after you have read this one!&lt;/p&gt;
+
+&lt;h3 id=&#34;the-setup:819ac8d9cdec72dc096ec55720e219a7&#34;&gt;The Setup&lt;/h3&gt;
+
+&lt;p&gt;We are going to need the following:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A HTML page&lt;/li&gt;
+&lt;li&gt;A javaScript&lt;/li&gt;
+&lt;li&gt;A MessageHub (C#)&lt;/li&gt;
+&lt;li&gt;A Startup file (also C#)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;All of the above wrapped in a ASP.NET Web Application solution.&lt;/p&gt;
+
+&lt;p&gt;Before we begin, you can take a look at the product right here:
+&lt;a href=&#34;http://systemout.net:56677/ChatWebApp/Messenger.html?username=User1&#34;&gt;http://systemout.net:56677/ChatWebApp/Messenger.html?username=User1&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;implementing-the-solution:819ac8d9cdec72dc096ec55720e219a7&#34;&gt;Implementing the Solution&lt;/h2&gt;
+
+&lt;p&gt;An important note: It is critical that you create a &lt;strong&gt;ASP.NET Web Application&lt;/strong&gt; and &lt;strong&gt;NOT&lt;/strong&gt; a ASP.NET Web Site. Maybe you know that all future web apps should be created as such, as stated by Microsoft, but I didn&amp;rsquo;t and learned it the hard way (meaning my SignalR app didn&amp;rsquo;t work and it took some hours figuring out why not&amp;hellip;).&lt;/p&gt;
+
+&lt;p&gt;But let&amp;rsquo;s get started; fire up Visual Studio, and select File &amp;gt; New &amp;gt; &lt;strong&gt;New Project&lt;/strong&gt;
+&lt;img src=&#34;http://systemout.net/images/NewAspNewWebApplication.png&#34; alt=&#34;CPU usage&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Name it ChatWebApp.&lt;/p&gt;
+
+&lt;p&gt;Create and empty project:
+&lt;img src=&#34;http://systemout.net/images/EmptyProject.png&#34; alt=&#34;CPU usage&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h4 id=&#34;signalr-nuget-packages:819ac8d9cdec72dc096ec55720e219a7&#34;&gt;SignalR NuGet packages&lt;/h4&gt;
+
+&lt;p&gt;There are several ways to start of creating a SignalR enabled project, and you can add a new Hub or a OWIN Startup class directly from Visual Studio&amp;rsquo;s context menues, but I found that I didn&amp;rsquo;t get the lates stable SignalR version when doing so.
+Therefore, we are going to add the NuGet packages needed manually:
+Right click your new project &amp;gt; Manage NuGet Packages
+Click Install to Microsoft ASP.NET SignalR:
+&lt;img src=&#34;http://systemout.net/images/SignalRNuget.png&#34; alt=&#34;CPU usage&#34; /&gt;
+
+It will also ask you to install various other packages needed, but the hole process is automated, so no trouble there.&lt;/p&gt;
+
+&lt;script async src=&#34;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;!-- links1 --&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:inline-block;width:728px;height:15px&#34;
+     data-ad-client=&#34;ca-pub-5807169669170468&#34;
+     data-ad-slot=&#34;6444119354&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+
+&lt;h4 id=&#34;owin-startup:819ac8d9cdec72dc096ec55720e219a7&#34;&gt;OWIN Startup&lt;/h4&gt;
+
+&lt;p&gt;To do the wire up/mapping of SignalR wee use OWIN.
+Simply right click your project, and select Add. Search for OWIN and add a new Startup.cs file.
+Replace the content of the file with this:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;System&lt;/span&gt;;
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;System.Threading.Tasks&lt;/span&gt;;
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;Microsoft.AspNet.SignalR&lt;/span&gt;;
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;Microsoft.Owin&lt;/span&gt;;
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;Owin&lt;/span&gt;;
+
+&lt;span style=&#34;color: #4070a0&#34;&gt;	[assembly: OwinStartup(typeof(ChatWebApp.Startup))]&lt;/span&gt;
+
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;namespace&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;ChatWebApp&lt;/span&gt;
+	{
+    	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;Startup&lt;/span&gt;
+    	{
+        	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;Configuration&lt;/span&gt;(IAppBuilder app)
+        	{
+            	&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=316888&lt;/span&gt;
+            	app.MapSignalR(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;/~/signalr&amp;quot;&lt;/span&gt;, &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; HubConfiguration());
+        	}
+    	}
+	}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The important things here are of course the assembly annotation where we declare that the type ChatWebApp.Startup (this class) should be used by OWIN.
+The next thing to note is the MapSignalR method call. By default, VS just uses the MapSignalR method without any parameters, and this works well - when developing on running locallyt, but I have got it to work in a production IIS. Therefore the manually mapping path used for SignalR.&lt;/p&gt;
+
+&lt;h4 id=&#34;the-hub:819ac8d9cdec72dc096ec55720e219a7&#34;&gt;The Hub&lt;/h4&gt;
+
+&lt;p&gt;Now we can add a Hub Class from the conect menu in Visual Studio, because we already added the references manually:
+Right click your project &amp;gt; Add &amp;gt; Signal Hub Class (v2). If it isn&amp;rsquo;t there just select Add New Item and search for it.
+Name it MessageHub.cs&lt;/p&gt;
+
+&lt;p&gt;Replace the content of the file with this:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;System&lt;/span&gt;;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;System.Collections.Generic&lt;/span&gt;;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;System.Linq&lt;/span&gt;;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;System.Web&lt;/span&gt;;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;Microsoft.AspNet.SignalR&lt;/span&gt;;
+
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;namespace&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;ChatWebApp&lt;/span&gt;
+    {
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;MessageHub&lt;/span&gt; : Hub
+        {
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;Login&lt;/span&gt;(&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; username)
+            {
+                &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Notify all clients that a user is logged in&lt;/span&gt;
+                Clients.All.userLoggedIn(username);
+            }
+
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;SendMessage&lt;/span&gt;(&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; sender, &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; message)
+            {
+                &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Display the new message by calling displayMessage on all connected clients&lt;/span&gt;
+                Clients.All.displayMessage(sender, message);
+            }
+        }
+    }
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Here we are adding a method used to &amp;ldquo;log in&amp;rdquo; to our Chat App and a method to send messages.
+It should be pretty self explanotory but what we are doing is telling all clients that either a usre has logged in or to display a message.
+The userLoggedIn(username) and displayMessage(sender, message) methods are implemented in JavaScript in just a moment.&lt;/p&gt;
+
+&lt;p&gt;For further information about the workings of the Hub, please go to:
+&lt;a href=&#34;http://www.asp.net/signalr/overview/signalr-20/hubs-api/hubs-api-guide-server&#34;&gt;http://www.asp.net/signalr/overview/signalr-20/hubs-api/hubs-api-guide-server&lt;/a&gt;&lt;/p&gt;
+
+&lt;script async src=&#34;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;!-- ResponsiveHeader --&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block&#34;
+     data-ad-client=&#34;ca-pub-5807169669170468&#34;
+     data-ad-slot=&#34;5652122954&#34;
+     data-ad-format=&#34;auto&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+
+&lt;h4 id=&#34;the-messenger-javascript:819ac8d9cdec72dc096ec55720e219a7&#34;&gt;The Messenger JavaScript&lt;/h4&gt;
+
+&lt;p&gt;Now we have all the C# code we need and can go on to the client side JavaScript.
+Add a new JavaScript file, Add &amp;gt; Add New Item &amp;gt; JavaScript and name it MessengerScript.js&lt;/p&gt;
+
+&lt;p&gt;Replace the content of the file with this:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;	$(&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt; () {
+	    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; username &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; getUrlVars()[&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;username&amp;quot;&lt;/span&gt;];
+	
+	    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Enable logging for development purpose&lt;/span&gt;
+	    $.connection.hub.logging &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;;
+	    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Declare a proxy to reference the hub.&lt;/span&gt;
+	    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; messageHub &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; $.connection.messageHub;
+	    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Create a function that the hub can call to broadcast messages.&lt;/span&gt;
+	    messageHub.client.displayMessage &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt; (sender, message) {
+	        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Wrap the sender and the message in HTML&lt;/span&gt;
+	        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; senderDiv &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; $(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;&amp;lt;div /&amp;gt;&amp;#39;&lt;/span&gt;).text(sender).html();
+	        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; messageDiv &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; $(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;&amp;lt;div /&amp;gt;&amp;#39;&lt;/span&gt;).text(message).html();
+	        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Add the message to the page.&lt;/span&gt;
+	        $(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;#messagelist&amp;#39;&lt;/span&gt;).append(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;&amp;lt;li&amp;gt;&amp;lt;strong&amp;gt;&amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;+&lt;/span&gt; senderDiv
+	            &lt;span style=&#34;color: #666666&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;&amp;lt;/strong&amp;gt;:  &amp;#39;&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;+&lt;/span&gt; messageDiv &lt;span style=&#34;color: #666666&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;&amp;lt;/li&amp;gt;&amp;#39;&lt;/span&gt;);
+	    };
+	    
+	    $.connection.hub.start(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;~/signalr&amp;quot;&lt;/span&gt;).done(&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt; () {
+	       
+	        messageHub.server.login(username);
+	
+	        $(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;#sendmessage&amp;#39;&lt;/span&gt;).click(&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt; () {
+	            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; msg &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; $(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;#message&amp;quot;&lt;/span&gt;).val();
+	            messageHub.server.sendMessage(username, msg);
+	            &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Clear text box and reset focus for next comment.&lt;/span&gt;
+	            $(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;#message&amp;#39;&lt;/span&gt;).val(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;&amp;#39;&lt;/span&gt;).focus();
+	        });
+	    });
+	});
+	
+	&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;function&lt;/span&gt; getUrlVars() {
+	    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; vars &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; [], hash;
+	    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; hashes &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020&#34;&gt;window&lt;/span&gt;.location.href.slice(&lt;span style=&#34;color: #007020&#34;&gt;window&lt;/span&gt;.location.href.indexOf(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;?&amp;#39;&lt;/span&gt;) &lt;span style=&#34;color: #666666&#34;&gt;+&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;1&lt;/span&gt;).split(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;&amp;amp;&amp;#39;&lt;/span&gt;);
+	    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;var&lt;/span&gt; i &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;0&lt;/span&gt;; i &lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt; hashes.length; i&lt;span style=&#34;color: #666666&#34;&gt;++&lt;/span&gt;) {
+	        hash &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; hashes[i].split(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;#39;=&amp;#39;&lt;/span&gt;);
+	        vars.push(hash[&lt;span style=&#34;color: #40a070&#34;&gt;0&lt;/span&gt;]);
+	        vars[hash[&lt;span style=&#34;color: #40a070&#34;&gt;0&lt;/span&gt;]] &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; hash[&lt;span style=&#34;color: #40a070&#34;&gt;1&lt;/span&gt;];
+	    }
+	    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; vars;
+	}
+	
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Now a brief note; this is actually the first JavaScript code I have written, so there might be better ways to implement the above, but it works, and the purpose of this tutorial is to show how to use SignalR - not how JavaScript should be written, so bear with me, please :)&lt;/p&gt;
+
+&lt;p&gt;The first part gets the username from a query parameter by calling the last function in the script the getUrlVars (copy pasted somewhere from StackOverflow, can&amp;rsquo;t remember where I found it thou).
+Then we enable logging in the SignalR connection, get a reference to the MessageHub class that we just implemented, and now some of the &amp;ldquo;magic&amp;rdquo;: &lt;strong&gt;implementing the displayMessage method&lt;/strong&gt; as we are going to invoke from our MessageHub. The displayMessage is basically wrapping the sender and message in some HTML and added a li to a ul declared in a HTML file we will create in the next step.&lt;/p&gt;
+
+&lt;p&gt;We need to declare the displayMessage method before connecting to the hub so now that this is done we start a connection to the hub and gives it the path as we used in the Startup.cs. Then, when the connection is done we are calling login on the hub and last but not least &lt;strong&gt;implementing the sendMessage method&lt;/strong&gt; which gets the message from a input box (which we also will implement in a HTML file in a moment) and then we call the SendMessage method on the hub.&lt;/p&gt;
+
+&lt;h4 id=&#34;the-html-page:819ac8d9cdec72dc096ec55720e219a7&#34;&gt;The HTML Page&lt;/h4&gt;
+
+&lt;p&gt;Next we add the HTML page which the user sees. Add &amp;gt; New Item &amp;gt; HTML Page. Name it Messenger.html
+Replace the content of the file with this:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    &lt;span style=&#34;color: #007020&#34;&gt;&amp;lt;!DOCTYPE html&amp;gt;&lt;/span&gt;
+	&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;html&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;xmlns=&amp;quot;http://www.w3.org/1999/xhtml&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+	&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;head&amp;gt;&lt;/span&gt;
+	    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;title&amp;gt;&lt;/span&gt;ChatWebApp&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/title&amp;gt;&lt;/span&gt;
+	&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/head&amp;gt;&lt;/span&gt;
+	    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;body&amp;gt;&lt;/span&gt;
+	        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;script&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;src=&amp;quot;Scripts/jquery-1.6.4.js&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+	        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;script&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;src=&amp;quot;Scripts/jquery.signalR-2.1.0.js&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+	        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;script&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;src=&amp;quot;~/signalr/hub&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+	        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;script&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;src=&amp;quot;Scripts/MessengerScript.js&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+	        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;input&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;id=&amp;quot;message&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;type=&amp;quot;text&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;/&amp;gt;&lt;/span&gt;
+	        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;input&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;id=&amp;quot;sendmessage&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;type=&amp;quot;button&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;value=&amp;quot;Send&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;/&amp;gt;&lt;/span&gt;
+	        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;ul&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;id=&amp;quot;messagelist&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+	            
+	        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;
+	    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;
+	&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Now the most important path here, are:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;	&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;script&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;src=&amp;quot;~/signalr/hub&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&amp;lt;/script&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Visual Studio will complain about this, because we have no script in the path, but this is because the script is generated by SignalR on runtime and we are just telling where it can be found.
+Besides we have the elements used to interact with our system.&lt;/p&gt;
+
+&lt;p&gt;With this in place, you can run your new application and test it in your browser, before continuing to the next part, where we will deploy to IIS.&lt;/p&gt;
+
+&lt;h4 id=&#34;a-note-on-debugging-in-vs:819ac8d9cdec72dc096ec55720e219a7&#34;&gt;A note on debugging in VS&lt;/h4&gt;
+
+&lt;p&gt;I have experienced a lot of difficulties while debugging/running my SignalR apps in Visual Studio 2013. Sometimes, when I reopen a solution that previously &amp;ldquo;just worked&amp;rdquo;, it all of the sudden don&amp;rsquo;t anymore, meaning that the ~/signalr/js gives a 404 on localhost or the client can not be found.
+A fix for this seems to be restarting VS, restarting the IIS Express by right clicking on the tray icon:
+&lt;img src=&#34;http://systemout.net/images/IISExpress.png&#34; alt=&#34;&#34; /&gt;
+
+&amp;hellip;or simply just hitting my screen, going for some coffee and when returning, it magically just works.&lt;/p&gt;
+
+&lt;h3 id=&#34;deploying-the-signalr-app-to-iis:819ac8d9cdec72dc096ec55720e219a7&#34;&gt;Deploying the SignalR App to IIS&lt;/h3&gt;
+
+&lt;p&gt;We use Visual Studio to publish the site. Right-click your project, select Publish
+In the dialog click the Custom option as publish target and give it a name.
+Select File System in the next drop down and enter a location for the published files.
+In settings you can choose to precompile your source files, if you want to, just expand the File Publish Options and check the according box.&lt;/p&gt;
+
+&lt;p&gt;Click Publish.&lt;/p&gt;
+
+&lt;p&gt;Now we that we have our files ready, we need to make the IIS ready for hosting our App.&lt;/p&gt;
+
+&lt;p&gt;On your server, create the folder C:\wwwroot\ChatWebApp (or anywhere else you like).
+Copy the contents from the Publish folder (on your dev pc) where Visual Studio published the files to into C:\wwwroot\ChatWebApp on IIS.
+On your server open IIS Manager, expand Default Website. If your new folder is in the tree view right click and select Refresh.
+Select the ChatWebApp folder, right click and select Convert to Application.&lt;/p&gt;
+
+&lt;p&gt;Now on your server go to &lt;a href=&#34;http://localhost/ChatWebApp/Messenger.html?username=MySuperDupperUser&#34;&gt;http://localhost/ChatWebApp/Messenger.html?username=MySuperDupperUser&lt;/a&gt; and watch the magic!&lt;/p&gt;
+
+&lt;p&gt;You can download the complete solution right here: &lt;a href=&#34;http://1drv.ms/1wB5IWF&#34;&gt;http://1drv.ms/1wB5IWF&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;If you have in problems, or comments, let me know.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;UPDATE&lt;/em&gt;: I have posted &lt;a href=&#34;http://systemout.net/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/&#34;&gt;a new tutorial&lt;/a&gt; showing how it is possible to let the clients see who is online. That post builds on this tutorial, so check it out after you have read this one!&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

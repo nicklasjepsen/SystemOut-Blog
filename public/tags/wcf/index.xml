@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Wcf on SystemOut</title>
+    <link>http://localhost:1313/tags/wcf/</link>
+    <description>Recent content in Wcf on SystemOut</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
+    <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
+    <lastBuildDate>Fri, 25 Jul 2014 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/wcf/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Calling SignalR Hub from a C# WCF Service</title>
+      <link>http://localhost:1313/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</link>
+      <pubDate>Fri, 25 Jul 2014 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</guid>
+      <description>
+
+&lt;h2 id=&#34;introduction:1c0b33ef5ca6cf9a2ff28d934b29da72&#34;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;UPDATE&lt;/strong&gt;: See all my SignalR tutorials &lt;a href=&#34;http://systemout.net/categories/signalr/&#34;&gt;right here&lt;/a&gt; or find a post about how to list users that are connected &lt;a href=&#34;http://systemout.net/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/&#34;&gt;right here&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Download the source for this tutorial here: &lt;a href=&#34;http://1drv.ms/1qEpMtQ&#34;&gt;http://1drv.ms/1qEpMtQ&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In a previous blog post I wrote a tutorial on how to develop and deploy a simple SignalR chat application using the bare minimum as a proof of concept. You can find that post right here: &lt;a href=&#34;http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/&#34;&gt;http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;In this tutorial, we are going to make a WCF service that can talk to the SignalR chat app and broadcast messages from &amp;ldquo;the system&amp;rdquo; - not by a user.
+SignalR is easy to use with JavaScript, but if you need to broadcast messages to the SignalR hub, you need to use a browser (JavaScript) or otherwise things get a little more complicated.
+This tutorial, will guide you to calling SignalR hub methods from a WCF service that recides in a different DLL than the SignalR host.&lt;/p&gt;
+
+&lt;h3 id=&#34;setup:1c0b33ef5ca6cf9a2ff28d934b29da72&#34;&gt;Setup&lt;/h3&gt;
+
+&lt;p&gt;This tutorial uses the Chat web app as implemented in the previous mention blog post, you can find the solution from that post rigth here: &lt;a href=&#34;http://1drv.ms/1wB5IWF&#34;&gt;http://1drv.ms/1wB5IWF&lt;/a&gt;
+Oh, and if you want to see the app in action, you can try it out right here: &lt;a href=&#34;http://systemout.net:56677/ChatWebApp/Messenger.html?username=User1&#34;&gt;http://systemout.net:56677/ChatWebApp/Messenger.html?username=User1&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;We are going to add a WCF service to the ChatWebApp solution and provide functionality that allows the WCF service to invoke methods on the SignalR hub.&lt;/p&gt;
+
+&lt;h3 id=&#34;creating-the-wcf-service:1c0b33ef5ca6cf9a2ff28d934b29da72&#34;&gt;Creating the WCF Service&lt;/h3&gt;
+
+&lt;p&gt;Open up the ChatWebApp solution.
+Add a WCF Service Application, name it WcfService:
+&lt;img src=&#34;http://systemout.net/images/SignalRCreateWcfServiceProject.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Now add the SignalR depencies, right click References &amp;gt; Manage NuGet Packages &amp;gt; Search for SignalR &amp;gt; Install &lt;strong&gt;Microsoft ASP.NET SignalR .NET Client&lt;/strong&gt; and &lt;strong&gt;Microsoft ASP.NET SignalR Core Components&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;We also need a reference to the ChatWebApp project, so if you are not building on the ChatWebApp project which you can download in the top of this post, you need to write your own Hub class. But, for this tutorial we are using the ChatWebApp, so add a reference to that project.&lt;/p&gt;
+
+&lt;script async src=&#34;//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js&#34;&gt;&lt;/script&gt;
+&lt;!-- ResponsiveHeader --&gt;
+&lt;ins class=&#34;adsbygoogle&#34;
+     style=&#34;display:block&#34;
+     data-ad-client=&#34;ca-pub-5807169669170468&#34;
+     data-ad-slot=&#34;5652122954&#34;
+     data-ad-format=&#34;auto&#34;&gt;&lt;/ins&gt;
+&lt;script&gt;
+(adsbygoogle = window.adsbygoogle || []).push({});
+&lt;/script&gt;
+
+&lt;p&gt;VS have created the basic files needed to host the WCF Service but I have renamed the IService1.cs and Service1.cs to ISystemService.cs and SystemService.
+Replace the code in &lt;strong&gt;SystemService.cs&lt;/strong&gt; with:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;class&lt;/span&gt; &lt;span style=&#34;color: #0e84b5; font-weight: bold&#34;&gt;SystemService&lt;/span&gt; : ISystemService
+    {
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;readonly&lt;/span&gt; IHubProxy messageHub;
+
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;SystemService&lt;/span&gt;()
+        {
+            &lt;span style=&#34;color: #902000&#34;&gt;var&lt;/span&gt; connection = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; HubConnection(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;http://localhost:yourport/~/&amp;quot;&lt;/span&gt;);
+            messageHub = connection.CreateHubProxy(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;MessageHub&amp;quot;&lt;/span&gt;);
+            connection.Start().Wait();
+        }
+
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;SendMessage&lt;/span&gt;(&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; sender, &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; message)
+        {
+            messageHub.Invoke(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;SendMessage&amp;quot;&lt;/span&gt;, sender, message);
+        }
+    }
+&lt;/pre&gt;&lt;/div&gt;
+
+In the constructor of the service were a making a connection to the hub and creating a proxy for the MessageHub in the ChatWebApp project and last we are starting the connection.
+Maybe you don&amp;rsquo;t need the ~ at the end of the hub connection URL, but again, if working on the ChatWebApp you do.&lt;/p&gt;
+
+&lt;p&gt;The service publishes one operation: SendMessage. I don&amp;rsquo;t think further introduction to the workings are required, &lt;strong&gt;but&lt;/strong&gt; it is important the the method we are invoking on the hub is written exactly as it is named in the hub.&lt;/p&gt;
+
+&lt;p&gt;Now to the interface; replace the code in the ISystemService.cs whit this:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;    [ServiceContract]&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;interface&lt;/span&gt; ISystemService
+    {
+&lt;span style=&#34;color: #4070a0&#34;&gt;        [OperationContract]&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;SendMessage&lt;/span&gt;(&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; sender, &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt; message);
+    }
+&lt;/pre&gt;&lt;/div&gt;
+
+And that&amp;rsquo;s it! We are ready to run the service.
+Mark the SystemService.cs file and hit F5 to bring up the WCF Test Client GUI the Visual Studio provides where you can invoke the SendMessage operation.&lt;/p&gt;
+
+&lt;p&gt;If you want, you can try to connect to the ChatWebApp that I have running, simply create the hub connection like so:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;	&lt;span style=&#34;color: #902000&#34;&gt;var&lt;/span&gt; connection = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; HubConnection(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;http://systemout.net:56677/ChatWebApp/~/&amp;quot;&lt;/span&gt;);
+&lt;/pre&gt;&lt;/div&gt;
+
+Then you can go to:&lt;a href=&#34;http://systemout.net:56677/ChatWebApp/Messenger.html?username=user1&#34; target=&#34;_blank&#34;&gt; my demo site&lt;/a&gt; and see that the messages you send from your WCF service are send all the way to my server in Denmark and back to your browser :)&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://systemout.net/images/ChromeExample.png&#34; alt=&#34;&#34; /&gt;
+&lt;/p&gt;
+
+&lt;p&gt;You can download the updated solution including the WCF service here: &lt;a href=&#34;http://1drv.ms/1qEpMtQ&#34;&gt;http://1drv.ms/1qEpMtQ&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&#34;http://systemout.net/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/&#34;&gt;You can find my new post about how to create a &amp;ldquo;Who Is On&amp;rdquo; SignalR service right here!&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Creating a REST (and SOAP) Enabled WCF Service</title>
+      <link>http://localhost:1313/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</link>
+      <pubDate>Wed, 18 Dec 2013 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</guid>
+      <description>&lt;p&gt;In this post I&amp;#8217;m going to walk you through the process of creating a REST/SOAP enabled WCF service using .NET 4.5.1 and Visual Studio 2013.&lt;/p&gt;
+
+&lt;p&gt;If you just want to try for yourself you can download the complete solution &lt;a href=&#34;http://sdrv.ms/1fntPAZ&#34; title=&#34;Donwload from my SKyDrive&#34; target=&#34;_blank&#34;&gt;here!&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Select New Project &amp;gt; Templates &amp;gt; C# &amp;gt; WCF &amp;gt; WCF Service Application: &lt;a href=&#34;http://www.systemout.net/wp-content/uploads/2013/12/CreateWcfServiceProject.png&#34;&gt;&lt;img class=&#34;alignnone size-full wp-image-214&#34; alt=&#34;CreateWcfServiceProject&#34; src=&#34;http://www.systemout.net/wp-content/uploads/2013/12/CreateWcfServiceProject.png&#34; width=&#34;955&#34; height=&#34;660&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This will create a project containing only the basics – the interface, implementation and a .config file.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;If you’re wondering about the name Trusic then I can tell you that it is the name of a service I’m writing for use in an in-depth guide to object oriented thinking and programming using the newest .NET technologies.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;You can try the service generated by the template out by marking the Service1.svc file in solution explorer and hit F5 to debug the service. (By marking Service1.svc Visual Studio is starting the WCF Test Client for you).&lt;/p&gt;
+
+&lt;p&gt;Now select the GetData operation and enter a value and hit Invoke:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://www.systemout.net/wp-content/uploads/2013/12/WcfTestClientInvoke.png&#34;&gt;&lt;img class=&#34;aligncenter size-full wp-image-215&#34; alt=&#34;WCF Test Client&#34; src=&#34;http://www.systemout.net/wp-content/uploads/2013/12/WcfTestClientInvoke.png&#34; width=&#34;808&#34; height=&#34;512&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;This invokes the default SOAP endpoint which is fine, but SOAP is a bit old-school and we are of course going to be publishing our service through a RESTful JSON endpoint also. This requires minimal code changes and only a bit changes to the web.config file.&lt;/p&gt;
+
+&lt;p&gt;In you service’s SVC file add the following annotation to the GetData method: [WebGet] it should look like so:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: csharp; title: ; notranslate&#34; title=&#34;&#34;&gt;[WebGet]
+        public string GetData(int value)
+        {
+            return string.Format(&#34;You entered: {0}&#34;, value);
+        }
+&lt;/pre&gt;
+
+&lt;p&gt;In the Web.config insert the following after :&lt;/p&gt;
+
+&lt;pre class=&#34;brush: xml; title: ; notranslate&#34; title=&#34;&#34;&gt;&amp;lt;services&amp;gt;
+      &amp;lt;service name=&#34;WcfService1.Service1&#34;&amp;gt;
+        &amp;lt;endpoint address=&#34;soap&#34; binding=&#34;basicHttpBinding&#34;  behaviorConfiguration=&#34;soapBehavior&#34; contract=&#34;WcfService1.IService1&#34;/&amp;gt;
+        &amp;lt;endpoint address=&#34;json&#34; binding=&#34;webHttpBinding&#34;  behaviorConfiguration=&#34;jsonBehavior&#34; contract=&#34;WcfService1.IService1&#34;/&amp;gt;
+      &amp;lt;/service&amp;gt;
+    &amp;lt;/services&amp;gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Make sure that the service name is set to the name of your service SVC file and that the contract is set to the name of your interface.&lt;/p&gt;
+
+&lt;p&gt;In the element add:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: xml; title: ; notranslate&#34; title=&#34;&#34;&gt;&amp;lt;endpointBehaviors&amp;gt;
+        &amp;lt;behavior name=&#34;soapBehavior&#34;&amp;gt;
+        &amp;lt;/behavior&amp;gt;
+        &amp;lt;behavior name=&#34;jsonBehavior&#34;&amp;gt;
+          &amp;lt;enableWebScript/&amp;gt;
+        &amp;lt;/behavior&amp;gt;
+      &amp;lt;/endpointBehaviors&amp;gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Now hit F5 and open your browser, navigate to: &lt;a href=&#34;http://localhost:/.svc/json/GetData?value=10&#34;&gt;http://localhost:/.svc/json/GetData?value=10&lt;/a&gt; and look for the magic to happen:&lt;/p&gt;
+
+&lt;div id=&#34;attachment_216&#34; style=&#34;width: 807px&#34; class=&#34;wp-caption aligncenter&#34;&gt;
+  &lt;a href=&#34;http://www.systemout.net/wp-content/uploads/2013/12/ChromeInvokeRestService.png&#34;&gt;&lt;img class=&#34;size-full wp-image-216&#34; alt=&#34;REST service call in Chrome&#34; src=&#34;http://www.systemout.net/wp-content/uploads/2013/12/ChromeInvokeRestService.png&#34; width=&#34;797&#34; height=&#34;355&#34; /&gt;&lt;/a&gt;&lt;p class=&#34;wp-caption-text&#34;&gt;
+    REST service call in Chrome
+  &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If that isn’t good enough we still have our SOAP endpoint available. For instance in soapUI try to invoke your service by adding a new endpoint:&lt;br /&gt;
+&lt;a href=&#34;http://www.systemout.net/wp-content/uploads/2013/12/CreateSoapUiProject.png&#34;&gt;&lt;img src=&#34;http://www.systemout.net/wp-content/uploads/2013/12/CreateSoapUiProject.png&#34; alt=&#34;Create a soapUi project&#34; width=&#34;546&#34; height=&#34;359&#34; class=&#34;aligncenter size-full wp-image-230&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now soapUI has generated a proxy client you can use to invoke the SOAP endpoint of the service:&lt;br /&gt;
+&lt;a href=&#34;http://www.systemout.net/wp-content/uploads/2013/12/InvokeSoapEndpointSoapUi.png&#34;&gt;&lt;img src=&#34;http://www.systemout.net/wp-content/uploads/2013/12/InvokeSoapEndpointSoapUi.png&#34; alt=&#34;Invoke the operation through the SOAP endpoint&#34; width=&#34;1104&#34; height=&#34;750&#34; class=&#34;aligncenter size-full wp-image-231&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Beautiful! :)&lt;/p&gt;
+
+&lt;p&gt;Remember; you can download the solution &lt;a href=&#34;http://sdrv.ms/1fntPAZ&#34; title=&#34;Donwload from my SKyDrive&#34; target=&#34;_blank&#34;&gt;here!&lt;/a&gt;&lt;/p&gt;
+
+&lt;div style=&#34;font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both&#34;&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Publish WCF Service on IIS</title>
+      <link>http://localhost:1313/2012/03/20/publish-wcf-service-on-iis/</link>
+      <pubDate>Tue, 20 Mar 2012 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2012/03/20/publish-wcf-service-on-iis/</guid>
+      <description>
+
+&lt;p&gt;Recently I needed to publish a WCF service on an IIS. This progress I quite smooth when you just need to access the WCF service locally, but ones you need to publish the service on the great Internet, things are a little more difficult.&lt;/p&gt;
+
+&lt;h1 id=&#34;publishing-the-wsdl:2dfe303ef8c9fb481ee449fd73df7f75&#34;&gt;Publishing the WSDL&lt;/h1&gt;
+
+&lt;p&gt;The ‘WSDL generation strategy’ when using WCF is that you get multiple documents to describe your service. This can lead to some problems if you’re just publishing without making some customizations.&lt;/p&gt;
+
+&lt;p&gt;Have a look at the wsdl:types:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: xml; title: ; notranslate&#34; title=&#34;&#34;&gt;&amp;lt;wsdl:types&amp;gt;
+    &amp;lt;xsd:schema targetNamespace=&#34;http://tempuri.org/Imports&#34;&amp;gt;
+        &amp;lt;xsd:import schemaLocation=&#34;http://localhost/Service/Service.svc?xsd=xsd0&#34;namespace=&#34;http://tempuri.org/&#34;/&amp;gt;
+        &amp;lt;xsd:import schemaLocation=&#34;http://localhost/Service/Service.svc?xsd=xsd2&#34;namespace=&#34;http://schemas.datacontract.org/2004/07/Service.Interface&#34;/&amp;gt;
+    &amp;lt;/xsd:schema&amp;gt;
+&amp;lt;/wsdl:types&amp;gt;
+&lt;/pre&gt;
+
+&lt;p&gt;Notice the localhost, that will definitely cause some trouble if you need to consume the WSDL from an external machine.&lt;/p&gt;
+
+&lt;h1 id=&#34;how-to-fix-this:2dfe303ef8c9fb481ee449fd73df7f75&#34;&gt;How to fix this?&lt;/h1&gt;
+
+&lt;p&gt;There’re two ways to solve this (if not more):&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Fix the host name (this post)&lt;/li&gt;
+&lt;li&gt;Generate a single WSDL (future post)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;fix-the-host-name:2dfe303ef8c9fb481ee449fd73df7f75&#34;&gt;Fix the host name&lt;/h2&gt;
+
+&lt;p&gt;It’s actually the IIS who are responsible of the host name. Therefore we need to configure the bindings for the web site the WCF service is hosted on.&lt;/p&gt;
+
+&lt;p&gt;Go to IIS Manager, right click the web site and choose Edit bindings:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://systemout.net/wp-content/uploads/2012/03/iis_tree.png&#34;&gt;&lt;img style=&#34;background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;&#34; title=&#34;iis_tree&#34; src=&#34;http://systemout.net/wp-content/uploads/2012/03/iis_tree_thumb.png&#34; alt=&#34;iis_tree&#34; width=&#34;211&#34; height=&#34;74&#34; border=&#34;0&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now click the Add button and enter the external host name or ip where your service/wsdl will be available from:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://systemout.net/wp-content/uploads/2012/03/addbinding.png&#34;&gt;&lt;img style=&#34;background-image: none; padding-left: 0px; padding-right: 0px; display: inline; padding-top: 0px; border: 0px;&#34; title=&#34;addbinding&#34; src=&#34;http://systemout.net/wp-content/uploads/2012/03/addbinding_thumb.png&#34; alt=&#34;addbinding&#34; width=&#34;244&#34; height=&#34;133&#34; border=&#34;0&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Restart the web site and go to &lt;a href=&#34;http://mydomain.com/serviceAlias/Service.svc?wsdl&#34;&gt;http://mydomain.com/serviceAlias/Service.svc?wsdl&lt;/a&gt; and your should see that the imports are now using the external host name.&lt;/p&gt;
+
+&lt;h2 id=&#34;generate-a-single-wsdl:2dfe303ef8c9fb481ee449fd73df7f75&#34;&gt;Generate a single WSDL&lt;/h2&gt;
+
+&lt;p&gt;You can also choose to generate a single WSDL file for your WCF service. I will post about that later, meanwhile take a look at &lt;a href=&#34;http://weblogs.asp.net/pglavich/archive/2010/03/16/making-wcf-output-a-single-wsdl-file-for-interop-purposes.aspx&#34; target=&#34;_blank&#34;&gt;this great article&lt;/a&gt; that describes it – although I find it a bit to complex and therefore are going to write my own post about it when the time comes &lt;img class=&#34;wlEmoticon wlEmoticon-smile&#34; style=&#34;border-style: none;&#34; src=&#34;http://systemout.net/wp-content/uploads/2012/03/wlEmoticon-smile.png&#34; alt=&#34;Smile&#34; /&gt;&lt;/p&gt;
+
+&lt;div style=&#34;font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both&#34;&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>&#39;Windows Azure Access Control Service (ACS) &amp;#8211; part 1 &amp;#8216;Get token in WP7 client&amp;#8217;&#39;</title>
+      <link>http://localhost:1313/2012/02/09/windows-azure-access-control-service-acs-part-1-get-token-in-wp7-client/</link>
+      <pubDate>Thu, 09 Feb 2012 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2012/02/09/windows-azure-access-control-service-acs-part-1-get-token-in-wp7-client/</guid>
+      <description>&lt;p&gt;While working on a project for WP7 where a backend is required I needed to implement some sort of security on the server. As the server is being hosted in Windows Azure I looked into ACS. At first it did look a bid &amp;#8220;over configured&amp;#8221; meaning there is a lot of documentation on how to use it and what you can actually do with it. Facebook, Google, Windows Live login etc. For my purpose I just needed a simple way off securing my REST service and after some reading I thought I would give ACS a try.&lt;/p&gt;
+
+&lt;p&gt;Steps involved:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Create a REST ACS enabled WCF service (will post about this subject later)&lt;/li&gt;
+&lt;li&gt;Configure ACS (Windows Azure Portal)&lt;/li&gt;
+&lt;li&gt;Request token on client (this post ;))&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div&gt;
+  This first post about ACS is about the last step in the above list. The reason for not starting from the top is that I couldn&amp;#8217;t seem to find any decent guides on how to implement a &lt;span style=&#34;text-decoration: underline;&#34;&gt;simple&lt;/span&gt; ACS client/consumer on Windows Phone. Therefore the bottom up concept :)
+&lt;/div&gt;
+
+&lt;p&gt;To actually configure ACS to Issue a SWT Token to be using I followed &lt;a href=&#34;http://msdn.microsoft.com/en-us/library/hh289317.aspx&#34; target=&#34;_blank&#34;&gt;this well explained MSDN article&lt;/a&gt; - scroll to the 2. part &amp;#8216;Step 2 – Configure ACS to Issue a SWT Token&amp;#8217;&lt;/p&gt;
+
+&lt;p&gt;Btw. in the examples below I&amp;#8217;m using &lt;a href=&#34;http://restsharp.org/&#34; target=&#34;_blank&#34;&gt;RestSharp&lt;/a&gt; a very simple to use REST library for both WP7/SL, WinForms, etc.&lt;/p&gt;
+
+&lt;p&gt;And now back to the topic &amp;#8211; WP7 ACS token consumer:&lt;/p&gt;
+
+&lt;p&gt;The basic concept of authorizing against a WCF ACS secured service is that you send an &amp;#8220;Authorization&amp;#8221; header in the request:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: csharp; title: ; notranslate&#34; title=&#34;&#34;&gt;request.AddHeader(&#34;Authorization&#34;, token.TokenString);&lt;/pre&gt;
+
+&lt;p&gt;But of course you need to now the token to put in the header.&lt;/p&gt;
+
+&lt;p&gt;To make sure we have the token, the following is executed before the actual REST call:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: csharp; title: ; notranslate&#34; title=&#34;&#34;&gt;RestClient client = new RestClient(
+string.Format(&#34;https://{0}.{1}&#34;, serviceNamespace, accesscontrol.windows.net));
+RestRequest treq = new RestRequest(&#34;/WRAPv0.9&#34;);
+treq.Method = Method.POST;
+treq.AddParameter(&#34;wrap_name&#34;, uid);
+treq.AddParameter(&#34;wrap_password&#34;, pwd);
+treq.AddParameter(&#34;wrap_scope&#34;, realm);
+client.ExecuteAsync(treq, (re) =&amp;amp;gt;
+{
+// Get expiration
+string expiry = result
+.Split(&#39;&amp;amp;amp;&#39;)
+.Single(value =&amp;amp;gt; value.StartsWith(&#34;wrap_access_token_expires_in&#34;, StringComparison.OrdinalIgnoreCase)).
+Split(&#39;=&#39;)[1];
+
+// Get Access Token
+result = HttpUtility.UrlDecode(
+result
+.Split(&#39;&amp;amp;amp;&#39;)
+.Single(value =&amp;amp;gt; value.StartsWith(&#34;wrap_access_token=&#34;, StringComparison.OrdinalIgnoreCase))
+.Split(&#39;=&#39;)[1]);
+
+token = new AcsToken()
+{
+ExpirationDate = DateTime.Now.AddSeconds(Int32.Parse(expiry)),
+TokenString = string.Format(&#34;WRAP access_token=&#34;{0}&#34;&#34;, result),
+};
+});
+&lt;/pre&gt;
+
+&lt;p&gt;Now the token is stored in a local variable &amp;#8216;token&amp;#8217; where it is possible to check if it is expired and to get the token string which the can be used to put in the header of coming requests against the ACS secured WCF REST service.&lt;/p&gt;
+
+&lt;p&gt;And just for as a ending note; here&amp;#8217;s the Token type:&lt;/p&gt;
+
+&lt;pre class=&#34;brush: csharp; title: ; notranslate&#34; title=&#34;&#34;&gt;class AcsToken
+{
+public string TokenString { get; set; }
+public DateTime ExpirationDate { get; set; }
+
+public bool IsExpired
+{
+get
+{
+return DateTime.Now &amp;amp;gt; ExpirationDate;
+}
+}
+}
+&lt;/pre&gt;
+
+&lt;p&gt;That&amp;#8217;s it for this part of the ACS post series. More will follow :)&lt;/p&gt;
+
+&lt;div style=&#34;font-size:0px;height:0px;line-height:0px;margin:0;padding:0;clear:both&#34;&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

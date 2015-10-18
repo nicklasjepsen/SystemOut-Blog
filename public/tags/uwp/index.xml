@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Uwp on SystemOut</title>
+    <link>http://localhost:1313/tags/uwp/</link>
+    <description>Recent content in Uwp on SystemOut</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
+    <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
+    <lastBuildDate>Thu, 28 May 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/uwp/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Create a Windows 10 IoT Universal App Photo Viewer with Bing Maps Support</title>
+      <link>http://localhost:1313/2015/05/28/create-a-windows-10-iot-universal-app-photo-viewer-with-bing-maps-support/</link>
+      <pubDate>Thu, 28 May 2015 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2015/05/28/create-a-windows-10-iot-universal-app-photo-viewer-with-bing-maps-support/</guid>
+      <description>
+
+&lt;h3 id=&#34;introduction:97c9c115bbf6f31b9c608647d5037e48&#34;&gt;Introduction&lt;/h3&gt;
+
+&lt;p&gt;In this post I will walk your through in creating a photo viewer with Bing Maps integration. The viewer is hosted on a Raspberry Pi 2 running Windows 10 IoT Preview and is created as a C#/XAML Universal Windows Platform (UWP) application.&lt;/p&gt;
+
+&lt;p&gt;UWP is a great way of writing code that reached broad - before UWP we could still create a single solution in Visual Studio, but we would need separate DLLs for each platform target - now we can just create one DLL that can be installed on all Windows platforms. That&amp;rsquo;s great!&lt;/p&gt;
+
+&lt;p&gt;Here is all the steps required to get going:
+- Install Windows 10 Preview
+- Install Visual Studio 2015 Preview/Beta/RC/whatever state it currently is in :)
+- Install Windows 10 IoT Core Preview on the Pi
+- Setup Bing Map Developer account and acquire a security token
+- Write the code
+- Deploy to the Pi
+- &amp;hellip;aaand done!&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://1drv.ms/1GOcRvK&#34;&gt;Download the solution&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://systemout.net/images/PiPicSample.png&#34; alt=&#34;Project screen shot&#34; /&gt;
+&lt;/p&gt;
+
+&lt;h3 id=&#34;installing-windows-and-vs:97c9c115bbf6f31b9c608647d5037e48&#34;&gt;Installing Windows and VS&lt;/h3&gt;
+
+&lt;p&gt;There are plenty of good guides on how to install Windows 10 and also on how to install it on the Pi:
+A quick note: &lt;strong&gt;You need a physical PC running Windows 10, unfortunately a VM won&amp;rsquo;t do :(&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Here are the links for downloading and installation instructions for all the required software:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;http://windows.microsoft.com/en-us/windows/preview-faq&#34; target=&#34;_blank&#34;&gt;Install Windows 10&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://ms-iot.github.io/content/en-US/win10/SetupRPI.htm&#34; target=&#34;_blank&#34;&gt;Install Windows 10 IoT Core&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.visualstudio.com/en-us/downloads/visual-studio-2015-downloads-vs.aspx&#34; target=&#34;_blank&#34;&gt;Visual Studio 2015&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;setup-bing-maps:97c9c115bbf6f31b9c608647d5037e48&#34;&gt;Setup Bing Maps&lt;/h3&gt;
+
+&lt;p&gt;You need to register your Microsoft account as a Bing Developer which can be done using the Bing Portal right here: &lt;a href=&#34;https://www.bingmapsportal.com&#34; title=&#34;Bing Maps Dev Center&#34;&gt;Bing Maps Dev Center&lt;/a&gt;. Once registered you need to acquire a key/token go to &lt;strong&gt;My Account &amp;gt; Create or view keys&lt;/strong&gt;. Follow the link to create a new key, follow the guide and remember to select Basic / Universal Windows App as the key type.&lt;/p&gt;
+
+&lt;p&gt;Copy the key, you will need to enter it later when creating the application.&lt;/p&gt;
+
+&lt;h3 id=&#34;writing-the-code:97c9c115bbf6f31b9c608647d5037e48&#34;&gt;Writing the code&lt;/h3&gt;
+
+&lt;p&gt;The solution is nice and simple - all we need is a single view and some C# classes.
+The consists of a couple of text blocks, an image view and a Map control:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;	&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;Grid&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;Background=&amp;quot;Black&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;Grid.Column=&amp;quot;1&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;Image&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;x:Name=&amp;quot;imageControl&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;Margin=&amp;quot;0,0,237,0&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;Maps:MapControl&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;x:Name=&amp;quot;MapControl&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;MapServiceToken=&amp;quot;TOKEN&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;Height=&amp;quot;202&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;VerticalAlignment=&amp;quot;Bottom&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;Margin=&amp;quot;0,0,24,25&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;HorizontalAlignment=&amp;quot;Right&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;Width=&amp;quot;213&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;TextBlock&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;x:Name=&amp;quot;DetailsTxb&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;Margin=&amp;quot;0,10,-9,0&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;TextWrapping=&amp;quot;Wrap&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;Text=&amp;quot;TextBlock&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;Foreground=&amp;quot;White&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;Height=&amp;quot;20&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;VerticalAlignment=&amp;quot;Top&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;FontWeight=&amp;quot;Bold&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;FontSize=&amp;quot;16&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;HorizontalAlignment=&amp;quot;Right&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;Width=&amp;quot;241&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;TextBlock&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;x:Name=&amp;quot;MoreDetailsTxb&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;Margin=&amp;quot;0,35,10,0&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;TextWrapping=&amp;quot;Wrap&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;Text=&amp;quot;TextBlock&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;Foreground=&amp;quot;#FFB8B8B8&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;Height=&amp;quot;20&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;VerticalAlignment=&amp;quot;Top&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;HorizontalAlignment=&amp;quot;Right&amp;quot;&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;Width=&amp;quot;222&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;/Grid&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Then we need some magic to read the photos from disk, read properties from each photo file like latitude and longitude, translate the coordinates using the Bing Maps service, update the text blocks with the data and finally show the image and set the location of the Map control. All this is implemented in C# in the code behind file.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;rsquo;s how to get the image files:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;KnownFolders.PicturesLibrary.GetFolderAsync(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;PiPic&amp;quot;&lt;/span&gt;);
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;This will look in the current users Pictures library for a folder named PiPic. Note that in the UWP there are no File library or other of that stuff we are used to from .NET - this is because that UWP will work on a phone also where we not necessarily have a C: drive.&lt;/p&gt;
+
+&lt;h5 id=&#34;reading-the-image-properties:97c9c115bbf6f31b9c608647d5037e48&#34;&gt;Reading the image properties&lt;/h5&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #902000&#34;&gt;var&lt;/span&gt; propsTask = file.Properties.GetImagePropertiesAsync();
+&lt;span style=&#34;color: #902000&#34;&gt;var&lt;/span&gt; props = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;await&lt;/span&gt; propsTask;
+&lt;span style=&#34;color: #902000&#34;&gt;var&lt;/span&gt; image = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; ImageDto();
+image.Location = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; LocationDto
+	{
+    	Latitude = (&lt;span style=&#34;color: #902000&#34;&gt;double&lt;/span&gt;)props.Latitude,
+        Longitude = (&lt;span style=&#34;color: #902000&#34;&gt;double&lt;/span&gt;)props.Longitude,
+    };
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The ImageDto and LocationDto are classes I have created for easability, download the complete solution to get the big picture.&lt;/p&gt;
+
+&lt;p&gt;Now with the coordinates in hand we can translate those to a location:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;async&lt;/span&gt; Task&amp;lt;&lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;&amp;gt; ReverseGeocode(LocationDto location)
+{
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Location to reverse geocode.&lt;/span&gt;
+    BasicGeoposition basicLocation = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; BasicGeoposition();
+    basicLocation.Latitude = location.Latitude;
+    basicLocation.Longitude = location.Longitude;
+    Geopoint pointToReverseGeocode = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; Geopoint(basicLocation);
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Reverse geocode the specified geographic location.&lt;/span&gt;
+    MapLocationFinderResult result =
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;await&lt;/span&gt; MapLocationFinder.FindLocationsAtAsync(pointToReverseGeocode);
+
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// If the query returns results, display the name of the town&lt;/span&gt;
+    &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// contained in the address of the first result.&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; (result.Status == MapLocationFinderStatus.Success)
+    {
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; result.Locations[&lt;span style=&#34;color: #40a070&#34;&gt;0&lt;/span&gt;].Address.Town +
+            &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;, &amp;quot;&lt;/span&gt; + result.Locations[&lt;span style=&#34;color: #40a070&#34;&gt;0&lt;/span&gt;].Address.Country;
+    }
+
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;string&lt;/span&gt;.Empty;
+}
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;I found this code somewhere on MSDN (can&amp;rsquo;t remember the link) so I can&amp;rsquo;t take credit for that, but it works :)
+Basically we are just querying the Bing Maps service and returning the result.&lt;/p&gt;
+
+&lt;h5 id=&#34;updating-the-map-control:97c9c115bbf6f31b9c608647d5037e48&#34;&gt;Updating the Map control&lt;/h5&gt;
+
+&lt;p&gt;Here&amp;rsquo;s how to center the Map control to the location of choice:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;MapControl.Center = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; Geopoint(&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; BasicGeoposition()
+{
+	Latitude = image.Location.Latitude,
+    Longitude = image.Location.Longitude
+});
+MapControl.ZoomLevel = &lt;span style=&#34;color: #40a070&#34;&gt;17&lt;/span&gt;;
+MapControl.LandmarksVisible = &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;;
+MapControl.MapElements.Clear();
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;h4 id=&#34;deploying-to-windows-10-on-raspberry-pi-2:97c9c115bbf6f31b9c608647d5037e48&#34;&gt;Deploying to Windows 10 on Raspberry Pi 2&lt;/h4&gt;
+
+&lt;p&gt;Now this is easy! All we have to do is change the debug option in Visual Studio to ARM and select Remote Machine and enter the IP adddress of the Pi. Remember to change authentication mode to None (default is Windows). Also, change the build type to Release - then you get rid of the diagnostics numbers in the top corners, but this heavily increases the build time.&lt;/p&gt;
+
+&lt;p&gt;For more info on deploying an UWP to Windows 10 have a look &lt;a href=&#34;http://ms-iot.github.io/content/en-US/win10/samples/HelloWorld.htm&#34;&gt;here!&lt;/a&gt; Look for the paragraph &amp;ldquo;Deploy the app to your Windows IoT Core device&amp;rdquo; This guide also contains instructions on how to set the application as the startup application. By doing so you can plug the photo Pi to your TV and once powered on you will have your very own photo viewer on the big screen!&lt;/p&gt;
+
+&lt;p&gt;And that&amp;rsquo;s it - remember you can find the &lt;strong&gt;complete solution right &lt;a href=&#34;http://1drv.ms/1GOcRvK&#34;&gt;here!&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

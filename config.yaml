@@ -1,0 +1,27 @@
+---
+baseurl: "http://systemout.net/"
+languageCode: "en-us"
+title: "SystemOut"
+metaDataFormat: "yaml"
+theme: "crisp"
+permalinks:
+ post: "/blog/:year/:month/:day/:title/"
+author:
+ name: "Nicklas Møller Jepsen"
+ email: "nmj@systemout.net"
+ github: "https://github.com/nicklasjepsen"
+ twitter: "https://twitter.com/nmjepsen"
+ facebook: "https://www.facebook.com/nicklas.m.jepsen"
+ linkedin: "https://dk.linkedin.com/in/nicklasmjepsen"
+pygmentsstyle: "friendly"
+params:
+ disqusShortname: "systemoutnet"	
+ disqus: "systemoutnet"	
+ description: "Nicklas Møller Jepsen"
+ ga: "UA-27558795-1"
+ taxonomies:
+  tag: "tags"
+  category: "categories"
+  series: "series"
+  featured: "featured"
+---

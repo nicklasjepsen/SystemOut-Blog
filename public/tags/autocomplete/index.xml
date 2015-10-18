@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Autocomplete on SystemOut</title>
+    <link>http://localhost:1313/tags/autocomplete/</link>
+    <description>Recent content in Autocomplete on SystemOut</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
+    <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
+    <lastBuildDate>Fri, 19 Dec 2014 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/autocomplete/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Android AutoComplete EditText with history</title>
+      <link>http://localhost:1313/2014/12/19/android-autocomplete-edittext-with-history</link>
+      <pubDate>Fri, 19 Dec 2014 00:00:00 +0000</pubDate>
+      <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
+      <guid>http://localhost:1313/2014/12/19/android-autocomplete-edittext-with-history</guid>
+      <description>
+
+&lt;h2 id=&#34;introduction:38e3a693750fbbc9de009236bbf4ab07&#34;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;In this post I&amp;rsquo;m going to show you have to get an Android app to have some autocomplete/history functionality.
+You can achieve this by using the AutoCompleteEditText.&lt;/p&gt;
+
+&lt;p&gt;If you havent already set up Android Studio, then [see this post]() where I guide you on installing Android Studio and getting completely set up for Android development!&lt;/p&gt;
+
+&lt;h2 id=&#34;the-auto-complete-edittext:38e3a693750fbbc9de009236bbf4ab07&#34;&gt;The Auto Complete EditText&lt;/h2&gt;
+
+&lt;p&gt;We will use the AutoCompleteEditText which is made just for this purpose.&lt;/p&gt;
+
+&lt;p&gt;However, we need a place to store the user&amp;rsquo;s input and for that we are using SharedPreferences.&lt;/p&gt;
+
+&lt;p&gt;It will be wrapped in a Activity, ready for you to try out!&lt;/p&gt;
+
+&lt;h3 id=&#34;implementation:38e3a693750fbbc9de009236bbf4ab07&#34;&gt;Implementation&lt;/h3&gt;
+
+&lt;p&gt;First we&amp;rsquo;re going to declare the view in the actovity_main.xml add the following:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;&amp;lt;AutoCompleteTextView&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_width=&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_height=&amp;quot;wrap_content&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:id=&amp;quot;@+id/textInput&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_marginTop=&amp;quot;108dp&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_alignParentTop=&amp;quot;true&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_alignParentLeft=&amp;quot;true&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:layout_alignParentRight=&amp;quot;true&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:editable=&amp;quot;true&amp;quot;&lt;/span&gt;
+    &lt;span style=&#34;color: #4070a0&#34;&gt;android:hint=&amp;quot;Enter something&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #062873; font-weight: bold&#34;&gt;/&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;The go to your MainActivity.java and we&amp;rsquo;re going to setup the methods and variables we need to store the history in the SharedPreferences.
+Create a couple of class variables:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; String PREFS_NAME &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;PingBusPrefs&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;static&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; String PREFS_SEARCH_HISTORY &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;SearchHistory&amp;quot;&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; SharedPreferences settings&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; Set&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt;String&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;&lt;/span&gt; history&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+These should explain them selves; it is just some strings used as keys for the preferences and the the settings variable and a set to contain the actual data of the history/input from the user.&lt;/p&gt;
+
+&lt;p&gt;Now we add a method to load create an adapter used by our AutoCompletEditText to show recent history:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;setAutoCompleteSource&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+    AutoCompleteTextView textView &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;AutoCompleteTextView&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; findViewById&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;R&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;textInput&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+    ArrayAdapter&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt;String&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;&lt;/span&gt; adapter &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; ArrayAdapter&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt;String&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;(&lt;/span&gt;
+		&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;this&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; android&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;R&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;layout&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;simple_list_item_1&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; history&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;toArray&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; String&lt;span style=&#34;color: #666666&#34;&gt;[&lt;/span&gt;history&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;size&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()]));&lt;/span&gt;
+    textView&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;setAdapter&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;adapter&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+Then we add a method we can call to add a history item:
+&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;addSearchInput&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;String input&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(!&lt;/span&gt;history&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;contains&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;input&lt;span style=&#34;color: #666666&#34;&gt;))&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        history&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;add&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;input&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+        setAutoCompleteSource&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Last but not least, we&amp;rsquo;re going to implement the save method, so that we can save the preferences:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;private&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;savePrefs&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+    SharedPreferences settings &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; getSharedPreferences&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;PREFS_NAME&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+    SharedPreferences&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;Editor&lt;/span&gt; editor &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; settings&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;edit&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+    editor&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;putStringSet&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;PREFS_SEARCH_HISTORY&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; history&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+
+    editor&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;commit&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Now that we have these methods, we&amp;rsquo;re going to initialize everything in the onCreate method. First add these 3 lines:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;settings &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; getSharedPreferences&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;PREFS_NAME&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #40a070&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+history &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; settings&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getStringSet&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;PREFS_SEARCH_HISTORY&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; HashSet&lt;span style=&#34;color: #666666&#34;&gt;&amp;lt;&lt;/span&gt;String&lt;span style=&#34;color: #666666&#34;&gt;&amp;gt;());&lt;/span&gt;
+
+setAutoCompleteSource&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+This will initilize the settings and read the history from the settings.
+Then we&amp;rsquo;re going to wire up the onKey event on the AutoCompleteEditText and write the implementation to to listen for &amp;ldquo;Enter&amp;rdquo; key presses:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// Set the &amp;quot;Enter&amp;quot; event on the search input&lt;/span&gt;
+&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;final&lt;/span&gt; AutoCompleteTextView textView &lt;span style=&#34;color: #666666&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;AutoCompleteTextView&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; findViewById&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;R&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;id&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;textInput&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;);&lt;/span&gt;
+textView&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;setOnKeyListener&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;new&lt;/span&gt; View&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;OnKeyListener&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;public&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;boolean&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;onKey&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;View v&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;int&lt;/span&gt; keyCode&lt;span style=&#34;color: #666666&#34;&gt;,&lt;/span&gt; KeyEvent event&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+        &lt;span style=&#34;color: #60a0b0; font-style: italic&#34;&gt;// If the event is a key-down event on the &amp;quot;enter&amp;quot; button&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;if&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;((&lt;/span&gt;event&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getAction&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;==&lt;/span&gt; KeyEvent&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;ACTION_DOWN&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;)&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt;
+                &lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;keyCode &lt;span style=&#34;color: #666666&#34;&gt;==&lt;/span&gt; KeyEvent&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;KEYCODE_ENTER&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;))&lt;/span&gt; &lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+
+            addSearchInput&lt;span style=&#34;color: #666666&#34;&gt;(&lt;/span&gt;textView&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;getText&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;().&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;toString&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;());&lt;/span&gt;
+            &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;true&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+        &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+        &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;false&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;;&lt;/span&gt;
+    &lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;});&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+
+&lt;p&gt;Now the last thing we need, is to call the savePrefs method in the onStop method which will then make sure that anychanges made to the history will be copied to the settings and the settings will be save:&lt;/p&gt;
+
+&lt;p&gt;&lt;div class=&#34;highlight&#34; style=&#34;background: #f0f0f0&#34;&gt;&lt;pre style=&#34;line-height: 125%&#34;&gt;&lt;span style=&#34;color: #555555; font-weight: bold&#34;&gt;@Override&lt;/span&gt;
+&lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;protected&lt;/span&gt; &lt;span style=&#34;color: #902000&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color: #06287e&#34;&gt;onStop&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;()&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;{&lt;/span&gt;
+    &lt;span style=&#34;color: #007020; font-weight: bold&#34;&gt;super&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=&#34;color: #4070a0&#34;&gt;onStop&lt;/span&gt;&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+
+    savePrefs&lt;span style=&#34;color: #666666&#34;&gt;();&lt;/span&gt;
+&lt;span style=&#34;color: #666666&#34;&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
