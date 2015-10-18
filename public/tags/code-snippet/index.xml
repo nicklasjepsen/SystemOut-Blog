@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Code Snippet on SystemOut</title>
-    <link>http://localhost:1313/tags/code-snippet/</link>
+    <link>http://systemout.net/tags/code-snippet/</link>
     <description>Recent content in Code Snippet on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Tue, 20 Dec 2011 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/code-snippet/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/code-snippet/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>&#39;Code Snippet &amp;#8211; &amp;#8216;Default&amp;#8217; regions in C# class&#39;</title>
-      <link>http://localhost:1313/2011/12/20/code-snippet-default-regions-in-c-class/</link>
+      <link>http://systemout.net/2011/12/20/code-snippet-default-regions-in-c-class/</link>
       <pubDate>Tue, 20 Dec 2011 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2011/12/20/code-snippet-default-regions-in-c-class/</guid>
+      <guid>http://systemout.net/2011/12/20/code-snippet-default-regions-in-c-class/</guid>
       <description>
 
 &lt;p&gt;I&amp;#8217;m currently trying to standardizes the way I&amp;#8217;m writing code. To achieve this I simply try to comply to some simple code standards. This is, in some areas, easy to accomplish because of the Visual Studio auto format option.&lt;/p&gt;
@@ -109,10 +109,10 @@
     
     <item>
       <title>&#39;Code Snippet &amp;#8211; How to add to Visual Studio&#39;</title>
-      <link>http://localhost:1313/2011/12/07/code-snippet-how-to-add-visual-studio/</link>
+      <link>http://systemout.net/2011/12/07/code-snippet-how-to-add-visual-studio/</link>
       <pubDate>Wed, 07 Dec 2011 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2011/12/07/code-snippet-how-to-add-visual-studio/</guid>
+      <guid>http://systemout.net/2011/12/07/code-snippet-how-to-add-visual-studio/</guid>
       <description>&lt;p&gt;This post describes how you can add your own code snippets to Visual Studio.&lt;/p&gt;
 
 &lt;p&gt;Go to Tools &amp;gt; Code Snippets Manager&lt;/p&gt;
@@ -142,10 +142,10 @@
     
     <item>
       <title>&#39;Code Snippet &amp;#8211; Singleton&#39;</title>
-      <link>http://localhost:1313/2011/12/07/code-snippet-singleton/</link>
+      <link>http://systemout.net/2011/12/07/code-snippet-singleton/</link>
       <pubDate>Wed, 07 Dec 2011 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2011/12/07/code-snippet-singleton/</guid>
+      <guid>http://systemout.net/2011/12/07/code-snippet-singleton/</guid>
       <description>&lt;p&gt;I&amp;#8217;ve written some code snippets which makes the daily job as a developer more convenient. These snippets are for use with Visual Studio.&lt;/p&gt;
 
 &lt;p&gt;If you want to have a look at how these snippets are added to Visual Studio see how to add a snippet &lt;a href=&#34;http://systemout.net/blog/2011/12/07/code-snippet-how-to-add-visual-studio/&#34; title=&#34;Code Snippet – How to add to Visual Studio&#34;&gt;here.&lt;/a&gt;&lt;/p&gt;

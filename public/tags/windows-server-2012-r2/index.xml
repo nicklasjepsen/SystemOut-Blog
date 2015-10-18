@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Windows Server 2012 R2 on SystemOut</title>
-    <link>http://localhost:1313/tags/windows-server-2012-r2/</link>
+    <link>http://systemout.net/tags/windows-server-2012-r2/</link>
     <description>Recent content in Windows Server 2012 R2 on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Wed, 09 Jul 2014 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/windows-server-2012-r2/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/windows-server-2012-r2/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>How To Host a Transmission Daemon part 1</title>
-      <link>http://localhost:1313/2014/07/09/how-to-host-a-transmission-daemon/</link>
+      <link>http://systemout.net/2014/07/09/how-to-host-a-transmission-daemon/</link>
       <pubDate>Wed, 09 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/09/how-to-host-a-transmission-daemon/</guid>
+      <guid>http://systemout.net/2014/07/09/how-to-host-a-transmission-daemon/</guid>
       <description>
 
 &lt;p&gt;If you want to skip to the &amp;ldquo;How to install transmission daemon on the Pi, look here: &lt;a href=&#34;http://systemout.net/2014/07/09/setting-up-transmission-on-a-raspberry-pi/&#34;&gt;http://systemout.net/2014/07/09/setting-up-transmission-on-a-raspberry-pi/&lt;/a&gt;&lt;/p&gt;

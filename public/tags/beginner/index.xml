@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Beginner on SystemOut</title>
-    <link>http://localhost:1313/tags/beginner/</link>
+    <link>http://systemout.net/tags/beginner/</link>
     <description>Recent content in Beginner on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Fri, 19 Dec 2014 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/beginner/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/beginner/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Android AutoComplete EditText with history</title>
-      <link>http://localhost:1313/2014/12/19/android-autocomplete-edittext-with-history</link>
+      <link>http://systemout.net/2014/12/19/android-autocomplete-edittext-with-history</link>
       <pubDate>Fri, 19 Dec 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/12/19/android-autocomplete-edittext-with-history</guid>
+      <guid>http://systemout.net/2014/12/19/android-autocomplete-edittext-with-history</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:38e3a693750fbbc9de009236bbf4ab07&#34;&gt;Introduction&lt;/h2&gt;

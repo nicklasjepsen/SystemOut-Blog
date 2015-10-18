@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Web Development on SystemOut</title>
-    <link>http://localhost:1313/categories/web-development/</link>
+    <link>http://systemout.net/categories/web-development/</link>
     <description>Recent content in Web Development on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Thu, 18 Dec 2014 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/categories/web-development/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/categories/web-development/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>How to build and deploy octopress with a single click, part 1</title>
-      <link>http://localhost:1313/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p1</link>
+      <link>http://systemout.net/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p1</link>
       <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p1</guid>
+      <guid>http://systemout.net/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p1</guid>
       <description>
 
 &lt;p&gt;&lt;strong&gt;UPDATE&lt;/strong&gt;
@@ -154,10 +154,10 @@ No where - therefore I&amp;rsquo;m going to show you how to deploy the generated
     
     <item>
       <title>How to build and deploy octopress with a single click, part 2 </title>
-      <link>http://localhost:1313/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</link>
+      <link>http://systemout.net/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</link>
       <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</guid>
+      <guid>http://systemout.net/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:3560ed7cf74d4df07c025fe02915a1b2&#34;&gt;Introduction&lt;/h2&gt;
@@ -257,10 +257,10 @@ Now here is what happens in the script:&lt;/p&gt;
     
     <item>
       <title>Calling SignalR Hub from a C# WCF Service</title>
-      <link>http://localhost:1313/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</link>
+      <link>http://systemout.net/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</link>
       <pubDate>Fri, 25 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</guid>
+      <guid>http://systemout.net/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:1c0b33ef5ca6cf9a2ff28d934b29da72&#34;&gt;Introduction&lt;/h2&gt;
@@ -358,10 +358,10 @@ Then you can go to:&lt;a href=&#34;http://systemout.net:56677/ChatWebApp/Messeng
     
     <item>
       <title>How To Setup Octopress for Jekyll on a Raspberry Pi</title>
-      <link>http://localhost:1313/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</link>
+      <link>http://systemout.net/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</link>
       <pubDate>Sun, 20 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</guid>
+      <guid>http://systemout.net/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</guid>
       <description>
 
 &lt;h3 id=&#34;introduction:68e5c07e240ab8ba63c1b33cbb305bb3&#34;&gt;Introduction&lt;/h3&gt;
@@ -536,10 +536,10 @@ ls
     
     <item>
       <title>Developing and Deploying a SignalR Chat Web App to IIS</title>
-      <link>http://localhost:1313/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</link>
+      <link>http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</link>
       <pubDate>Thu, 17 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</guid>
+      <guid>http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:819ac8d9cdec72dc096ec55720e219a7&#34;&gt;Introduction&lt;/h2&gt;
@@ -816,10 +816,10 @@ Select the ChatWebApp folder, right click and select Convert to Application.&lt;
     
     <item>
       <title>SignalR Hub Reference - done right!</title>
-      <link>http://localhost:1313/2014/07/15/signalr-hub-reference-done-right/</link>
+      <link>http://systemout.net/2014/07/15/signalr-hub-reference-done-right/</link>
       <pubDate>Tue, 15 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/15/signalr-hub-reference-done-right/</guid>
+      <guid>http://systemout.net/2014/07/15/signalr-hub-reference-done-right/</guid>
       <description>
 
 &lt;p&gt;UPDATE: I have now written a complete SignalR tutorial, see this post: &lt;a href=&#34;http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/&#34;&gt;http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/&lt;/a&gt;&lt;/p&gt;
@@ -897,10 +897,10 @@ I investigated it further by looking in Fiddler and in Chrome. In the console in
     
     <item>
       <title>&#39;Moving on – WordPress to Octopress/Jekyll on a Pi&#39;</title>
-      <link>http://localhost:1313/2014/05/02/moving-on-wordpress-to-octopress-slash-jekyll-on-a-pi/</link>
+      <link>http://systemout.net/2014/05/02/moving-on-wordpress-to-octopress-slash-jekyll-on-a-pi/</link>
       <pubDate>Fri, 02 May 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/05/02/moving-on-wordpress-to-octopress-slash-jekyll-on-a-pi/</guid>
+      <guid>http://systemout.net/2014/05/02/moving-on-wordpress-to-octopress-slash-jekyll-on-a-pi/</guid>
       <description>
 
 &lt;p&gt;This 1 post is part of a series of posts.&lt;/p&gt;

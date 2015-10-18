@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>C Sharp on SystemOut</title>
-    <link>http://localhost:1313/tags/c-sharp/</link>
+    <link>http://systemout.net/tags/c-sharp/</link>
     <description>Recent content in C Sharp on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Thu, 01 Oct 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/c-sharp/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/c-sharp/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Async RSS Parser Service</title>
-      <link>http://localhost:1313/2015/10/01/async-rss-parser-service/</link>
+      <link>http://systemout.net/2015/10/01/async-rss-parser-service/</link>
       <pubDate>Thu, 01 Oct 2015 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2015/10/01/async-rss-parser-service/</guid>
+      <guid>http://systemout.net/2015/10/01/async-rss-parser-service/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:cd8934bb510e397ca8b305f3943838bf&#34;&gt;Introduction&lt;/h2&gt;
@@ -182,10 +182,10 @@ This goes on in a loop that only gets escaped if the caller decides to cancel th
     
     <item>
       <title>Gravatar C# API</title>
-      <link>http://localhost:1313/2015/08/08/gravatar-csharp-api/</link>
+      <link>http://systemout.net/2015/08/08/gravatar-csharp-api/</link>
       <pubDate>Sat, 08 Aug 2015 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2015/08/08/gravatar-csharp-api/</guid>
+      <guid>http://systemout.net/2015/08/08/gravatar-csharp-api/</guid>
       <description>&lt;p&gt;Each time I write a new app that involves users (which is pretty often) I think it would be nice to be able to display their own profile image, without the need of authenticating them against facebook, Linkedin or by using their Microsoft account.&lt;/p&gt;
 
 &lt;p&gt;Therefore I decided to use Gravatar, which basically allows you to request a user image (avatar) when you only know their email address. This is pretty simply and you can just make a plain HTTP GET and get their image url in response. Try this:&lt;/p&gt;
@@ -215,10 +215,10 @@ Further more you can retrieve lots of other information about the users presente
     
     <item>
       <title>404 Hubs Not Found And Debugging Problems</title>
-      <link>http://localhost:1313/2014/07/17/404-hubs-not-found-and-debugging-problems/</link>
+      <link>http://systemout.net/2014/07/17/404-hubs-not-found-and-debugging-problems/</link>
       <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/17/404-hubs-not-found-and-debugging-problems/</guid>
+      <guid>http://systemout.net/2014/07/17/404-hubs-not-found-and-debugging-problems/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:c19d32463fb40573265337c22adbb0e8&#34;&gt;Introduction&lt;/h2&gt;
@@ -265,10 +265,10 @@ app.MapSignalR(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;/~/signalr&a
     
     <item>
       <title>Developing a &#39;Who Is On&#39; Chat Web App Using SignalR and WPF</title>
-      <link>http://localhost:1313/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/</link>
+      <link>http://systemout.net/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/</link>
       <pubDate>Wed, 10 Jun 2015 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/</guid>
+      <guid>http://systemout.net/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:059a38db281f7dbb8fe36beb42876568&#34;&gt;Introduction&lt;/h2&gt;
@@ -490,10 +490,10 @@ Then there is the StartSignalR method. First we are creating a new HubConnection
     
     <item>
       <title>Create a Windows 10 IoT Universal App Photo Viewer with Bing Maps Support</title>
-      <link>http://localhost:1313/2015/05/28/create-a-windows-10-iot-universal-app-photo-viewer-with-bing-maps-support/</link>
+      <link>http://systemout.net/2015/05/28/create-a-windows-10-iot-universal-app-photo-viewer-with-bing-maps-support/</link>
       <pubDate>Thu, 28 May 2015 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2015/05/28/create-a-windows-10-iot-universal-app-photo-viewer-with-bing-maps-support/</guid>
+      <guid>http://systemout.net/2015/05/28/create-a-windows-10-iot-universal-app-photo-viewer-with-bing-maps-support/</guid>
       <description>
 
 &lt;h3 id=&#34;introduction:97c9c115bbf6f31b9c608647d5037e48&#34;&gt;Introduction&lt;/h3&gt;
@@ -628,10 +628,10 @@ MapControl.MapElements.Clear();
     
     <item>
       <title>How To Measure Execution Time and Performance Optimize Source Code</title>
-      <link>http://localhost:1313/2014/08/19/measure-execution-time-and-performance-optimize-source-code</link>
+      <link>http://systemout.net/2014/08/19/measure-execution-time-and-performance-optimize-source-code</link>
       <pubDate>Tue, 19 Aug 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/08/19/measure-execution-time-and-performance-optimize-source-code</guid>
+      <guid>http://systemout.net/2014/08/19/measure-execution-time-and-performance-optimize-source-code</guid>
       <description>
 
 &lt;h2 id=&#34;why-should-you-measure-your-source-code:e101fc7e35c9091dc41dd896bd262d34&#34;&gt;Why Should You Measure Your Source Code?&lt;/h2&gt;
@@ -784,10 +784,10 @@ To accomplish this, I have written a &lt;strong&gt;Time&lt;/strong&gt; method:&l
     
     <item>
       <title>Calling SignalR Hub from a C# WCF Service</title>
-      <link>http://localhost:1313/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</link>
+      <link>http://systemout.net/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</link>
       <pubDate>Fri, 25 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</guid>
+      <guid>http://systemout.net/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:1c0b33ef5ca6cf9a2ff28d934b29da72&#34;&gt;Introduction&lt;/h2&gt;
@@ -885,10 +885,10 @@ Then you can go to:&lt;a href=&#34;http://systemout.net:56677/ChatWebApp/Messeng
     
     <item>
       <title>Developing and Deploying a SignalR Chat Web App to IIS</title>
-      <link>http://localhost:1313/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</link>
+      <link>http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</link>
       <pubDate>Thu, 17 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</guid>
+      <guid>http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:819ac8d9cdec72dc096ec55720e219a7&#34;&gt;Introduction&lt;/h2&gt;
@@ -1165,10 +1165,10 @@ Select the ChatWebApp folder, right click and select Convert to Application.&lt;
     
     <item>
       <title>SignalR Hub Reference - done right!</title>
-      <link>http://localhost:1313/2014/07/15/signalr-hub-reference-done-right/</link>
+      <link>http://systemout.net/2014/07/15/signalr-hub-reference-done-right/</link>
       <pubDate>Tue, 15 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/15/signalr-hub-reference-done-right/</guid>
+      <guid>http://systemout.net/2014/07/15/signalr-hub-reference-done-right/</guid>
       <description>
 
 &lt;p&gt;UPDATE: I have now written a complete SignalR tutorial, see this post: &lt;a href=&#34;http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/&#34;&gt;http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/&lt;/a&gt;&lt;/p&gt;
@@ -1246,10 +1246,10 @@ I investigated it further by looking in Fiddler and in Chrome. In the console in
     
     <item>
       <title>Testable Data Access Layer using Entity Framework 6</title>
-      <link>http://localhost:1313/2014/01/02/testable-data-access-layer-using-entity-framework-6/</link>
+      <link>http://systemout.net/2014/01/02/testable-data-access-layer-using-entity-framework-6/</link>
       <pubDate>Thu, 02 Jan 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/01/02/testable-data-access-layer-using-entity-framework-6/</guid>
+      <guid>http://systemout.net/2014/01/02/testable-data-access-layer-using-entity-framework-6/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:469fa61daacdb60e7cccde776c4e7633&#34;&gt;Introduction&lt;/h2&gt;
@@ -1443,10 +1443,10 @@ To your unit test project, add a class and implement it like the this:&lt;/p&gt;
     
     <item>
       <title>&#39;C# Generic Xml Parser Example&#39;</title>
-      <link>http://localhost:1313/2013/12/19/csharp-generic-xml-parser-example/</link>
+      <link>http://systemout.net/2013/12/19/csharp-generic-xml-parser-example/</link>
       <pubDate>Thu, 19 Dec 2013 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2013/12/19/csharp-generic-xml-parser-example/</guid>
+      <guid>http://systemout.net/2013/12/19/csharp-generic-xml-parser-example/</guid>
       <description>&lt;p&gt;In this post I will show how to implement and use a generic xml parser library.&lt;/p&gt;
 
 &lt;p&gt;For the complete solution and source code, &lt;a href=&#34;http://sdrv.ms/18BwjwK&#34; title=&#34;XmlParser.zip&#34; target=&#34;_blank&#34;&gt;click here!&lt;/a&gt;&lt;/p&gt;
@@ -1540,10 +1540,10 @@ The source code for the parser is not more than a few lines of code and wrapped 
     
     <item>
       <title>Creating a REST (and SOAP) Enabled WCF Service</title>
-      <link>http://localhost:1313/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</link>
+      <link>http://systemout.net/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</link>
       <pubDate>Wed, 18 Dec 2013 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</guid>
+      <guid>http://systemout.net/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</guid>
       <description>&lt;p&gt;In this post I&amp;#8217;m going to walk you through the process of creating a REST/SOAP enabled WCF service using .NET 4.5.1 and Visual Studio 2013.&lt;/p&gt;
 
 &lt;p&gt;If you just want to try for yourself you can download the complete solution &lt;a href=&#34;http://sdrv.ms/1fntPAZ&#34; title=&#34;Donwload from my SKyDrive&#34; target=&#34;_blank&#34;&gt;here!&lt;/a&gt;&lt;/p&gt;
@@ -1619,10 +1619,10 @@ The source code for the parser is not more than a few lines of code and wrapped 
     
     <item>
       <title>&#39;Extension methods in C#/.NET&#39;</title>
-      <link>http://localhost:1313/2013/12/10/extensions-methods-in-c-net/</link>
+      <link>http://systemout.net/2013/12/10/extensions-methods-in-c-net/</link>
       <pubDate>Tue, 10 Dec 2013 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2013/12/10/extensions-methods-in-c-net/</guid>
+      <guid>http://systemout.net/2013/12/10/extensions-methods-in-c-net/</guid>
       <description>&lt;p&gt;A nice feature in C# is the ability to use extension methods. These methods can be used (as the name suggests) to extend functionality to existing classes.&lt;/p&gt;
 
 &lt;p&gt;In my opinion, extension methods can be used to &lt;strong&gt;write cleaner and more easy to read code&lt;/strong&gt;. They can also be used to avoid &lt;strong&gt;duplicate code&lt;/strong&gt;.&lt;br /&gt;
@@ -1683,10 +1683,10 @@ There are some general rules when writing extension methods:&lt;/p&gt;
     
     <item>
       <title>Generic Retry Function to Avoid Duplicate Code</title>
-      <link>http://localhost:1313/2013/12/07/retryfunction/</link>
+      <link>http://systemout.net/2013/12/07/retryfunction/</link>
       <pubDate>Sat, 07 Dec 2013 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2013/12/07/retryfunction/</guid>
+      <guid>http://systemout.net/2013/12/07/retryfunction/</guid>
       <description>&lt;p&gt;Sometimes you have a method which you want to be executed again if it fails the first time.&lt;br /&gt;
 This could lead to duplicate code, or to at least to a for loop wrapping the implementation of the method which is OK but what if you had two methods you needed this retry logic for?&lt;/p&gt;
 
@@ -1728,10 +1728,10 @@ This could lead to duplicate code, or to at least to a for loop wrapping the imp
     
     <item>
       <title>&#39;Windows Azure Access Control Service (ACS) &amp;#8211; part 1 &amp;#8216;Get token in WP7 client&amp;#8217;&#39;</title>
-      <link>http://localhost:1313/2012/02/09/windows-azure-access-control-service-acs-part-1-get-token-in-wp7-client/</link>
+      <link>http://systemout.net/2012/02/09/windows-azure-access-control-service-acs-part-1-get-token-in-wp7-client/</link>
       <pubDate>Thu, 09 Feb 2012 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2012/02/09/windows-azure-access-control-service-acs-part-1-get-token-in-wp7-client/</guid>
+      <guid>http://systemout.net/2012/02/09/windows-azure-access-control-service-acs-part-1-get-token-in-wp7-client/</guid>
       <description>&lt;p&gt;While working on a project for WP7 where a backend is required I needed to implement some sort of security on the server. As the server is being hosted in Windows Azure I looked into ACS. At first it did look a bid &amp;#8220;over configured&amp;#8221; meaning there is a lot of documentation on how to use it and what you can actually do with it. Facebook, Google, Windows Live login etc. For my purpose I just needed a simple way off securing my REST service and after some reading I thought I would give ACS a try.&lt;/p&gt;
 
 &lt;p&gt;Steps involved:&lt;/p&gt;

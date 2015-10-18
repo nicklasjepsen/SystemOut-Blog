@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Visual Studio on SystemOut</title>
-    <link>http://localhost:1313/tags/visual-studio/</link>
+    <link>http://systemout.net/tags/visual-studio/</link>
     <description>Recent content in Visual Studio on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Wed, 07 Dec 2011 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/visual-studio/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/visual-studio/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>&#39;Code Snippet &amp;#8211; How to add to Visual Studio&#39;</title>
-      <link>http://localhost:1313/2011/12/07/code-snippet-how-to-add-visual-studio/</link>
+      <link>http://systemout.net/2011/12/07/code-snippet-how-to-add-visual-studio/</link>
       <pubDate>Wed, 07 Dec 2011 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2011/12/07/code-snippet-how-to-add-visual-studio/</guid>
+      <guid>http://systemout.net/2011/12/07/code-snippet-how-to-add-visual-studio/</guid>
       <description>&lt;p&gt;This post describes how you can add your own code snippets to Visual Studio.&lt;/p&gt;
 
 &lt;p&gt;Go to Tools &amp;gt; Code Snippets Manager&lt;/p&gt;

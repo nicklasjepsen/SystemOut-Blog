@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Restsharp on SystemOut</title>
-    <link>http://localhost:1313/tags/restsharp/</link>
+    <link>http://systemout.net/tags/restsharp/</link>
     <description>Recent content in Restsharp on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Thu, 09 Feb 2012 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/restsharp/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/restsharp/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>&#39;Windows Azure Access Control Service (ACS) &amp;#8211; part 1 &amp;#8216;Get token in WP7 client&amp;#8217;&#39;</title>
-      <link>http://localhost:1313/2012/02/09/windows-azure-access-control-service-acs-part-1-get-token-in-wp7-client/</link>
+      <link>http://systemout.net/2012/02/09/windows-azure-access-control-service-acs-part-1-get-token-in-wp7-client/</link>
       <pubDate>Thu, 09 Feb 2012 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2012/02/09/windows-azure-access-control-service-acs-part-1-get-token-in-wp7-client/</guid>
+      <guid>http://systemout.net/2012/02/09/windows-azure-access-control-service-acs-part-1-get-token-in-wp7-client/</guid>
       <description>&lt;p&gt;While working on a project for WP7 where a backend is required I needed to implement some sort of security on the server. As the server is being hosted in Windows Azure I looked into ACS. At first it did look a bid &amp;#8220;over configured&amp;#8221; meaning there is a lot of documentation on how to use it and what you can actually do with it. Facebook, Google, Windows Live login etc. For my purpose I just needed a simple way off securing my REST service and after some reading I thought I would give ACS a try.&lt;/p&gt;
 
 &lt;p&gt;Steps involved:&lt;/p&gt;

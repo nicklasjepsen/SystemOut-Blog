@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Binding on SystemOut</title>
-    <link>http://localhost:1313/tags/binding/</link>
+    <link>http://systemout.net/tags/binding/</link>
     <description>Recent content in Binding on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Wed, 18 Dec 2013 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/binding/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/binding/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Creating a REST (and SOAP) Enabled WCF Service</title>
-      <link>http://localhost:1313/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</link>
+      <link>http://systemout.net/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</link>
       <pubDate>Wed, 18 Dec 2013 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</guid>
+      <guid>http://systemout.net/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</guid>
       <description>&lt;p&gt;In this post I&amp;#8217;m going to walk you through the process of creating a REST/SOAP enabled WCF service using .NET 4.5.1 and Visual Studio 2013.&lt;/p&gt;
 
 &lt;p&gt;If you just want to try for yourself you can download the complete solution &lt;a href=&#34;http://sdrv.ms/1fntPAZ&#34; title=&#34;Donwload from my SKyDrive&#34; target=&#34;_blank&#34;&gt;here!&lt;/a&gt;&lt;/p&gt;
@@ -92,10 +92,10 @@
     
     <item>
       <title>Publish WCF Service on IIS</title>
-      <link>http://localhost:1313/2012/03/20/publish-wcf-service-on-iis/</link>
+      <link>http://systemout.net/2012/03/20/publish-wcf-service-on-iis/</link>
       <pubDate>Tue, 20 Mar 2012 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2012/03/20/publish-wcf-service-on-iis/</guid>
+      <guid>http://systemout.net/2012/03/20/publish-wcf-service-on-iis/</guid>
       <description>
 
 &lt;p&gt;Recently I needed to publish a WCF service on an IIS. This progress I quite smooth when you just need to access the WCF service locally, but ones you need to publish the service on the great Internet, things are a little more difficult.&lt;/p&gt;

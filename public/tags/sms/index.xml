@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Sms on SystemOut</title>
-    <link>http://localhost:1313/tags/sms/</link>
+    <link>http://systemout.net/tags/sms/</link>
     <description>Recent content in Sms on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Wed, 07 Dec 2011 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/sms/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/sms/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>WP7 Sms Templates</title>
-      <link>http://localhost:1313/2011/12/07/wp7-sms-templates/</link>
+      <link>http://systemout.net/2011/12/07/wp7-sms-templates/</link>
       <pubDate>Wed, 07 Dec 2011 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2011/12/07/wp7-sms-templates/</guid>
+      <guid>http://systemout.net/2011/12/07/wp7-sms-templates/</guid>
       <description>&lt;p&gt;&lt;p&gt;&lt;a href=&#34;http://systemout.net/wp-content/uploads/2011/12/icon-master.png&#34;&gt;&lt;img class=&#34;wp-image-24 alignleft&#34; title=&#34;Icon Master&#34; src=&#34;http://systemout.net/wp-content/uploads/2011/12/icon-master.png?w=300&#34; alt=&#34;&#34; width=&#34;150&#34; height=&#34;150&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&#34;padding-left:60px;&#34;&gt;Today I just finished my first (well actually second, but the first didn&amp;#8217;t really count) App for Windows Phone.&lt;/p&gt;
 &lt;p&gt;The App is a simple App providing the user with an easy way of sending standard text messages.&lt;/p&gt;

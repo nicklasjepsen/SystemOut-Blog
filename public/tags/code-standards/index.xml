@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Code Standards on SystemOut</title>
-    <link>http://localhost:1313/tags/code-standards/</link>
+    <link>http://systemout.net/tags/code-standards/</link>
     <description>Recent content in Code Standards on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Tue, 20 Dec 2011 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/code-standards/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/code-standards/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>&#39;Code Snippet &amp;#8211; &amp;#8216;Default&amp;#8217; regions in C# class&#39;</title>
-      <link>http://localhost:1313/2011/12/20/code-snippet-default-regions-in-c-class/</link>
+      <link>http://systemout.net/2011/12/20/code-snippet-default-regions-in-c-class/</link>
       <pubDate>Tue, 20 Dec 2011 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2011/12/20/code-snippet-default-regions-in-c-class/</guid>
+      <guid>http://systemout.net/2011/12/20/code-snippet-default-regions-in-c-class/</guid>
       <description>
 
 &lt;p&gt;I&amp;#8217;m currently trying to standardizes the way I&amp;#8217;m writing code. To achieve this I simply try to comply to some simple code standards. This is, in some areas, easy to accomplish because of the Visual Studio auto format option.&lt;/p&gt;

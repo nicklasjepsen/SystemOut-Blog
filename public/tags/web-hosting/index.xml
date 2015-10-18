@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Web Hosting on SystemOut</title>
-    <link>http://localhost:1313/tags/web-hosting/</link>
+    <link>http://systemout.net/tags/web-hosting/</link>
     <description>Recent content in Web Hosting on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Sun, 20 Jul 2014 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/web-hosting/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/web-hosting/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>How To Setup Octopress for Jekyll on a Raspberry Pi</title>
-      <link>http://localhost:1313/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</link>
+      <link>http://systemout.net/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</link>
       <pubDate>Sun, 20 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</guid>
+      <guid>http://systemout.net/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</guid>
       <description>
 
 &lt;h3 id=&#34;introduction:68e5c07e240ab8ba63c1b33cbb305bb3&#34;&gt;Introduction&lt;/h3&gt;
@@ -191,10 +191,10 @@ ls
     
     <item>
       <title>&#39;Moving on – WordPress to Octopress/Jekyll on a Pi&#39;</title>
-      <link>http://localhost:1313/2014/05/02/moving-on-wordpress-to-octopress-slash-jekyll-on-a-pi/</link>
+      <link>http://systemout.net/2014/05/02/moving-on-wordpress-to-octopress-slash-jekyll-on-a-pi/</link>
       <pubDate>Fri, 02 May 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/05/02/moving-on-wordpress-to-octopress-slash-jekyll-on-a-pi/</guid>
+      <guid>http://systemout.net/2014/05/02/moving-on-wordpress-to-octopress-slash-jekyll-on-a-pi/</guid>
       <description>
 
 &lt;p&gt;This 1 post is part of a series of posts.&lt;/p&gt;

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Iis on SystemOut</title>
-    <link>http://localhost:1313/tags/iis/</link>
+    <link>http://systemout.net/tags/iis/</link>
     <description>Recent content in Iis on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Mon, 22 Jun 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/iis/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/iis/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>404 Hubs Not Found And Debugging Problems</title>
-      <link>http://localhost:1313/2014/07/17/404-hubs-not-found-and-debugging-problems/</link>
+      <link>http://systemout.net/2014/07/17/404-hubs-not-found-and-debugging-problems/</link>
       <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/17/404-hubs-not-found-and-debugging-problems/</guid>
+      <guid>http://systemout.net/2014/07/17/404-hubs-not-found-and-debugging-problems/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:c19d32463fb40573265337c22adbb0e8&#34;&gt;Introduction&lt;/h2&gt;
@@ -63,10 +63,10 @@ app.MapSignalR(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;/~/signalr&a
     
     <item>
       <title>Calling SignalR Hub from a C# WCF Service</title>
-      <link>http://localhost:1313/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</link>
+      <link>http://systemout.net/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</link>
       <pubDate>Fri, 25 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</guid>
+      <guid>http://systemout.net/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:1c0b33ef5ca6cf9a2ff28d934b29da72&#34;&gt;Introduction&lt;/h2&gt;
@@ -164,10 +164,10 @@ Then you can go to:&lt;a href=&#34;http://systemout.net:56677/ChatWebApp/Messeng
     
     <item>
       <title>Developing and Deploying a SignalR Chat Web App to IIS</title>
-      <link>http://localhost:1313/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</link>
+      <link>http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</link>
       <pubDate>Thu, 17 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</guid>
+      <guid>http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:819ac8d9cdec72dc096ec55720e219a7&#34;&gt;Introduction&lt;/h2&gt;
@@ -444,10 +444,10 @@ Select the ChatWebApp folder, right click and select Convert to Application.&lt;
     
     <item>
       <title>SignalR Hub Reference - done right!</title>
-      <link>http://localhost:1313/2014/07/15/signalr-hub-reference-done-right/</link>
+      <link>http://systemout.net/2014/07/15/signalr-hub-reference-done-right/</link>
       <pubDate>Tue, 15 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/15/signalr-hub-reference-done-right/</guid>
+      <guid>http://systemout.net/2014/07/15/signalr-hub-reference-done-right/</guid>
       <description>
 
 &lt;p&gt;UPDATE: I have now written a complete SignalR tutorial, see this post: &lt;a href=&#34;http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/&#34;&gt;http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/&lt;/a&gt;&lt;/p&gt;
@@ -525,10 +525,10 @@ I investigated it further by looking in Fiddler and in Chrome. In the console in
     
     <item>
       <title>Publish WCF Service on IIS</title>
-      <link>http://localhost:1313/2012/03/20/publish-wcf-service-on-iis/</link>
+      <link>http://systemout.net/2012/03/20/publish-wcf-service-on-iis/</link>
       <pubDate>Tue, 20 Mar 2012 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2012/03/20/publish-wcf-service-on-iis/</guid>
+      <guid>http://systemout.net/2012/03/20/publish-wcf-service-on-iis/</guid>
       <description>
 
 &lt;p&gt;Recently I needed to publish a WCF service on an IIS. This progress I quite smooth when you just need to access the WCF service locally, but ones you need to publish the service on the great Internet, things are a little more difficult.&lt;/p&gt;

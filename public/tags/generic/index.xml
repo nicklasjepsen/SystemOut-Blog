@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Generic on SystemOut</title>
-    <link>http://localhost:1313/tags/generic/</link>
+    <link>http://systemout.net/tags/generic/</link>
     <description>Recent content in Generic on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Thu, 19 Dec 2013 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/generic/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/generic/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>&#39;C# Generic Xml Parser Example&#39;</title>
-      <link>http://localhost:1313/2013/12/19/csharp-generic-xml-parser-example/</link>
+      <link>http://systemout.net/2013/12/19/csharp-generic-xml-parser-example/</link>
       <pubDate>Thu, 19 Dec 2013 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2013/12/19/csharp-generic-xml-parser-example/</guid>
+      <guid>http://systemout.net/2013/12/19/csharp-generic-xml-parser-example/</guid>
       <description>&lt;p&gt;In this post I will show how to implement and use a generic xml parser library.&lt;/p&gt;
 
 &lt;p&gt;For the complete solution and source code, &lt;a href=&#34;http://sdrv.ms/18BwjwK&#34; title=&#34;XmlParser.zip&#34; target=&#34;_blank&#34;&gt;click here!&lt;/a&gt;&lt;/p&gt;

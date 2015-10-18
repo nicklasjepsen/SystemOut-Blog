@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Unit Test on SystemOut</title>
-    <link>http://localhost:1313/tags/unit-test/</link>
+    <link>http://systemout.net/tags/unit-test/</link>
     <description>Recent content in Unit Test on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Thu, 02 Jan 2014 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/unit-test/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/unit-test/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Testable Data Access Layer using Entity Framework 6</title>
-      <link>http://localhost:1313/2014/01/02/testable-data-access-layer-using-entity-framework-6/</link>
+      <link>http://systemout.net/2014/01/02/testable-data-access-layer-using-entity-framework-6/</link>
       <pubDate>Thu, 02 Jan 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/01/02/testable-data-access-layer-using-entity-framework-6/</guid>
+      <guid>http://systemout.net/2014/01/02/testable-data-access-layer-using-entity-framework-6/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:469fa61daacdb60e7cccde776c4e7633&#34;&gt;Introduction&lt;/h2&gt;

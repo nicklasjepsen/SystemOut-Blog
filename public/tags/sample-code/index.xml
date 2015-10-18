@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Sample Code on SystemOut</title>
-    <link>http://localhost:1313/tags/sample-code/</link>
+    <link>http://systemout.net/tags/sample-code/</link>
     <description>Recent content in Sample Code on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Thu, 19 Dec 2013 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/sample-code/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/sample-code/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>&#39;C# Generic Xml Parser Example&#39;</title>
-      <link>http://localhost:1313/2013/12/19/csharp-generic-xml-parser-example/</link>
+      <link>http://systemout.net/2013/12/19/csharp-generic-xml-parser-example/</link>
       <pubDate>Thu, 19 Dec 2013 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2013/12/19/csharp-generic-xml-parser-example/</guid>
+      <guid>http://systemout.net/2013/12/19/csharp-generic-xml-parser-example/</guid>
       <description>&lt;p&gt;In this post I will show how to implement and use a generic xml parser library.&lt;/p&gt;
 
 &lt;p&gt;For the complete solution and source code, &lt;a href=&#34;http://sdrv.ms/18BwjwK&#34; title=&#34;XmlParser.zip&#34; target=&#34;_blank&#34;&gt;click here!&lt;/a&gt;&lt;/p&gt;
@@ -110,10 +110,10 @@ The source code for the parser is not more than a few lines of code and wrapped 
     
     <item>
       <title>Creating a REST (and SOAP) Enabled WCF Service</title>
-      <link>http://localhost:1313/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</link>
+      <link>http://systemout.net/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</link>
       <pubDate>Wed, 18 Dec 2013 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</guid>
+      <guid>http://systemout.net/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</guid>
       <description>&lt;p&gt;In this post I&amp;#8217;m going to walk you through the process of creating a REST/SOAP enabled WCF service using .NET 4.5.1 and Visual Studio 2013.&lt;/p&gt;
 
 &lt;p&gt;If you just want to try for yourself you can download the complete solution &lt;a href=&#34;http://sdrv.ms/1fntPAZ&#34; title=&#34;Donwload from my SKyDrive&#34; target=&#34;_blank&#34;&gt;here!&lt;/a&gt;&lt;/p&gt;
@@ -189,10 +189,10 @@ The source code for the parser is not more than a few lines of code and wrapped 
     
     <item>
       <title>&#39;Extension methods in C#/.NET&#39;</title>
-      <link>http://localhost:1313/2013/12/10/extensions-methods-in-c-net/</link>
+      <link>http://systemout.net/2013/12/10/extensions-methods-in-c-net/</link>
       <pubDate>Tue, 10 Dec 2013 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2013/12/10/extensions-methods-in-c-net/</guid>
+      <guid>http://systemout.net/2013/12/10/extensions-methods-in-c-net/</guid>
       <description>&lt;p&gt;A nice feature in C# is the ability to use extension methods. These methods can be used (as the name suggests) to extend functionality to existing classes.&lt;/p&gt;
 
 &lt;p&gt;In my opinion, extension methods can be used to &lt;strong&gt;write cleaner and more easy to read code&lt;/strong&gt;. They can also be used to avoid &lt;strong&gt;duplicate code&lt;/strong&gt;.&lt;br /&gt;
@@ -253,10 +253,10 @@ There are some general rules when writing extension methods:&lt;/p&gt;
     
     <item>
       <title>Generic Retry Function to Avoid Duplicate Code</title>
-      <link>http://localhost:1313/2013/12/07/retryfunction/</link>
+      <link>http://systemout.net/2013/12/07/retryfunction/</link>
       <pubDate>Sat, 07 Dec 2013 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2013/12/07/retryfunction/</guid>
+      <guid>http://systemout.net/2013/12/07/retryfunction/</guid>
       <description>&lt;p&gt;Sometimes you have a method which you want to be executed again if it fails the first time.&lt;br /&gt;
 This could lead to duplicate code, or to at least to a for loop wrapping the implementation of the method which is OK but what if you had two methods you needed this retry logic for?&lt;/p&gt;
 

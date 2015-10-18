@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Raspberry Pi on SystemOut</title>
-    <link>http://localhost:1313/tags/raspberry-pi/</link>
+    <link>http://systemout.net/tags/raspberry-pi/</link>
     <description>Recent content in Raspberry Pi on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Thu, 18 Dec 2014 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/raspberry-pi/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/raspberry-pi/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>How to build and deploy octopress with a single click, part 1</title>
-      <link>http://localhost:1313/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p1</link>
+      <link>http://systemout.net/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p1</link>
       <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p1</guid>
+      <guid>http://systemout.net/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p1</guid>
       <description>
 
 &lt;p&gt;&lt;strong&gt;UPDATE&lt;/strong&gt;
@@ -154,10 +154,10 @@ No where - therefore I&amp;rsquo;m going to show you how to deploy the generated
     
     <item>
       <title>How to build and deploy octopress with a single click, part 2 </title>
-      <link>http://localhost:1313/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</link>
+      <link>http://systemout.net/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</link>
       <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</guid>
+      <guid>http://systemout.net/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:3560ed7cf74d4df07c025fe02915a1b2&#34;&gt;Introduction&lt;/h2&gt;
@@ -257,10 +257,10 @@ Now here is what happens in the script:&lt;/p&gt;
     
     <item>
       <title>How To Setup Octopress for Jekyll on a Raspberry Pi</title>
-      <link>http://localhost:1313/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</link>
+      <link>http://systemout.net/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</link>
       <pubDate>Sun, 20 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</guid>
+      <guid>http://systemout.net/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</guid>
       <description>
 
 &lt;h3 id=&#34;introduction:68e5c07e240ab8ba63c1b33cbb305bb3&#34;&gt;Introduction&lt;/h3&gt;
@@ -435,10 +435,10 @@ ls
     
     <item>
       <title>&#39;Moving on – WordPress to Octopress/Jekyll on a Pi&#39;</title>
-      <link>http://localhost:1313/2014/05/02/moving-on-wordpress-to-octopress-slash-jekyll-on-a-pi/</link>
+      <link>http://systemout.net/2014/05/02/moving-on-wordpress-to-octopress-slash-jekyll-on-a-pi/</link>
       <pubDate>Fri, 02 May 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/05/02/moving-on-wordpress-to-octopress-slash-jekyll-on-a-pi/</guid>
+      <guid>http://systemout.net/2014/05/02/moving-on-wordpress-to-octopress-slash-jekyll-on-a-pi/</guid>
       <description>
 
 &lt;p&gt;This 1 post is part of a series of posts.&lt;/p&gt;

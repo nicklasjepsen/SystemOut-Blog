@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Api on SystemOut</title>
-    <link>http://localhost:1313/tags/api/</link>
+    <link>http://systemout.net/tags/api/</link>
     <description>Recent content in Api on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Thu, 01 Oct 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/api/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/api/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Async RSS Parser Service</title>
-      <link>http://localhost:1313/2015/10/01/async-rss-parser-service/</link>
+      <link>http://systemout.net/2015/10/01/async-rss-parser-service/</link>
       <pubDate>Thu, 01 Oct 2015 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2015/10/01/async-rss-parser-service/</guid>
+      <guid>http://systemout.net/2015/10/01/async-rss-parser-service/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:cd8934bb510e397ca8b305f3943838bf&#34;&gt;Introduction&lt;/h2&gt;
@@ -182,10 +182,10 @@ This goes on in a loop that only gets escaped if the caller decides to cancel th
     
     <item>
       <title>Gravatar C# API</title>
-      <link>http://localhost:1313/2015/08/08/gravatar-csharp-api/</link>
+      <link>http://systemout.net/2015/08/08/gravatar-csharp-api/</link>
       <pubDate>Sat, 08 Aug 2015 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2015/08/08/gravatar-csharp-api/</guid>
+      <guid>http://systemout.net/2015/08/08/gravatar-csharp-api/</guid>
       <description>&lt;p&gt;Each time I write a new app that involves users (which is pretty often) I think it would be nice to be able to display their own profile image, without the need of authenticating them against facebook, Linkedin or by using their Microsoft account.&lt;/p&gt;
 
 &lt;p&gt;Therefore I decided to use Gravatar, which basically allows you to request a user image (avatar) when you only know their email address. This is pretty simply and you can just make a plain HTTP GET and get their image url in response. Try this:&lt;/p&gt;
@@ -215,10 +215,10 @@ Further more you can retrieve lots of other information about the users presente
     
     <item>
       <title>&#39;C# Generic Xml Parser Example&#39;</title>
-      <link>http://localhost:1313/2013/12/19/csharp-generic-xml-parser-example/</link>
+      <link>http://systemout.net/2013/12/19/csharp-generic-xml-parser-example/</link>
       <pubDate>Thu, 19 Dec 2013 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2013/12/19/csharp-generic-xml-parser-example/</guid>
+      <guid>http://systemout.net/2013/12/19/csharp-generic-xml-parser-example/</guid>
       <description>&lt;p&gt;In this post I will show how to implement and use a generic xml parser library.&lt;/p&gt;
 
 &lt;p&gt;For the complete solution and source code, &lt;a href=&#34;http://sdrv.ms/18BwjwK&#34; title=&#34;XmlParser.zip&#34; target=&#34;_blank&#34;&gt;click here!&lt;/a&gt;&lt;/p&gt;

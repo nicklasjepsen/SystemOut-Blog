@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Extension Method on SystemOut</title>
-    <link>http://localhost:1313/tags/extension-method/</link>
+    <link>http://systemout.net/tags/extension-method/</link>
     <description>Recent content in Extension Method on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Tue, 10 Dec 2013 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/extension-method/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/extension-method/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>&#39;Extension methods in C#/.NET&#39;</title>
-      <link>http://localhost:1313/2013/12/10/extensions-methods-in-c-net/</link>
+      <link>http://systemout.net/2013/12/10/extensions-methods-in-c-net/</link>
       <pubDate>Tue, 10 Dec 2013 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2013/12/10/extensions-methods-in-c-net/</guid>
+      <guid>http://systemout.net/2013/12/10/extensions-methods-in-c-net/</guid>
       <description>&lt;p&gt;A nice feature in C# is the ability to use extension methods. These methods can be used (as the name suggests) to extend functionality to existing classes.&lt;/p&gt;
 
 &lt;p&gt;In my opinion, extension methods can be used to &lt;strong&gt;write cleaner and more easy to read code&lt;/strong&gt;. They can also be used to avoid &lt;strong&gt;duplicate code&lt;/strong&gt;.&lt;br /&gt;

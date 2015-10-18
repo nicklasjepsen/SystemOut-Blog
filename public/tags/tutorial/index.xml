@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tutorial on SystemOut</title>
-    <link>http://localhost:1313/tags/tutorial/</link>
+    <link>http://systemout.net/tags/tutorial/</link>
     <description>Recent content in Tutorial on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Fri, 25 Jul 2014 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Calling SignalR Hub from a C# WCF Service</title>
-      <link>http://localhost:1313/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</link>
+      <link>http://systemout.net/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</link>
       <pubDate>Fri, 25 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</guid>
+      <guid>http://systemout.net/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:1c0b33ef5ca6cf9a2ff28d934b29da72&#34;&gt;Introduction&lt;/h2&gt;
@@ -114,10 +114,10 @@ Then you can go to:&lt;a href=&#34;http://systemout.net:56677/ChatWebApp/Messeng
     
     <item>
       <title>Developing and Deploying a SignalR Chat Web App to IIS</title>
-      <link>http://localhost:1313/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</link>
+      <link>http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</link>
       <pubDate>Thu, 17 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</guid>
+      <guid>http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:819ac8d9cdec72dc096ec55720e219a7&#34;&gt;Introduction&lt;/h2&gt;

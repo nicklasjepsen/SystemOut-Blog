@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Sl on SystemOut</title>
-    <link>http://localhost:1313/tags/sl/</link>
+    <link>http://systemout.net/tags/sl/</link>
     <description>Recent content in Sl on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Sat, 10 Dec 2011 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/sl/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/sl/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Windows Phone RSS Reader</title>
-      <link>http://localhost:1313/2011/12/10/windows-phone-rss-reader/</link>
+      <link>http://systemout.net/2011/12/10/windows-phone-rss-reader/</link>
       <pubDate>Sat, 10 Dec 2011 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2011/12/10/windows-phone-rss-reader/</guid>
+      <guid>http://systemout.net/2011/12/10/windows-phone-rss-reader/</guid>
       <description>
 
 &lt;p&gt;As part of a competition to win a Windows Phone I have created 3 WP7 apps. One of these is a RSS reader made specific for the danish it news site &lt;a title=&#34;Version2&#34; href=&#34;http://www.version2.dk&#34; target=&#34;_blank&#34;&gt;Version2&lt;/a&gt;&lt;/p&gt;

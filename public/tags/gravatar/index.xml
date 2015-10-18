@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Gravatar on SystemOut</title>
-    <link>http://localhost:1313/tags/gravatar/</link>
+    <link>http://systemout.net/tags/gravatar/</link>
     <description>Recent content in Gravatar on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Sat, 08 Aug 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/gravatar/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/gravatar/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Gravatar C# API</title>
-      <link>http://localhost:1313/2015/08/08/gravatar-csharp-api/</link>
+      <link>http://systemout.net/2015/08/08/gravatar-csharp-api/</link>
       <pubDate>Sat, 08 Aug 2015 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2015/08/08/gravatar-csharp-api/</guid>
+      <guid>http://systemout.net/2015/08/08/gravatar-csharp-api/</guid>
       <description>&lt;p&gt;Each time I write a new app that involves users (which is pretty often) I think it would be nice to be able to display their own profile image, without the need of authenticating them against facebook, Linkedin or by using their Microsoft account.&lt;/p&gt;
 
 &lt;p&gt;Therefore I decided to use Gravatar, which basically allows you to request a user image (avatar) when you only know their email address. This is pretty simply and you can just make a plain HTTP GET and get their image url in response. Try this:&lt;/p&gt;

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Owin on SystemOut</title>
-    <link>http://localhost:1313/tags/owin/</link>
+    <link>http://systemout.net/tags/owin/</link>
     <description>Recent content in Owin on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Thu, 17 Jul 2014 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/owin/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/owin/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Developing and Deploying a SignalR Chat Web App to IIS</title>
-      <link>http://localhost:1313/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</link>
+      <link>http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</link>
       <pubDate>Thu, 17 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</guid>
+      <guid>http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:819ac8d9cdec72dc096ec55720e219a7&#34;&gt;Introduction&lt;/h2&gt;
@@ -293,10 +293,10 @@ Select the ChatWebApp folder, right click and select Convert to Application.&lt;
     
     <item>
       <title>SignalR Hub Reference - done right!</title>
-      <link>http://localhost:1313/2014/07/15/signalr-hub-reference-done-right/</link>
+      <link>http://systemout.net/2014/07/15/signalr-hub-reference-done-right/</link>
       <pubDate>Tue, 15 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/15/signalr-hub-reference-done-right/</guid>
+      <guid>http://systemout.net/2014/07/15/signalr-hub-reference-done-right/</guid>
       <description>
 
 &lt;p&gt;UPDATE: I have now written a complete SignalR tutorial, see this post: &lt;a href=&#34;http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/&#34;&gt;http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/&lt;/a&gt;&lt;/p&gt;

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>SystemOut</title>
-    <link>http://localhost:1313/</link>
+    <link>http://systemout.net/</link>
     <description>Recent content on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Thu, 01 Oct 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Async RSS Parser Service</title>
-      <link>http://localhost:1313/2015/10/01/async-rss-parser-service/</link>
+      <link>http://systemout.net/2015/10/01/async-rss-parser-service/</link>
       <pubDate>Thu, 01 Oct 2015 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2015/10/01/async-rss-parser-service/</guid>
+      <guid>http://systemout.net/2015/10/01/async-rss-parser-service/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:cd8934bb510e397ca8b305f3943838bf&#34;&gt;Introduction&lt;/h2&gt;
@@ -182,10 +182,10 @@ This goes on in a loop that only gets escaped if the caller decides to cancel th
     
     <item>
       <title>Windows 10 - How to configure network adapter - properties not working</title>
-      <link>http://localhost:1313/2015/08/12/windows-10-how-to-configure-network-adapter-properties-not-working/</link>
+      <link>http://systemout.net/2015/08/12/windows-10-how-to-configure-network-adapter-properties-not-working/</link>
       <pubDate>Wed, 12 Aug 2015 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2015/08/12/windows-10-how-to-configure-network-adapter-properties-not-working/</guid>
+      <guid>http://systemout.net/2015/08/12/windows-10-how-to-configure-network-adapter-properties-not-working/</guid>
       <description>
 
 &lt;p&gt;So I have installed Windows 10 RTM on my main PC and overall I&amp;rsquo;m happy with it. Although it still seems a little bit &amp;ldquo;beta&amp;rdquo; I am satisfied.
@@ -208,10 +208,10 @@ So changing this to: &lt;code&gt;IpPrioritizeRemote=0&lt;/code&gt; did indeed fi
     
     <item>
       <title>Gravatar C# API</title>
-      <link>http://localhost:1313/2015/08/08/gravatar-csharp-api/</link>
+      <link>http://systemout.net/2015/08/08/gravatar-csharp-api/</link>
       <pubDate>Sat, 08 Aug 2015 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2015/08/08/gravatar-csharp-api/</guid>
+      <guid>http://systemout.net/2015/08/08/gravatar-csharp-api/</guid>
       <description>&lt;p&gt;Each time I write a new app that involves users (which is pretty often) I think it would be nice to be able to display their own profile image, without the need of authenticating them against facebook, Linkedin or by using their Microsoft account.&lt;/p&gt;
 
 &lt;p&gt;Therefore I decided to use Gravatar, which basically allows you to request a user image (avatar) when you only know their email address. This is pretty simply and you can just make a plain HTTP GET and get their image url in response. Try this:&lt;/p&gt;
@@ -241,10 +241,10 @@ Further more you can retrieve lots of other information about the users presente
     
     <item>
       <title>404 Hubs Not Found And Debugging Problems</title>
-      <link>http://localhost:1313/2014/07/17/404-hubs-not-found-and-debugging-problems/</link>
+      <link>http://systemout.net/2014/07/17/404-hubs-not-found-and-debugging-problems/</link>
       <pubDate>Mon, 22 Jun 2015 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/17/404-hubs-not-found-and-debugging-problems/</guid>
+      <guid>http://systemout.net/2014/07/17/404-hubs-not-found-and-debugging-problems/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:c19d32463fb40573265337c22adbb0e8&#34;&gt;Introduction&lt;/h2&gt;
@@ -291,10 +291,10 @@ app.MapSignalR(&lt;span style=&#34;color: #4070a0&#34;&gt;&amp;quot;/~/signalr&a
     
     <item>
       <title>Developing a &#39;Who Is On&#39; Chat Web App Using SignalR and WPF</title>
-      <link>http://localhost:1313/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/</link>
+      <link>http://systemout.net/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/</link>
       <pubDate>Wed, 10 Jun 2015 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/</guid>
+      <guid>http://systemout.net/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:059a38db281f7dbb8fe36beb42876568&#34;&gt;Introduction&lt;/h2&gt;
@@ -516,10 +516,10 @@ Then there is the StartSignalR method. First we are creating a new HubConnection
     
     <item>
       <title>Create a Windows 10 IoT Universal App Photo Viewer with Bing Maps Support</title>
-      <link>http://localhost:1313/2015/05/28/create-a-windows-10-iot-universal-app-photo-viewer-with-bing-maps-support/</link>
+      <link>http://systemout.net/2015/05/28/create-a-windows-10-iot-universal-app-photo-viewer-with-bing-maps-support/</link>
       <pubDate>Thu, 28 May 2015 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2015/05/28/create-a-windows-10-iot-universal-app-photo-viewer-with-bing-maps-support/</guid>
+      <guid>http://systemout.net/2015/05/28/create-a-windows-10-iot-universal-app-photo-viewer-with-bing-maps-support/</guid>
       <description>
 
 &lt;h3 id=&#34;introduction:97c9c115bbf6f31b9c608647d5037e48&#34;&gt;Introduction&lt;/h3&gt;
@@ -654,10 +654,10 @@ MapControl.MapElements.Clear();
     
     <item>
       <title>Backup to OneDrive or Other Cloud Storage Using a Simpel Script</title>
-      <link>http://localhost:1313/2014/12/29/backup-to-onedrive-or-other-cloud-storage-using-a-simpel-script</link>
+      <link>http://systemout.net/2014/12/29/backup-to-onedrive-or-other-cloud-storage-using-a-simpel-script</link>
       <pubDate>Mon, 29 Dec 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/12/29/backup-to-onedrive-or-other-cloud-storage-using-a-simpel-script</guid>
+      <guid>http://systemout.net/2014/12/29/backup-to-onedrive-or-other-cloud-storage-using-a-simpel-script</guid>
       <description>
 
 &lt;h2 id=&#34;getting-started:c3e3703607cf7f48e936440f5c5b5483&#34;&gt;Getting Started&lt;/h2&gt;
@@ -727,10 +727,10 @@ A fix for this is to manually &amp;ldquo;resetting&amp;rdquo; the destination fi
     
     <item>
       <title>Android AutoComplete EditText with history</title>
-      <link>http://localhost:1313/2014/12/19/android-autocomplete-edittext-with-history</link>
+      <link>http://systemout.net/2014/12/19/android-autocomplete-edittext-with-history</link>
       <pubDate>Fri, 19 Dec 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/12/19/android-autocomplete-edittext-with-history</guid>
+      <guid>http://systemout.net/2014/12/19/android-autocomplete-edittext-with-history</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:38e3a693750fbbc9de009236bbf4ab07&#34;&gt;Introduction&lt;/h2&gt;
@@ -855,10 +855,10 @@ textView&lt;span style=&#34;color: #666666&#34;&gt;.&lt;/span&gt;&lt;span style=
     
     <item>
       <title>How to build and deploy octopress with a single click, part 1</title>
-      <link>http://localhost:1313/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p1</link>
+      <link>http://systemout.net/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p1</link>
       <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p1</guid>
+      <guid>http://systemout.net/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p1</guid>
       <description>
 
 &lt;p&gt;&lt;strong&gt;UPDATE&lt;/strong&gt;
@@ -996,10 +996,10 @@ No where - therefore I&amp;rsquo;m going to show you how to deploy the generated
     
     <item>
       <title>How to build and deploy octopress with a single click, part 2 </title>
-      <link>http://localhost:1313/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</link>
+      <link>http://systemout.net/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</link>
       <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</guid>
+      <guid>http://systemout.net/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:3560ed7cf74d4df07c025fe02915a1b2&#34;&gt;Introduction&lt;/h2&gt;
@@ -1099,10 +1099,10 @@ Now here is what happens in the script:&lt;/p&gt;
     
     <item>
       <title>How To Measure Execution Time and Performance Optimize Source Code</title>
-      <link>http://localhost:1313/2014/08/19/measure-execution-time-and-performance-optimize-source-code</link>
+      <link>http://systemout.net/2014/08/19/measure-execution-time-and-performance-optimize-source-code</link>
       <pubDate>Tue, 19 Aug 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/08/19/measure-execution-time-and-performance-optimize-source-code</guid>
+      <guid>http://systemout.net/2014/08/19/measure-execution-time-and-performance-optimize-source-code</guid>
       <description>
 
 &lt;h2 id=&#34;why-should-you-measure-your-source-code:e101fc7e35c9091dc41dd896bd262d34&#34;&gt;Why Should You Measure Your Source Code?&lt;/h2&gt;
@@ -1255,10 +1255,10 @@ To accomplish this, I have written a &lt;strong&gt;Time&lt;/strong&gt; method:&l
     
     <item>
       <title>Calling SignalR Hub from a C# WCF Service</title>
-      <link>http://localhost:1313/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</link>
+      <link>http://systemout.net/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</link>
       <pubDate>Fri, 25 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</guid>
+      <guid>http://systemout.net/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:1c0b33ef5ca6cf9a2ff28d934b29da72&#34;&gt;Introduction&lt;/h2&gt;
@@ -1356,10 +1356,10 @@ Then you can go to:&lt;a href=&#34;http://systemout.net:56677/ChatWebApp/Messeng
     
     <item>
       <title>How To Setup Octopress for Jekyll on a Raspberry Pi</title>
-      <link>http://localhost:1313/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</link>
+      <link>http://systemout.net/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</link>
       <pubDate>Sun, 20 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</guid>
+      <guid>http://systemout.net/2014/07/20/how-to-setup-octopress-for-jekyll-on-a-raspberry-pi/</guid>
       <description>
 
 &lt;h3 id=&#34;introduction:68e5c07e240ab8ba63c1b33cbb305bb3&#34;&gt;Introduction&lt;/h3&gt;
@@ -1534,10 +1534,10 @@ ls
     
     <item>
       <title>Developing and Deploying a SignalR Chat Web App to IIS</title>
-      <link>http://localhost:1313/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</link>
+      <link>http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</link>
       <pubDate>Thu, 17 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</guid>
+      <guid>http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:819ac8d9cdec72dc096ec55720e219a7&#34;&gt;Introduction&lt;/h2&gt;
@@ -1814,10 +1814,10 @@ Select the ChatWebApp folder, right click and select Convert to Application.&lt;
     
     <item>
       <title>SignalR Hub Reference - done right!</title>
-      <link>http://localhost:1313/2014/07/15/signalr-hub-reference-done-right/</link>
+      <link>http://systemout.net/2014/07/15/signalr-hub-reference-done-right/</link>
       <pubDate>Tue, 15 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/15/signalr-hub-reference-done-right/</guid>
+      <guid>http://systemout.net/2014/07/15/signalr-hub-reference-done-right/</guid>
       <description>
 
 &lt;p&gt;UPDATE: I have now written a complete SignalR tutorial, see this post: &lt;a href=&#34;http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/&#34;&gt;http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/&lt;/a&gt;&lt;/p&gt;

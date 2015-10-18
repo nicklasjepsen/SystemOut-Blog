@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Script on SystemOut</title>
-    <link>http://localhost:1313/tags/script/</link>
+    <link>http://systemout.net/tags/script/</link>
     <description>Recent content in Script on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Mon, 29 Dec 2014 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/script/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/script/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Backup to OneDrive or Other Cloud Storage Using a Simpel Script</title>
-      <link>http://localhost:1313/2014/12/29/backup-to-onedrive-or-other-cloud-storage-using-a-simpel-script</link>
+      <link>http://systemout.net/2014/12/29/backup-to-onedrive-or-other-cloud-storage-using-a-simpel-script</link>
       <pubDate>Mon, 29 Dec 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/12/29/backup-to-onedrive-or-other-cloud-storage-using-a-simpel-script</guid>
+      <guid>http://systemout.net/2014/12/29/backup-to-onedrive-or-other-cloud-storage-using-a-simpel-script</guid>
       <description>
 
 &lt;h2 id=&#34;getting-started:c3e3703607cf7f48e936440f5c5b5483&#34;&gt;Getting Started&lt;/h2&gt;
@@ -86,10 +86,10 @@ A fix for this is to manually &amp;ldquo;resetting&amp;rdquo; the destination fi
     
     <item>
       <title>How to build and deploy octopress with a single click, part 2 </title>
-      <link>http://localhost:1313/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</link>
+      <link>http://systemout.net/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</link>
       <pubDate>Thu, 18 Dec 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</guid>
+      <guid>http://systemout.net/2014/12/18/how-to-build-and-deploy-octopress-with-a-single-click-p2</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:3560ed7cf74d4df07c025fe02915a1b2&#34;&gt;Introduction&lt;/h2&gt;

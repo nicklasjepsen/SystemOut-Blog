@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Design Patterns on SystemOut</title>
-    <link>http://localhost:1313/tags/design-patterns/</link>
+    <link>http://systemout.net/tags/design-patterns/</link>
     <description>Recent content in Design Patterns on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Sat, 07 Dec 2013 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/design-patterns/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/design-patterns/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Generic Retry Function to Avoid Duplicate Code</title>
-      <link>http://localhost:1313/2013/12/07/retryfunction/</link>
+      <link>http://systemout.net/2013/12/07/retryfunction/</link>
       <pubDate>Sat, 07 Dec 2013 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2013/12/07/retryfunction/</guid>
+      <guid>http://systemout.net/2013/12/07/retryfunction/</guid>
       <description>&lt;p&gt;Sometimes you have a method which you want to be executed again if it fails the first time.&lt;br /&gt;
 This could lead to duplicate code, or to at least to a for loop wrapping the implementation of the method which is OK but what if you had two methods you needed this retry logic for?&lt;/p&gt;
 
@@ -58,10 +58,10 @@ This could lead to duplicate code, or to at least to a for loop wrapping the imp
     
     <item>
       <title>&#39;Code Snippet &amp;#8211; Singleton&#39;</title>
-      <link>http://localhost:1313/2011/12/07/code-snippet-singleton/</link>
+      <link>http://systemout.net/2011/12/07/code-snippet-singleton/</link>
       <pubDate>Wed, 07 Dec 2011 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2011/12/07/code-snippet-singleton/</guid>
+      <guid>http://systemout.net/2011/12/07/code-snippet-singleton/</guid>
       <description>&lt;p&gt;I&amp;#8217;ve written some code snippets which makes the daily job as a developer more convenient. These snippets are for use with Visual Studio.&lt;/p&gt;
 
 &lt;p&gt;If you want to have a look at how these snippets are added to Visual Studio see how to add a snippet &lt;a href=&#34;http://systemout.net/blog/2011/12/07/code-snippet-how-to-add-visual-studio/&#34; title=&#34;Code Snippet – How to add to Visual Studio&#34;&gt;here.&lt;/a&gt;&lt;/p&gt;

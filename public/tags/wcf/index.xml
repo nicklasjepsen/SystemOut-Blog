@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Wcf on SystemOut</title>
-    <link>http://localhost:1313/tags/wcf/</link>
+    <link>http://systemout.net/tags/wcf/</link>
     <description>Recent content in Wcf on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Fri, 25 Jul 2014 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/wcf/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/wcf/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Calling SignalR Hub from a C# WCF Service</title>
-      <link>http://localhost:1313/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</link>
+      <link>http://systemout.net/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</link>
       <pubDate>Fri, 25 Jul 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</guid>
+      <guid>http://systemout.net/2014/07/25/calling-signalr-hub-from-a-csharp-wcf-service</guid>
       <description>
 
 &lt;h2 id=&#34;introduction:1c0b33ef5ca6cf9a2ff28d934b29da72&#34;&gt;Introduction&lt;/h2&gt;
@@ -114,10 +114,10 @@ Then you can go to:&lt;a href=&#34;http://systemout.net:56677/ChatWebApp/Messeng
     
     <item>
       <title>Creating a REST (and SOAP) Enabled WCF Service</title>
-      <link>http://localhost:1313/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</link>
+      <link>http://systemout.net/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</link>
       <pubDate>Wed, 18 Dec 2013 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</guid>
+      <guid>http://systemout.net/2013/12/18/creating-a-rest-and-soap-enabled-wcf-service/</guid>
       <description>&lt;p&gt;In this post I&amp;#8217;m going to walk you through the process of creating a REST/SOAP enabled WCF service using .NET 4.5.1 and Visual Studio 2013.&lt;/p&gt;
 
 &lt;p&gt;If you just want to try for yourself you can download the complete solution &lt;a href=&#34;http://sdrv.ms/1fntPAZ&#34; title=&#34;Donwload from my SKyDrive&#34; target=&#34;_blank&#34;&gt;here!&lt;/a&gt;&lt;/p&gt;
@@ -193,10 +193,10 @@ Then you can go to:&lt;a href=&#34;http://systemout.net:56677/ChatWebApp/Messeng
     
     <item>
       <title>Publish WCF Service on IIS</title>
-      <link>http://localhost:1313/2012/03/20/publish-wcf-service-on-iis/</link>
+      <link>http://systemout.net/2012/03/20/publish-wcf-service-on-iis/</link>
       <pubDate>Tue, 20 Mar 2012 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2012/03/20/publish-wcf-service-on-iis/</guid>
+      <guid>http://systemout.net/2012/03/20/publish-wcf-service-on-iis/</guid>
       <description>
 
 &lt;p&gt;Recently I needed to publish a WCF service on an IIS. This progress I quite smooth when you just need to access the WCF service locally, but ones you need to publish the service on the great Internet, things are a little more difficult.&lt;/p&gt;
@@ -251,10 +251,10 @@ Then you can go to:&lt;a href=&#34;http://systemout.net:56677/ChatWebApp/Messeng
     
     <item>
       <title>&#39;Windows Azure Access Control Service (ACS) &amp;#8211; part 1 &amp;#8216;Get token in WP7 client&amp;#8217;&#39;</title>
-      <link>http://localhost:1313/2012/02/09/windows-azure-access-control-service-acs-part-1-get-token-in-wp7-client/</link>
+      <link>http://systemout.net/2012/02/09/windows-azure-access-control-service-acs-part-1-get-token-in-wp7-client/</link>
       <pubDate>Thu, 09 Feb 2012 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2012/02/09/windows-azure-access-control-service-acs-part-1-get-token-in-wp7-client/</guid>
+      <guid>http://systemout.net/2012/02/09/windows-azure-access-control-service-acs-part-1-get-token-in-wp7-client/</guid>
       <description>&lt;p&gt;While working on a project for WP7 where a backend is required I needed to implement some sort of security on the server. As the server is being hosted in Windows Azure I looked into ACS. At first it did look a bid &amp;#8220;over configured&amp;#8221; meaning there is a lot of documentation on how to use it and what you can actually do with it. Facebook, Google, Windows Live login etc. For my purpose I just needed a simple way off securing my REST service and after some reading I thought I would give ACS a try.&lt;/p&gt;
 
 &lt;p&gt;Steps involved:&lt;/p&gt;

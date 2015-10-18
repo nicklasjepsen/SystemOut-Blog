@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Windows10 on SystemOut</title>
-    <link>http://localhost:1313/tags/windows10/</link>
+    <link>http://systemout.net/tags/windows10/</link>
     <description>Recent content in Windows10 on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Wed, 12 Aug 2015 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/windows10/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/windows10/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Windows 10 - How to configure network adapter - properties not working</title>
-      <link>http://localhost:1313/2015/08/12/windows-10-how-to-configure-network-adapter-properties-not-working/</link>
+      <link>http://systemout.net/2015/08/12/windows-10-how-to-configure-network-adapter-properties-not-working/</link>
       <pubDate>Wed, 12 Aug 2015 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2015/08/12/windows-10-how-to-configure-network-adapter-properties-not-working/</guid>
+      <guid>http://systemout.net/2015/08/12/windows-10-how-to-configure-network-adapter-properties-not-working/</guid>
       <description>
 
 &lt;p&gt;So I have installed Windows 10 RTM on my main PC and overall I&amp;rsquo;m happy with it. Although it still seems a little bit &amp;ldquo;beta&amp;rdquo; I am satisfied.

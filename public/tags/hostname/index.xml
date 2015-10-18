@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hostname on SystemOut</title>
-    <link>http://localhost:1313/tags/hostname/</link>
+    <link>http://systemout.net/tags/hostname/</link>
     <description>Recent content in Hostname on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Tue, 20 Mar 2012 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/hostname/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/hostname/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Publish WCF Service on IIS</title>
-      <link>http://localhost:1313/2012/03/20/publish-wcf-service-on-iis/</link>
+      <link>http://systemout.net/2012/03/20/publish-wcf-service-on-iis/</link>
       <pubDate>Tue, 20 Mar 2012 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2012/03/20/publish-wcf-service-on-iis/</guid>
+      <guid>http://systemout.net/2012/03/20/publish-wcf-service-on-iis/</guid>
       <description>
 
 &lt;p&gt;Recently I needed to publish a WCF service on an IIS. This progress I quite smooth when you just need to access the WCF service locally, but ones you need to publish the service on the great Internet, things are a little more difficult.&lt;/p&gt;

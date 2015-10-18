@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tools on SystemOut</title>
-    <link>http://localhost:1313/tags/tools/</link>
+    <link>http://systemout.net/tags/tools/</link>
     <description>Recent content in Tools on SystemOut</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <managingEditor>nmj@systemout.net (Nicklas Møller Jepsen)</managingEditor>
     <webMaster>nmj@systemout.net (Nicklas Møller Jepsen)</webMaster>
     <lastBuildDate>Tue, 19 Aug 2014 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/tools/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://systemout.net/tags/tools/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>How To Measure Execution Time and Performance Optimize Source Code</title>
-      <link>http://localhost:1313/2014/08/19/measure-execution-time-and-performance-optimize-source-code</link>
+      <link>http://systemout.net/2014/08/19/measure-execution-time-and-performance-optimize-source-code</link>
       <pubDate>Tue, 19 Aug 2014 00:00:00 +0000</pubDate>
       <author>nmj@systemout.net (Nicklas Møller Jepsen)</author>
-      <guid>http://localhost:1313/2014/08/19/measure-execution-time-and-performance-optimize-source-code</guid>
+      <guid>http://systemout.net/2014/08/19/measure-execution-time-and-performance-optimize-source-code</guid>
       <description>
 
 &lt;h2 id=&#34;why-should-you-measure-your-source-code:e101fc7e35c9091dc41dd896bd262d34&#34;&gt;Why Should You Measure Your Source Code?&lt;/h2&gt;
