@@ -5,6 +5,7 @@ comments: "true"
 date: "2014-12-19"
 url: "/2014/12/19/android-autocomplete-edittext-with-history"
 comments: "true"
+weight: 800
 categories:
   - android
   - programming

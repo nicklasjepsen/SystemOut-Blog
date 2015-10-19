@@ -4,6 +4,7 @@ author: "Nicklas Møller Jepsen"
 date: "2015-06-10"
 url: "/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/"
 comments: "true"
+weight: 20
 categories:
   - programming
   - signalr

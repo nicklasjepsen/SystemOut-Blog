@@ -4,6 +4,7 @@ author: "Nicklas Møller Jepsen"
 date: "2013-12-10"
 url: "/2013/12/10/extensions-methods-in-c-net/"
 comments: "true"
+weight: 999
 categories:
   - programming
 tags:

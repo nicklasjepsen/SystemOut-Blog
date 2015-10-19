@@ -4,6 +4,7 @@ author: "Nicklas Møller Jepsen"
 date: "2013-12-19"
 url: "/2013/12/19/csharp-generic-xml-parser-example/"
 comments: "true"
+weight: 500
 categories:
   - programming
 tags:

@@ -4,6 +4,7 @@ author: "Nicklas Møller Jepsen"
 date: "2011-12-07"
 url: "/2011/12/07/wp7-sms-templates/"
 comments: "true"
+weight: 999
 categories:
   - programming
 tags:

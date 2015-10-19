@@ -4,7 +4,7 @@ author: "Nicklas Møller Jepsen"
 date: "2015-10-01"
 url: "/2015/10/01/async-rss-parser-service/"
 comments: "true"
-featured: "'signalr'"
+weight: 100
 categories:
   - programming
 tags:

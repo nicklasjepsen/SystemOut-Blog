@@ -15,6 +15,7 @@ series:
 ---
 So I have installed Windows 10 RTM on my main PC and overall I'm happy with it. Although it still seems a little bit "beta" I am satisfied.
 One problem I have encountered is that when setting up a VPN to be able to access company resources I am no longer able to access the Advanced Properties of the VPN Network Adapter<!--more-->:
+
 ![VPN Properties](http://systemout.net/images/VPNProperties.png)
 
 
