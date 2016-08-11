@@ -47,7 +47,12 @@
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->  
-
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-5807169669170468",
+    enable_page_level_ads: true
+  });
+</script>
     {{ if ne .URL "/" }}
         <link href="{{ .Site.BaseURL }}index.xml" rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" />
     {{ end }}
@@ -101,6 +106,9 @@ window._fbq.push(['track', '6023402929438', {'value':'0.00','currency':'DKK'}]);
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
   </script>
+  
+  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
     {{ end }}
     
     {{ partial "criticalpath.html" . }}
@@ -113,6 +121,6 @@ window._fbq.push(['track', '6023402929438', {'value':'0.00','currency':'DKK'}]);
 		
             
             {{ partial "follow.html" . }}
-			{{ partial "google-add-rectangle.html" . }}
             {{ partial "navigation.html" . }}
+			{{ partial "google-add-rectangle.html" . }}
         </header>
