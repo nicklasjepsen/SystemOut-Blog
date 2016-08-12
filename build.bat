@@ -1,1 +1,1 @@
-D:\OneDrive\Blog\hugo\build\build.bat
+call hugo
