@@ -14,7 +14,7 @@ tags:
   - REST 
 ---
 ## Introduction
-
+This is the first post on developing a WebApi solution, the next post is about unit testins, mocking and dependency injection using Moq and Unity, you can find that post here: [Mock and Uni Test WebApi](http://systemout.net/2016/12/29/mock-and-unit-test-web-api/)
 
 If you just want to check out the source for the project, then go to the [Github repo](https://github.com/nicklasjepsen/WebApiRestServiceExample).
 
