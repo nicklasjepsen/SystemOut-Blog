@@ -1,5 +1,5 @@
 ---
-baseurl: "http://systemout.net/"
+baseurl: "https://systemout.net/"
 languageCode: "en-us"
 title: "SystemOut"
 metaDataFormat: "yaml"
