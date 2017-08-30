@@ -20,7 +20,7 @@ series:
 ---
 ## Introduction
 
-Download the complete solution: [http://1drv.ms/1wB5IWF](http://1drv.ms/1wB5IWF)
+Download the complete solution [here](https://drive.google.com/file/d/0B_b7_Dquxu0KWjlCWVJyVUlZbGM/view?usp=sharing)
 
 In this tutorial I'm going to show you how you with ease can develop and deploy you very own SignalR Chat App!
 
