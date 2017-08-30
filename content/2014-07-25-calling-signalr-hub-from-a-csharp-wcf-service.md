@@ -20,7 +20,7 @@ series:
 ## Introduction
 **UPDATE**: See all my SignalR tutorials [right here](http://systemout.net/categories/signalr/) or find a post about how to list users that are connected [right here](http://systemout.net/2015/06/10/developing-a-who-is-on-chat-web-app-using-signalr-and-wpf/).
 
-Download the source for this tutorial here: [http://1drv.ms/1qEpMtQ](http://1drv.ms/1qEpMtQ)
+Download the source for this tutorial [https://drive.google.com/file/d/0B_b7_Dquxu0KWjlCWVJyVUlZbGM/view?usp=sharing](here).
 
 In a previous blog post I wrote a tutorial on how to develop and deploy a simple SignalR chat application using the bare minimum as a proof of concept. You can find that post right here: [http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/](http://systemout.net/2014/07/17/developing-and-deploying-a-signalr-chat-web-app-to-iis/)
 
