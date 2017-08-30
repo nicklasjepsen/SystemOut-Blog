@@ -48,7 +48,7 @@ The point of the above table is to show the big difference in the performance of
 
 
 ## The Measurement Component
-You can download the source/solution [here](http://1drv.ms/1qn4PNM "Solution on OneDrive").
+You can download the source/solution [here](https://drive.google.com/file/d/0B_b7_Dquxu0KREJ5Y0ZCSlFnQWM/view?usp=sharing).
 
 I wanted to make an easy to use component with minimal impact on the actual code that do the main stuff in the application.
 To accomplish this, I have written a **Time** method:
