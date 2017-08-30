@@ -28,7 +28,7 @@ Here is all the steps required to get going:
 - Deploy to the Pi
 - ...aaand done!
 
-[Download the solution](http://1drv.ms/1GOcRvK)
+[Download the solution](https://drive.google.com/file/d/0B_b7_Dquxu0KWjJWd2FTaDlxRms/view?usp=sharing)
 
 ![Project screen shot](http://systemout.net/images/PiPicSample.png)
 
@@ -131,4 +131,4 @@ Now this is easy! All we have to do is change the debug option in Visual Studio 
 
 For more info on deploying an UWP to Windows 10 have a look [here!](http://ms-iot.github.io/content/en-US/win10/samples/HelloWorld.htm) Look for the paragraph "Deploy the app to your Windows IoT Core device" This guide also contains instructions on how to set the application as the startup application. By doing so you can plug the photo Pi to your TV and once powered on you will have your very own photo viewer on the big screen!
 
-And that's it - remember you can find the **complete solution right [here!](http://1drv.ms/1GOcRvK)**
+And that's it - remember you can find the **complete solution right [here!](https://drive.google.com/file/d/0B_b7_Dquxu0KWjJWd2FTaDlxRms/view?usp=sharing)**
