@@ -29,7 +29,7 @@ SignalR is easy to use with JavaScript, but if you need to broadcast messages to
 This tutorial, will guide you to calling SignalR hub methods from a WCF service that recides in a different DLL than the SignalR host.<!--more-->
 
 ### Setup
-This tutorial uses the Chat web app as implemented in the previous mention blog post, you can find the solution from that post rigth here: [http://1drv.ms/1wB5IWF](http://1drv.ms/1wB5IWF)
+This tutorial uses the Chat web app as implemented in the previous mention blog post, you can find the solution from that post rigth [here](https://drive.google.com/file/d/0B_b7_Dquxu0KWjlCWVJyVUlZbGM/view?usp=sharing).
 Oh, and if you want to see the app in action, you can try it out right here: [http://systemout.net:56677/ChatWebApp/Messenger.html?username=User1](http://systemout.net:56677/ChatWebApp/Messenger.html?username=User1)
 
 We are going to add a WCF service to the ChatWebApp solution and provide functionality that allows the WCF service to invoke methods on the SignalR hub.
