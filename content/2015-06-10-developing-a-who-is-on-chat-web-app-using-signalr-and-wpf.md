@@ -18,9 +18,9 @@ series:
 ## Introduction
 In this tutorial I will guide you in creating a "Who Is On" client in Windows Presentation Foundation, WPF. The server is an ASP.NET SignalR app. This post is building upon my previous post about how to develop, deploy and host a SignalR Chat Web App. You can find that post [right here!]({% post_url 2014-07-17-developing-and-deploying-a-signalr-chat-web-app-to-iis %} )<!--more-->
 
-Because we are building upon the previous post and solution, you should download the solution [here](http://1drv.ms/1wB5IWF).
+Because we are building upon the previous post and solution, you should download the solution [here](https://drive.google.com/file/d/0B_b7_Dquxu0KWjlCWVJyVUlZbGM/view?usp=sharing).
 
-You can find the source for the WPF app that we are creating in this post [rigth here!](http://1drv.ms/1IFqRKj)
+You can find the source for the WPF app that we are creating in this post [rigth here!](https://drive.google.com/file/d/0B_b7_Dquxu0KR1J0LXRyLXhjalU/view?usp=sharing)
 
 We are going to add some methods to the server side and make an all new (horrible looking) WPF client - this is a SignalR post, not a "make some shiny WPF magic" post.
 
